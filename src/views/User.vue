@@ -1,12 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <hearder-components />
-  <div class="flex mt-4">
-    <menu-components />
+  <hearder-components class="header_items" />
+  <menu-components class="menu_items mt-4" />
+  <div class="flex mt-4 user_all">
     <div class="w-100 all_user">
       <div class="flex h-20 user_st">
         <div class="user_tt w-1/2 border-r-slate-400">
-          <p class="text-center mt-7 font-semibold">Thông tin khách hàng</p>
+          <p class="text-center mt-7 font-semibold user_st_p">
+            Thông tin khách hàng
+          </p>
         </div>
         <input
           type="search"
@@ -16,7 +18,7 @@
           @click="onSearch"
         />
       </div>
-      <div class="flex gap-20 mt-6 ml-12">
+      <div class="flex gap-20 mt-6 ml-12 icon_user">
         <router-link :to="{ name: 'detail' }">
           <img src="../assets/img/i.png" alt="" class="h-12 w-12" />
         </router-link>
@@ -60,7 +62,11 @@
             <tbody>
               <tr v-for="user in reversedUsers" :key="user.id">
                 <td>{{ user.fullname }}</td>
-                <td>{{ user.email }}</td>
+                <td>
+                  <router-link :to="{ name: 'detail' }">{{
+                    user.email
+                  }}</router-link>
+                </td>
                 <td>{{ user.phone }}</td>
               </tr>
             </tbody>
@@ -224,5 +230,214 @@ td {
 }
 .name_p {
   font-family: "Roboto";
+}
+@media screen and (max-width: 960px) {
+  .img_login {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1280px) and (max-height: 720px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1608px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1608px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 1280px) and (max-height: 1080px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1608px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1608px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 1600px) and (max-height: 900px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1608px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1608px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 960px) and (max-height: 540px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1608px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1608px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 640px) and (max-height: 360px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1600px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1600px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 375px) and (max-height: 667px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1608px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1608px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 768px) and (max-height: 1024px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1600px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1608px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 820px) and (max-height: 1180px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1608px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1608px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 412px) and (max-height: 915px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1608px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1608px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 414px) and (max-height: 896px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1608px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1608px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 360px) and (max-height: 740px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1255px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1255px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 390px) and (max-height: 844px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1255px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1255px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
 }
 </style>

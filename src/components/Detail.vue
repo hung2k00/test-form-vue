@@ -1,28 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <hearder-components />
-  <div class="flex mt-4">
-    <menu-components />
-    <div class="w-100 all_user">
-      <div class="flex h-20 user_st">
-        <div class="user_tt w-1/2 border-r-slate-400">
-          <p class="text-center mt-7 font-semibold">Thông tin khách hàng</p>
-        </div>
-        <input
-          type="search"
-          id="search_text"
-          placeholder="Tìm kiếm"
-          class="w-1/2 user_s font-semibold pl-3"
-        />
-      </div>
-      <div class="flex gap-20 mt-6 ml-12">
-        <img src="../assets/img/i.png" alt="" class="h-12 w-12" />
-        <img src="../assets/img/chat_user.png" alt="" class="h-12 w-12" />
-        <img src="../assets/img/mail_user.png" alt="" class="h-12 w-12" />
-        <img src="../assets/img/ab.png" alt="" class="h-12 w-10" />
-      </div>
-      <div class="flex mt-20 ml-4">
-        <div>
+  <div class="form_details">
+    <div class="float-right mr-6 mt-4 cursor-pointer" @click="onClose">
+      <i class="fa-solid fa-xmark fa-2xl" style="color: #888b91"></i>
+    </div>
+    <div class="detail_items_form">
+      <div class="flex mt-14 ml-4">
+        <div class="">
           <img src="../assets/img/avartar.png" alt="" class="h-28 w-28" />
         </div>
         <div>
@@ -64,16 +48,27 @@
   </div>
 </template>
 <script>
-import HearderComponents from "../components/Header.vue";
-import MenuComponents from "../components/Menu.vue";
 export default {
-  components: {
-    HearderComponents,
-    MenuComponents,
+  methods: {
+    onClose() {
+      this.$router.push("/user");
+    },
   },
 };
 </script>
 <style scoped>
+.detail_items_form {
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 10px 10px;
+  background: white;
+  height: 590px;
+}
+.form_details {
+  background: #a4a4a4;
+  height: 961px;
+  padding: 180px 600px;
+}
 .all_user {
   font-family: "Roboto";
 }

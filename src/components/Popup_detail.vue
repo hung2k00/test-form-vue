@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <div>
+  <div class="detail_icons">
     <div class="flex gap-3 ml-11 mt-14">
       <img src="../assets/img/mail2.png" />
       <p class="font-normal text-xl ml-4">{{ user.email }}</p>
@@ -103,5 +103,49 @@ export default {
 .popup_detail {
   border: 1px solid #cfcfcf;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+@media only screen and (max-width: 960px) and (max-height: 540px) {
+  .all_form {
+    margin-top: 0;
+    margin-left: 140px;
+  }
+  .login_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 375px) and (max-height: 667px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 768px) and (max-height: 1024px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 820px) and (max-height: 1180px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 412px) and (max-height: 915px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 414px) and (max-height: 896px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 360px) and (max-height: 740px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 390px) and (max-height: 844px) {
+  .detail_icons {
+    display: none;
+  }
 }
 </style>
