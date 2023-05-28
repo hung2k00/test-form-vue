@@ -39,7 +39,7 @@
         <p>Tạo Người Dùng</p>
         <img src="../assets/img/Icon.png" />
       </div>
-      <div class="">
+      <div class="relative">
         <div class="full_list mt-10 mx-auto">
           <div class="all_list flex">
             <div class="user_list">
@@ -65,11 +65,15 @@
               </tr>
             </tbody>
           </table>
-          <div class="pagination">
-            <button @click="previousPage" :disabled="currentPage === 1">
+          <div class="pagination absolute">
+            <button
+              @click="previousPage"
+              :disabled="currentPage === 1"
+              class="mt-4"
+            >
               Previous
             </button>
-            <span>{{ currentPage }}</span>
+            <span class="ml-2 mr-2">{{ currentPage }}</span>
             <button @click="nextPage" :disabled="currentPage === totalPages">
               Next
             </button>
@@ -93,7 +97,7 @@ export default {
   data() {
     return {
       users: [],
-      perPage: 6, // Số lượng người dùng hiển thị trên mỗi trang
+      perPage: 20, // Số lượng người dùng hiển thị trên mỗi trang
       currentPage: 1, // Trang hiện tại
     };
   },
