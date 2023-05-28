@@ -1,0 +1,237 @@
+<template>
+  <div class="bg-gray-200 create_uer_all p-32">
+    <div class="create_user max-w-4xl mx-auto">
+      <div class="flex create_header p-6">
+        <div class="w-11/12 text-blue-500">
+          <p class="text-2xl ml-10 font-semibold">Thông tin cá nhân</p>
+        </div>
+        <div class="w-1/12 cursor-pointer" @click="onClose">
+          <i class="fa-solid fa-xmark fa-2xl" style="color: #888b91"></i>
+        </div>
+      </div>
+      <form @submit.prevent="onSubmit">
+        <div class="">
+          <div class="px-48 ml-10 py-6">
+            <label for="image-input" class="upload-button text-base font-medium"
+              >Choose Image:</label
+            >
+            <input
+              class="ml-2 cursor-pointer"
+              type="file"
+              id="image-input"
+              accept="image/*"
+              @change="handleImageUpload"
+            />
+          </div>
+        </div>
+        <div class="grid gap-4 grid-cols-2 py-10 px-16 create_form">
+          <div>
+            <label>Tên truy cập</label>
+            <input
+              type="username"
+              placeholder="manhhung00"
+              v-model="user.username"
+            />
+          </div>
+          <div>
+            <label for="">Họ và tên</label>
+            <input
+              type="text"
+              v-model="user.fullname"
+              placeholder="fullname"
+              :class="{ error: error.status, success: success.status }"
+            />
+            <p
+              id="#checkerr"
+              class="error-text text-red-700"
+              v-if="error.status"
+            >
+              {{ error.text }}
+            </p>
+            <p
+              id="#checksucss"
+              class="success-text text-green-700"
+              v-if="success.status"
+            >
+              {{ success.text }}
+            </p>
+          </div>
+          <div class="mt-2">
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="example@gmail.com"
+              v-model="user.email"
+            />
+          </div>
+          <div class="mt-2">
+            <label for="">Mật khẩu</label>
+            <input
+              type="password"
+              placeholder="*********"
+              v-model="user.password"
+            />
+          </div>
+          <div class="mt-2">
+            <label for="">Số điện thoại</label>
+            <input type="tel" playhoder="09xx657xxx" v-model="user.phone" />
+          </div>
+          <div class="mt-2">
+            <label for="">Địa chỉ</label>
+            <input type="text" playhoder="address" v-model="user.address" />
+          </div>
+          <div class="mt-2">
+            <label>Số CMND</label>
+            <input type="" placeholder="03620000xxx" v-model="user.cmnd" />
+          </div>
+          <div class="flex mt-4">
+            <label for="cars" class="">Choose tags:</label>
+
+            <select
+              v-model="user.tags"
+              multiple
+              size="3"
+              class="ml-4 mt-2 h-20 w-32"
+            >
+              <option
+                class="cursor-pointer"
+                v-for="option in options"
+                :value="option.value"
+                :key="option.value"
+              >
+                {{ option.label }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="flex gap-8 pb-8">
+          <div class="ml-16 submit_form">
+            <button type="submit">Lưu trữ</button>
+          </div>
+          <div class="cancel_form" @click="onClose"><button>Đóng</button></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>
+<style scoped>
+.create_user_all {
+}
+#image-input {
+  border: none;
+  width: 338px;
+}
+.submit_form {
+  background: rgb(15, 112, 168);
+  color: white;
+  height: 40px;
+  width: 100px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 7px;
+}
+.cancel_form {
+  background: rgb(106, 124, 134);
+  color: white;
+  height: 40px;
+  width: 100px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 7px;
+}
+.create_header {
+  border-bottom: 2px solid #25242428;
+}
+input {
+  padding: 5px;
+  width: 350px;
+  height: 50px;
+  border: 2px solid #25242428;
+  border-radius: 10px;
+}
+.create_form label {
+  font-size: 18px;
+  font-weight: 500;
+}
+.create_user {
+  background: #ffffff;
+  box-shadow: 16px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  border-top: 10px solid rgba(17, 107, 143, 0.904);
+}
+</style>
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      options: [
+        { label: "Option 1", value: "option1" },
+        { label: "Option 2", value: "option2" },
+        { label: "Option 3", value: "option3" },
+        { label: "Option 4", value: "option4" },
+        { label: "Option 5", value: "option5" },
+        { label: "Option 6", value: "option6" },
+      ],
+      error: {
+        text: "",
+        status: false,
+      },
+      success: {
+        text: "",
+        status: false,
+      },
+
+      user: {
+        fullname: "",
+        email: "",
+        tags: [],
+        picture: "",
+        username: "",
+        password: "",
+        phone: null,
+        address: "",
+        cmnd: null,
+      },
+    };
+  },
+  methods: {
+    onClose() {
+      this.$router.push("/user");
+    },
+    handleImageUpload(event) {
+      console.log(event);
+      const file = event.target.files[0];
+      // Thực hiện các hành động với file đã chọn
+      console.log(file);
+      this.user.picture = file.name;
+    },
+    onSubmit() {
+      axios
+        .post("http://localhost:3000/users", this.user)
+        .then((response) => {
+          console.log("User created:", response.data);
+          alert("Success!");
+          this.$router.push("/user");
+          // Reset the form after successful creation
+          this.user.fullname = "";
+          this.user.email = "";
+          this.user.tags = [];
+          this.user.picture = "";
+          this.user.username = "";
+          this.user.password = "";
+          this.user.phone = null;
+          this.user.address = "";
+          this.user.cmnd = null;
+        })
+        .catch((error) => {
+          console.error("Error creating user:", error);
+        });
+    },
+  },
+};
+</script>
