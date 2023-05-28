@@ -9,12 +9,18 @@ import Search from "../components/Search.vue";
 import PopupRegis from "../components/Popup_regis.vue";
 import UserNote from "../components/UserNote.vue";
 import PopupDetail from "../components/Popup_detail.vue";
+import ListUser from "../views/User.vue";
 
 const routes = [
   {
     path: "/",
     name: "login",
     component: LoginForm,
+  },
+  {
+    path: "/list-users",
+    name: "list-users",
+    component: ListUser,
   },
   {
     path: "/pop-up-details",

@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="form_details">
+  <div class="form_details" v-if="selectedUser">
     <div class="float-right mr-6 mt-4 cursor-pointer" @click="onClose">
       <i class="fa-solid fa-xmark fa-2xl" style="color: #888b91"></i>
     </div>
@@ -11,7 +11,9 @@
         </div>
         <div>
           <div class="">
-            <p class="font-bold text-2xl name_p mt-6 ml-2">Đặng long</p>
+            <p class="font-bold text-2xl name_p mt-6 ml-2">
+              {{ selectedUser.fullname }}
+            </p>
           </div>
           <div class="flex gap-10 ml-2 mt-2">
             <div class="user_item_1">
@@ -29,19 +31,19 @@
       <div>
         <div class="flex gap-3 ml-11 mt-14">
           <img src="../assets/img/mail2.png" />
-          <p class="font-normal text-xl ml-4">Mail</p>
+          <p class="font-normal text-xl ml-4">{{ selectedUser.email }}</p>
         </div>
         <div class="flex gap-3 ml-10 mt-9">
           <img src="../assets/img/cccd.png" />
-          <p class="font-normal text-xl ml-4 mt-2">Số CMND</p>
+          <p class="font-normal text-xl ml-4 mt-2">{{ selectedUser.cmnd }}</p>
         </div>
         <div class="flex gap-3 ml-10 mt-10">
           <img src="../assets/img/phone.png" alt="" />
-          <p class="font-normal text-xl ml-5">Số điện thoại</p>
+          <p class="font-normal text-xl ml-5">{{ selectedUser.phone }}</p>
         </div>
         <div class="flex gap-3 ml-10 mt-11">
           <img src="../assets/img/address.png" alt="" />
-          <p class="font-normal text-xl ml-6">Địa chỉ</p>
+          <p class="font-normal text-xl ml-6">{{ selectedUser.address }}</p>
         </div>
       </div>
     </div>
@@ -51,7 +53,13 @@
 export default {
   methods: {
     onClose() {
-      this.$router.push("/user");
+      this.$emit("close");
+    },
+  },
+  props: {
+    selectedUser: {
+      type: Object,
+      default: null,
     },
   },
 };
@@ -65,9 +73,12 @@ export default {
   height: 590px;
 }
 .form_details {
-  background: #a4a4a4;
-  height: 961px;
-  padding: 180px 600px;
+  background: rgb(164, 164, 164, 0.5);
+  height: 800px;
+  width: 1200px;
+  margin-top: -310px;
+  margin-left: 20px;
+  padding: 90px 200px;
 }
 .all_user {
   font-family: "Roboto";

@@ -51,7 +51,7 @@
               <p class="font-normal text-2xl pt-2">Ghi chú</p>
             </router-link>
           </div>
-          <table class="mt-10">
+          <table class="mt-10 cursor-pointer">
             <thead class="bg-gray-200">
               <tr class="">
                 <th>Họ và tên</th>
@@ -60,12 +60,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="user in reversedUsers" :key="user.id">
+              <tr
+                v-for="user in reversedUsers"
+                :key="user.id"
+                @click="selectUser(user)"
+              >
                 <td>{{ user.fullname }}</td>
                 <td>
-                  <router-link :to="{ name: 'detail' }">{{
-                    user.email
-                  }}</router-link>
+                  {{ user.email }}
                 </td>
                 <td>{{ user.phone }}</td>
               </tr>
@@ -85,6 +87,14 @@
             </button>
           </div>
         </div>
+        <div class="relative">
+          <detail-conponents
+            :selectedUser="selectedUser"
+            v-if="showComponentDetail"
+            class="absolute"
+            @close="resetComponentUser"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -93,18 +103,22 @@
 import HearderComponents from "../components/Header.vue";
 import MenuComponents from "../components/Menu.vue";
 import PopupDetail from "../components/Popup_detail.vue";
+import DetailConponents from "../components/Detail.vue";
 import axios from "axios";
 export default {
   components: {
     HearderComponents,
     MenuComponents,
     PopupDetail,
+    DetailConponents,
   },
   data() {
     return {
       users: [],
       perPage: 20, // Số lượng người dùng hiển thị trên mỗi trang
       currentPage: 1, // Trang hiện tại
+      selectedUser: null,
+      showComponentDetail: true,
     };
   },
   mounted() {
@@ -125,6 +139,10 @@ export default {
     },
   },
   methods: {
+    resetComponentUser() {
+      this.showComponentDetail = false; // Tắt Component A
+      // Thực hiện các hành động khác để đặt lại trạng thái ban đầu cho Component B
+    },
     onSearch() {
       this.$router.push("/search");
     },
@@ -151,6 +169,10 @@ export default {
       if (this.currentPage < this.totalPages) {
         this.currentPage++;
       }
+    },
+    selectUser(user) {
+      this.selectedUser = user;
+      this.showComponentDetail = true;
     },
   },
 };
