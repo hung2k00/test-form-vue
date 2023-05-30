@@ -71,9 +71,9 @@ export default {
   padding: 10px 10px;
   background: white;
   height: 590px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
 }
 .form_details {
-  background: rgb(164, 164, 164, 0.5);
   height: 800px;
   width: 1200px;
   margin-top: -310px;

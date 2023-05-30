@@ -102,6 +102,22 @@
       "address": "12/22/352 Hà Nội",
       "cmnd": "096200001223",
       "id": 8
+    },
+    {
+      "fullname": "Admin_2",
+      "email": "admin2@gmail.com",
+      "tags": [
+        "option1",
+        "option2",
+        "option3"
+      ],
+      "picture": "2022_01_30_16_16_IMG_0234.JPG",
+      "username": "admin2",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0946552553",
+      "address": "12/13/22/ Trần Hậu",
+      "cmnd": "032659456212",
+      "id": 9
     }
   ]
 }

@@ -87,7 +87,7 @@
             </button>
           </div>
         </div>
-        <div class="relative">
+        <div class="relative -mt-28">
           <detail-conponents
             :selectedUser="selectedUser"
             v-if="showComponentDetail"

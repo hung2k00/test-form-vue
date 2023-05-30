@@ -6,9 +6,11 @@
     <div class="all_search">
       <div class="flex h-20 user_st mt-4">
         <div class="user_tt w-1/2 border-r-slate-400">
-          <p class="text-center mt-7 font-semibold user_st_p">
-            Thông tin khách hàng
-          </p>
+          <router-link :to="{ name: 'user' }">
+            <p class="text-center mt-6 font-semibold user_st_p">
+              Thông tin khách hàng
+            </p>
+          </router-link>
         </div>
         <div class="user_s w-1/2">
           <p class="mt-6 font-semibold ml-4 user_sp">Tìm kiếm</p>
@@ -197,19 +199,6 @@ input {
 }
 .all_user {
   font-family: "Roboto";
-}
-.user_tt {
-  background: linear-gradient(
-    180deg,
-    rgba(250, 200, 164, 0.296) 0%,
-    rgba(255, 182, 33, 0) 100%
-  );
-  color: #dd7a01;
-}
-.user_s {
-  border-top: 1px solid #cfcfcf;
-  border-right: 1px solid #cfcfcf;
-  border-left: 1px solid #cfcfcf;
 }
 .user_st {
   border-bottom: 2px solid #df6106;
@@ -490,7 +479,7 @@ input {
   }
   .all_search_form {
     margin-top: 130px;
-    width: 1508px;
+    width: 108px;
   }
   .form_details {
     margin-top: 150px;
