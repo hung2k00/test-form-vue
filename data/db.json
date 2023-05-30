@@ -1,50 +1,107 @@
 {
   "users": [
     {
-      "id": 1,
-      "tags": [
-        "Option1",
-        "Option2"
-      ],
-      "email": "manhhungtran2k@gmail.com",
-      "password": "abc123",
-      "address": "Số nhà 12, xx, xx, xx",
-      "cmnd": "0222132134123231",
-      "fullname": "Trần Mạnh Hùng",
-      "username": "manhhung00",
-      "phone": "0962542608",
-      "picture": "https://www.shareicon.net/data/512x512/2016/08/18/810266_man_512x512.png"
-    },
-    {
-      "id": 2,
-      "tags": [
-        "Option1",
-        "Option2"
-      ],
-      "email": "hungtm.bhsoft@gmail.com",
-      "password": "abc123",
-      "address": "Số nhà 12, xx, xx, xx",
-      "cmnd": "0222132134123231",
-      "fullname": "Trần Mạnh Hùng",
-      "username": "manhhung00",
-      "phone": "0941584628",
-      "picture": "https://www.shareicon.net/data/512x512/2016/08/18/810266_man_512x512.png"
-    },
-    {
-      "fullname": "Vu Khanh Ly",
-      "email": "khanhly@gmail.com",
+      "fullname": "Tran Thi Yen",
+      "email": "yenyen@gmail.com",
       "tags": [
         "option1",
-        "option3",
-        "option6"
+        "option2"
       ],
-      "picture": "2022_01_30_16_16_IMG_0234.JPG",
-      "username": "khanhly",
-      "password": "abc123",
-      "phone": "097348347387",
-      "address": "11/22/25/354 Tran Cung",
-      "cmnd": "27364283468",
+      "picture": "",
+      "username": "manhhungtran",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "098786265",
+      "address": "12/12/222/345",
+      "cmnd": "093747823414",
+      "id": 1
+    },
+    {
+      "fullname": "Trần Mạnh Hùng",
+      "email": "manhhungtran2k@gmail.com",
+      "tags": [
+        "option1",
+        "option2"
+      ],
+      "picture": "2022_01_30_22_57_IMG_0239.JPG",
+      "username": "manhhung00",
+      "password": "e99a18c428cb38d5f260853678922e03",
+      "phone": "0962542608",
+      "address": "Số nhà 12, xx, xx, xx",
+      "cmnd": "0222132134123231",
+      "id": 2
+    },
+    {
+      "fullname": "Vũ Khánh Ly",
+      "email": "khanhly@gmail.com",
+      "tags": [
+        "option2",
+        "option3"
+      ],
+      "picture": "2022_01_31_21_26_IMG_0245.JPG",
+      "username": "khanhly0401",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0982736719",
+      "address": "12/22/23/25",
+      "cmnd": "036255441155",
       "id": 3
+    },
+    {
+      "fullname": "Trần Văn Hùng",
+      "email": "hungvt.bhsoft@gmail.com",
+      "tags": [
+        "option1",
+        "option2",
+        "option3"
+      ],
+      "picture": "2022_01_30_15_33_IMG_0230.JPG",
+      "username": "hungtm",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0976554662",
+      "address": "11/11/22/354 Trần Cung",
+      "cmnd": "036200007764",
+      "id": 5
+    },
+    {
+      "fullname": "Nguyễn Huy Hoàng",
+      "email": "huyhoang@gmail.com",
+      "tags": [
+        "option2",
+        "option3"
+      ],
+      "picture": "",
+      "username": "huyhoang",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0982554556",
+      "address": "11/22/25/354 Trần Hoàng",
+      "cmnd": "036200006644",
+      "id": 6
+    },
+    {
+      "fullname": "Mạnh Hùng Trần",
+      "email": "admin@gmail.com",
+      "tags": [],
+      "picture": "2022_03_23_12_10_IMG_0493.JPG",
+      "username": "admin",
+      "password": "5203d03e63adc8bbd71b9b117a4846c3",
+      "phone": "0949554556",
+      "address": "20A/89 Lương Định Của",
+      "cmnd": "036200005524",
+      "id": 7
+    },
+    {
+      "fullname": "Admin_ Trần Mạnh Hùng",
+      "email": "admin1@gmail.com",
+      "tags": [
+        "option2",
+        "option3"
+      ],
+      "picture": "2022_01_13_08_00_IMG_0104.JPG",
+      "username": "admin1",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0949552556",
+      "address": "12/22/352 Hà Nội",
+      "cmnd": "096200001223",
+      "id": 8
     }
   ]
 }

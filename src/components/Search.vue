@@ -1,94 +1,92 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div>
-    <header-components />
-    <menu-components class="mt-4" />
-    <div class="flex">
-      <div class="all_search">
-        <div class="flex h-20 user_st mt-4">
-          <div class="user_tt w-1/2 border-r-slate-400">
-            <p class="text-center mt-7 font-semibold user_st_p">
-              Thông tin khách hàng
-            </p>
-          </div>
-          <div class="user_s w-1/2">
-            <p class="mt-6 font-semibold ml-4">Tìm kiếm</p>
-          </div>
+  <hearder-components class="header_items" />
+  <menu-components class="menu_items mt-4" />
+  <div class="flex all_search_form">
+    <div class="all_search">
+      <div class="flex h-20 user_st mt-4">
+        <div class="user_tt w-1/2 border-r-slate-400">
+          <p class="text-center mt-7 font-semibold user_st_p">
+            Thông tin khách hàng
+          </p>
         </div>
-        <div class="w-96">
-          <div class="relative">
-            <img
-              src="../assets/img/search.png"
-              class="img_search absolute mt-8 ml-16"
-            />
-            <input type="text" v-model="searchTerm" placeholder="0941584628" />
-          </div>
-          <div class="mt-10 ml-12 w-full">
-            <p class="font-semibold">Kết quả tìm kiếm danh bạ</p>
-          </div>
-          <ul class="mt-10 ml-12 kq_search">
-            <li
-              v-for="contact in filteredContacts"
-              :key="contact.id"
-              @click="showContactInfo(contact)"
-              class="-ml-12 mt-2"
-            >
-              <input type="radio" name="searchCriteria" v-model="searchBy" />
-              {{ contact.fullname }}: &nbsp;{{ contact.phone }}
-            </li>
-          </ul>
+        <div class="user_s w-1/2">
+          <p class="mt-6 font-semibold ml-4 user_sp">Tìm kiếm</p>
         </div>
       </div>
-      <div class="form_details" v-if="selectedContact">
-        <div class="detail_items_form">
-          <div class="flex mt-14 ml-4">
+      <div class="w-96 search_form_1">
+        <div class="relative">
+          <img
+            src="../assets/img/search.png"
+            class="img_search absolute mt-8 ml-16"
+          />
+          <input type="text" v-model="searchTerm" placeholder="0941584628" />
+        </div>
+        <div class="mt-10 ml-12 w-full">
+          <p class="font-semibold">Kết quả tìm kiếm danh bạ</p>
+        </div>
+        <ul class="mt-10 ml-12 kq_search">
+          <li
+            v-for="contact in filteredContacts"
+            :key="contact.id"
+            @click="showContactInfo(contact)"
+            class="-ml-12 mt-2"
+          >
+            <input type="radio" name="searchCriteria" v-model="searchBy" />
+            {{ contact.fullname }}: &nbsp;{{ contact.phone }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="form_details" v-if="selectedContact">
+      <div class="detail_items_form">
+        <div class="flex mt-14 ml-4">
+          <div class="">
+            <img src="../assets/img/avartar.png" alt="" class="h-28 w-28" />
+          </div>
+          <div>
             <div class="">
-              <img src="../assets/img/avartar.png" alt="" class="h-28 w-28" />
+              <p class="font-bold text-2xl name_p mt-6 ml-2">
+                {{ selectedContact.fullname }}
+              </p>
             </div>
-            <div>
-              <div class="">
-                <p class="font-bold text-2xl name_p mt-6 ml-2">
-                  {{ selectedContact.fullname }}
-                </p>
+            <div class="flex gap-10 ml-2 mt-2">
+              <div class="user_item_1">
+                <p>VIP</p>
               </div>
-              <div class="flex gap-10 ml-2 mt-2">
-                <div class="user_item_1">
-                  <p>VIP</p>
-                </div>
-                <div class="user_item_2">
-                  <p>ACTIVE</p>
-                </div>
-                <div class="user_item_3">
-                  <p>TPIN</p>
-                </div>
+              <div class="user_item_2">
+                <p>ACTIVE</p>
+              </div>
+              <div class="user_item_3">
+                <p>TPIN</p>
               </div>
             </div>
           </div>
-          <div>
-            <div class="flex gap-3 ml-11 mt-14">
-              <img src="../assets/img/mail2.png" />
-              <p class="font-normal text-xl ml-4">
-                {{ selectedContact.email }}
-              </p>
-            </div>
-            <div class="flex gap-3 ml-10 mt-9">
-              <img src="../assets/img/cccd.png" />
-              <p class="font-normal text-xl ml-4 mt-2">
-                {{ selectedContact.cmnd }}
-              </p>
-            </div>
-            <div class="flex gap-3 ml-10 mt-10">
-              <img src="../assets/img/phone.png" alt="" />
-              <p class="font-normal text-xl ml-5">
-                {{ selectedContact.phone }}
-              </p>
-            </div>
-            <div class="flex gap-3 ml-10 mt-11">
-              <img src="../assets/img/address.png" alt="" />
-              <p class="font-normal text-xl ml-6">
-                {{ selectedContact.address }}
-              </p>
-            </div>
+        </div>
+        <div>
+          <div class="flex gap-3 ml-11 mt-14">
+            <img src="../assets/img/mail2.png" />
+            <p class="font-normal text-xl ml-4">
+              {{ selectedContact.email }}
+            </p>
+          </div>
+          <div class="flex gap-3 ml-10 mt-9">
+            <img src="../assets/img/cccd.png" />
+            <p class="font-normal text-xl ml-4 mt-2">
+              {{ selectedContact.cmnd }}
+            </p>
+          </div>
+          <div class="flex gap-3 ml-10 mt-10">
+            <img src="../assets/img/phone.png" alt="" />
+            <p class="font-normal text-xl ml-5">
+              {{ selectedContact.phone }}
+            </p>
+          </div>
+          <div class="flex gap-3 ml-10 mt-11">
+            <img src="../assets/img/address.png" alt="" />
+            <p class="font-normal text-xl ml-6">
+              {{ selectedContact.address }}
+            </p>
           </div>
         </div>
       </div>
@@ -96,13 +94,13 @@
   </div>
 </template>
 <script>
-import HeaderComponents from "./Header.vue";
-import MenuComponents from "./Menu.vue";
+import HearderComponents from "../components/Header.vue";
+import MenuComponents from "../components/Menu.vue";
 import axios from "axios";
 
 export default {
   components: {
-    HeaderComponents,
+    HearderComponents,
     MenuComponents,
   },
   data() {
@@ -246,16 +244,52 @@ input {
   height: 29px;
   text-align: center;
 }
+@media only screen and (max-width: 1280px) and (max-height: 720px) {
+  .header_items {
+    display: none;
+  }
+  .all_search_form {
+    margin-top: 130px;
+    width: 1608px;
+  }
+  .form_details {
+    margin-top: 150px;
+  }
+  .all_search {
+    width: 804px;
+  }
+  .user_sp {
+    margin-top: 50px;
+  }
+  .user_st {
+    margin-top: -10px;
+    height: 120px;
+    width: 1608px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
 @media only screen and (max-width: 1280px) and (max-height: 1080px) {
   .header_items {
     display: none;
   }
-  .user_all {
-    display: block;
-    margin-top: 150px;
+  .all_search_form {
+    margin-top: 130px;
     width: 1608px;
   }
+  .form_details {
+    margin-top: 150px;
+  }
+  .all_search {
+    width: 804px;
+    height: 1080px;
+  }
+  .user_sp {
+    margin-top: 50px;
+  }
   .user_st {
+    margin-top: -10px;
     height: 120px;
     width: 1608px;
   }
@@ -267,12 +301,21 @@ input {
   .header_items {
     display: none;
   }
-  .user_all {
-    display: block;
-    margin-top: 150px;
+  .all_search_form {
+    margin-top: 130px;
     width: 1608px;
   }
+  .form_details {
+    margin-top: 150px;
+  }
+  .all_search {
+    width: 804px;
+  }
+  .user_sp {
+    margin-top: 50px;
+  }
   .user_st {
+    margin-top: -10px;
     height: 120px;
     width: 1608px;
   }
@@ -281,66 +324,33 @@ input {
   }
 }
 @media only screen and (max-width: 960px) and (max-height: 540px) {
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1608px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
 }
 @media only screen and (max-width: 640px) and (max-height: 360px) {
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1600px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1600px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-}
-@media only screen and (max-width: 375px) and (max-height: 667px) {
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1608px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
 }
 @media only screen and (max-width: 768px) and (max-height: 1024px) {
   .header_items {
     display: none;
   }
-  .user_all {
-    display: block;
+  .all_search_form {
+    margin-top: 130px;
+    width: 1608px;
+  }
+  .form_details {
     margin-top: 150px;
-    width: 1600px;
+    margin-left: 100px;
+  }
+  .all_search {
+    width: 804px;
+  }
+  .search_form_1 {
+    margin-left: 150px;
+    margin-top: 50px;
+  }
+  .user_sp {
+    margin-top: 50px;
   }
   .user_st {
+    margin-top: -10px;
     height: 120px;
     width: 1608px;
   }
@@ -352,12 +362,26 @@ input {
   .header_items {
     display: none;
   }
-  .user_all {
-    display: block;
-    margin-top: 150px;
+  .all_search_form {
+    margin-top: 130px;
     width: 1608px;
   }
+  .form_details {
+    margin-top: 150px;
+    margin-left: 100px;
+  }
+  .all_search {
+    width: 804px;
+  }
+  .search_form_1 {
+    margin-left: 150px;
+    margin-top: 50px;
+  }
+  .user_sp {
+    margin-top: 50px;
+  }
   .user_st {
+    margin-top: -10px;
     height: 120px;
     width: 1608px;
   }
@@ -369,12 +393,26 @@ input {
   .header_items {
     display: none;
   }
-  .user_all {
-    display: block;
-    margin-top: 150px;
+  .all_search_form {
+    margin-top: 130px;
     width: 1608px;
   }
+  .form_details {
+    margin-top: 150px;
+    margin-left: 100px;
+  }
+  .all_search {
+    width: 804px;
+  }
+  .search_form_1 {
+    margin-left: 150px;
+    margin-top: 50px;
+  }
+  .user_sp {
+    margin-top: 50px;
+  }
   .user_st {
+    margin-top: -10px;
     height: 120px;
     width: 1608px;
   }
@@ -383,15 +421,31 @@ input {
   }
 }
 @media only screen and (max-width: 414px) and (max-height: 896px) {
+}
+@media only screen and (max-width: 390px) and (max-height: 844px) {
   .header_items {
     display: none;
   }
-  .user_all {
-    display: block;
-    margin-top: 150px;
+  .all_search_form {
+    margin-top: 130px;
     width: 1608px;
   }
+  .form_details {
+    margin-top: 150px;
+    margin-left: 100px;
+  }
+  .all_search {
+    width: 804px;
+  }
+  .search_form_1 {
+    margin-left: 150px;
+    margin-top: 50px;
+  }
+  .user_sp {
+    margin-top: 50px;
+  }
   .user_st {
+    margin-top: -10px;
     height: 120px;
     width: 1608px;
   }
@@ -403,31 +457,59 @@ input {
   .header_items {
     display: none;
   }
-  .user_all {
-    display: block;
+  .all_search_form {
+    margin-top: 130px;
+    width: 1608px;
+  }
+  .form_details {
     margin-top: 150px;
-    width: 1255px;
+    margin-left: 50px;
+  }
+  .all_search {
+    width: 804px;
+  }
+  .search_form_1 {
+    margin-left: 100px;
+    margin-top: 50px;
+  }
+  .user_sp {
+    margin-top: 50px;
   }
   .user_st {
+    margin-top: -10px;
     height: 120px;
-    width: 1255px;
+    width: 1608px;
   }
   .user_st_p {
     margin-top: 50px;
   }
 }
-@media only screen and (max-width: 390px) and (max-height: 844px) {
+@media only screen and (max-width: 375px) and (max-height: 667px) {
   .header_items {
     display: none;
   }
-  .user_all {
-    display: block;
+  .all_search_form {
+    margin-top: 130px;
+    width: 1508px;
+  }
+  .form_details {
     margin-top: 150px;
-    width: 1255px;
+    margin-left: 100px;
+  }
+  .all_search {
+    width: 756px;
+  }
+  .search_form_1 {
+    margin-left: 150px;
+    margin-top: 50px;
+  }
+  .user_sp {
+    margin-top: 50px;
   }
   .user_st {
+    margin-top: -10px;
     height: 120px;
-    width: 1255px;
+    width: 1508px;
   }
   .user_st_p {
     margin-top: 50px;

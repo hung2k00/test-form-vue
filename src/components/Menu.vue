@@ -41,11 +41,6 @@ export default {
 };
 </script>
 <style scoped>
-@media screen and (max-width: 960px) {
-  .img_login {
-    display: none;
-  }
-}
 @media only screen and (max-width: 1280px) and (max-height: 720px) {
   .all_form {
     margin: 55px 30px;
@@ -70,42 +65,6 @@ export default {
   }
 }
 @media only screen and (max-width: 640px) and (max-height: 360px) {
-}
-@media only screen and (max-width: 375px) and (max-height: 667px) {
-  .all_menu {
-    height: 150px;
-    position: absolute;
-    top: -15px;
-    display: flex;
-  }
-  .menu_items {
-    display: flex;
-    gap: 140px;
-    padding: 10px 40px;
-  }
-  .item_1 {
-    height: 80px;
-    width: 80px;
-  }
-  .item_2 {
-    margin-top: 10px;
-    height: 80px;
-    width: 80px;
-  }
-  .item_3 {
-    margin-top: 10px;
-    height: 80px;
-    width: 80px;
-  }
-  .item_4 {
-    margin-top: 10px;
-    height: 80px;
-    width: 80px;
-  }
-  .menu_signout {
-    height: 80px;
-    width: 80px;
-  }
 }
 @media only screen and (max-width: 768px) and (max-height: 1024px) {
   .all_menu {
@@ -146,7 +105,7 @@ export default {
 @media only screen and (max-width: 820px) and (max-height: 1180px) {
   .all_menu {
     height: 150px;
-    width: 1605px;
+    width: 1607px;
     position: absolute;
     top: -15px;
     display: flex;
@@ -220,7 +179,7 @@ export default {
 @media only screen and (max-width: 414px) and (max-height: 896px) {
   .all_menu {
     height: 150px;
-    width: 1608px;
+    width: 1700px;
     position: absolute;
     top: -15px;
     display: flex;
@@ -230,43 +189,6 @@ export default {
     gap: 200px;
     padding: 10px 40px;
     padding-left: 60px;
-  }
-  .item_1 {
-    height: 80px;
-    width: 80px;
-  }
-  .item_2 {
-    margin-top: 10px;
-    height: 80px;
-    width: 80px;
-  }
-  .item_3 {
-    margin-top: 10px;
-    height: 80px;
-    width: 80px;
-  }
-  .item_4 {
-    margin-top: 10px;
-    height: 80px;
-    width: 80px;
-  }
-  .menu_signout {
-    height: 80px;
-    width: 80px;
-  }
-}
-@media only screen and (max-width: 360px) and (max-height: 740px) {
-  .all_menu {
-    height: 150px;
-    width: 1255px;
-    position: absolute;
-    top: -15px;
-    display: flex;
-  }
-  .menu_items {
-    display: flex;
-    gap: 140px;
-    padding: 10px 40px;
   }
   .item_1 {
     height: 80px;
@@ -302,7 +224,7 @@ export default {
   }
   .menu_items {
     display: flex;
-    gap: 140px;
+    gap: 100px;
     padding: 10px 40px;
   }
   .item_1 {
@@ -414,6 +336,80 @@ export default {
   .menu_items {
     display: flex;
     gap: 240px;
+    padding: 10px 60px;
+  }
+  .item_1 {
+    height: 60px;
+    width: 60px;
+  }
+  .item_2 {
+    margin-top: 20px;
+    height: 60px;
+    width: 60px;
+  }
+  .item_3 {
+    margin-top: 20px;
+    height: 60px;
+    width: 60px;
+  }
+  .item_4 {
+    margin-top: 20px;
+    height: 60px;
+    width: 60px;
+  }
+  .menu_signout {
+    height: 60px;
+    width: 60px;
+  }
+}
+@media only screen and (max-width: 375px) and (max-height: 667px) {
+  .all_menu {
+    height: 150px;
+    width: 1500px;
+    position: absolute;
+    top: -15px;
+    display: flex;
+  }
+  .menu_items {
+    display: flex;
+    gap: 200px;
+    padding: 10px 60px;
+  }
+  .item_1 {
+    height: 60px;
+    width: 60px;
+  }
+  .item_2 {
+    margin-top: 20px;
+    height: 60px;
+    width: 60px;
+  }
+  .item_3 {
+    margin-top: 20px;
+    height: 60px;
+    width: 60px;
+  }
+  .item_4 {
+    margin-top: 20px;
+    height: 60px;
+    width: 60px;
+  }
+  .menu_signout {
+    height: 60px;
+    width: 60px;
+  }
+}
+@media only screen and (max-width: 360px) and (max-height: 740px) {
+  .all_menu {
+    height: 150px;
+    width: 1455px;
+    position: absolute;
+    top: -15px;
+    display: flex;
+  }
+  .menu_items {
+    display: flex;
+    gap: 200px;
     padding: 10px 60px;
   }
   .item_1 {

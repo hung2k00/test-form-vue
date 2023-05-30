@@ -1,5 +1,5 @@
-<template v-if="isLoggedIn">
-  <div class="flex mt-20 ml-4">
+<template>
+  <div class="flex mt-20 ml-4" v-if="user">
     <div>
       <img src="../assets/img/avartar.png" alt="" class="h-28 w-28" />
     </div>
@@ -27,50 +27,36 @@
     </div>
     <div class="flex gap-3 ml-10 mt-9">
       <img src="../assets/img/cccd.png" />
-      <p class="font-normal text-xl ml-4 mt-2">Số CMND</p>
+      <p class="font-normal text-xl ml-4 mt-2">{{ user.cmnd }}</p>
     </div>
     <div class="flex gap-3 ml-10 mt-10">
       <img src="../assets/img/phone.png" alt="" />
-      <p class="font-normal text-xl ml-5">Số điện thoại</p>
+      <p class="font-normal text-xl ml-5">{{ user.phone }}</p>
     </div>
     <div class="flex gap-3 ml-10 mt-11">
       <img src="../assets/img/address.png" alt="" />
-      <p class="font-normal text-xl ml-6">Địa chỉ</p>
+      <p class="font-normal text-xl ml-6">{{ user.address }}</p>
     </div>
   </div>
 </template>
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
   data() {
     return {
-      user: {}, // Initialize an empty object to store user information
+      user: null, // Initialize an empty object to store user information
     };
   },
-  mounted() {
-    // Call the getUserInfo() method when the component is mounted
-    this.getUserInfo();
+  created() {
+    this.fetchUserData();
   },
   methods: {
-    getUserInfo() {
-      // Make an API request to fetch the user information
-      // Replace 'YOUR_API_ENDPOINT' with the actual endpoint URL
-      axios
-        .get("http://localhost:3000/users", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("user")}`,
-            // Retrieve the authentication token from local storage
-          },
-        })
-        .then((response) => {
-          console.log(response);
-          // Update the user object with the retrieved user information
-          this.user = response.data;
-        })
-        .catch((error) => {
-          console.error("Error fetching user information:", error);
-          // Handle error scenarios (e.g., redirect to login page)
-        });
+    fetchUserData() {
+      // Nếu không có dữ liệu người dùng từ query parameter, bạn có thể lấy từ localStorage
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        this.user = JSON.parse(storedUser);
+      }
     },
   },
 };

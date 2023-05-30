@@ -247,6 +247,7 @@ span.psw {
 
 <script>
 import axios from "axios";
+import { MD5 } from "crypto-js";
 export default {
   data() {
     return {
@@ -258,11 +259,12 @@ export default {
   },
   methods: {
     login() {
+      const hashedPassword = MD5(this.password).toString();
       axios
         .get("http://localhost:3000/users", {
           params: {
             email: this.email,
-            password: this.password,
+            password: hashedPassword,
           },
         })
         .then((response) => {
@@ -272,6 +274,7 @@ export default {
             console.log("Đăng nhập thành công");
 
             this.$router.push("/user");
+
             // Thực hiện các hành động tiếp theo sau khi đăng nhập
           } else {
             const error = " Tên hoặc mật khẩu không chính xác";

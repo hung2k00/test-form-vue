@@ -253,11 +253,7 @@ td {
 .name_p {
   font-family: "Roboto";
 }
-@media screen and (max-width: 960px) {
-  .img_login {
-    display: none;
-  }
-}
+
 @media only screen and (max-width: 1280px) and (max-height: 720px) {
   .header_items {
     display: none;
@@ -350,11 +346,11 @@ td {
   .user_all {
     display: block;
     margin-top: 150px;
-    width: 1608px;
+    width: 1000px;
   }
   .user_st {
     height: 120px;
-    width: 1608px;
+    width: 1000px;
   }
   .user_st_p {
     margin-top: 50px;
@@ -428,23 +424,6 @@ td {
     margin-top: 50px;
   }
 }
-@media only screen and (max-width: 360px) and (max-height: 740px) {
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1255px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1255px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-}
 @media only screen and (max-width: 390px) and (max-height: 844px) {
   .header_items {
     display: none;
@@ -456,7 +435,24 @@ td {
   }
   .user_st {
     height: 120px;
-    width: 1255px;
+    width: 1555px;
+  }
+  .user_st_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 360px) and (max-height: 740px) {
+  .header_items {
+    display: none;
+  }
+  .user_all {
+    display: block;
+    margin-top: 150px;
+    width: 1455px;
+  }
+  .user_st {
+    height: 120px;
+    width: 1455px;
   }
   .user_st_p {
     margin-top: 50px;

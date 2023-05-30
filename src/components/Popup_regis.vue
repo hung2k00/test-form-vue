@@ -1,6 +1,11 @@
 <template>
   <div class="bg-gray-200 create_uer_all p-32">
-    <div class="create_user max-w-4xl mx-auto">
+    <Form
+      @submit="onSubmit"
+      :validation-schema="schema"
+      v-slot="{ errors }"
+      class="create_user max-w-4xl mx-auto -mt-14"
+    >
       <div class="flex create_header p-6">
         <div class="w-11/12 text-blue-500">
           <p class="text-2xl ml-10 font-semibold">Thông tin cá nhân</p>
@@ -9,111 +14,122 @@
           <i class="fa-solid fa-xmark fa-2xl" style="color: #888b91"></i>
         </div>
       </div>
-      <form @submit.prevent="onSubmit">
-        <div class="">
-          <div class="px-48 ml-10 py-6">
-            <label for="image-input" class="upload-button text-base font-medium"
-              >Choose Image:</label
-            >
-            <input
-              class="ml-2 cursor-pointer"
-              type="file"
-              id="image-input"
-              accept="image/*"
-              @change="handleImageUpload"
-            />
-          </div>
+      <div class="">
+        <div class="px-48 ml-10 py-6">
+          <label for="image-input" class="upload-button text-base font-medium"
+            >Choose Image:</label
+          >
+          <input
+            class="ml-2 cursor-pointer"
+            type="file"
+            id="image-input"
+            accept="image/*"
+            @change="handleImageUpload"
+          />
         </div>
-        <div class="grid gap-4 grid-cols-2 py-10 px-16 create_form">
-          <div>
-            <label>Tên truy cập</label>
-            <input
-              type="username"
-              placeholder="manhhung00"
-              v-model="user.username"
-            />
-          </div>
-          <div>
-            <label for="">Họ và tên</label>
-            <input
-              type="text"
-              v-model="user.fullname"
-              placeholder="fullname"
-              :class="{ error: error.status, success: success.status }"
-            />
-            <p
-              id="#checkerr"
-              class="error-text text-red-700"
-              v-if="error.status"
-            >
-              {{ error.text }}
-            </p>
-            <p
-              id="#checksucss"
-              class="success-text text-green-700"
-              v-if="success.status"
-            >
-              {{ success.text }}
-            </p>
-          </div>
-          <div class="mt-2">
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="example@gmail.com"
-              v-model="user.email"
-            />
-          </div>
-          <div class="mt-2">
-            <label for="">Mật khẩu</label>
-            <input
-              type="password"
-              placeholder="*********"
-              v-model="user.password"
-            />
-          </div>
-          <div class="mt-2">
-            <label for="">Số điện thoại</label>
-            <input type="tel" playhoder="09xx657xxx" v-model="user.phone" />
-          </div>
-          <div class="mt-2">
-            <label for="">Địa chỉ</label>
-            <input type="text" playhoder="address" v-model="user.address" />
-          </div>
-          <div class="mt-2">
-            <label>Số CMND</label>
-            <input type="" placeholder="03620000xxx" v-model="user.cmnd" />
-          </div>
-          <div class="flex mt-4">
-            <label for="cars" class="">Choose tags:</label>
-
-            <select
-              v-model="user.tags"
-              multiple
-              size="3"
-              class="ml-4 mt-2 h-20 w-32"
-            >
-              <option
-                class="cursor-pointer"
-                v-for="option in options"
-                :value="option.value"
-                :key="option.value"
-              >
-                {{ option.label }}
-              </option>
-            </select>
-          </div>
+      </div>
+      <div class="grid gap-4 grid-cols-2 py-10 px-16 create_form">
+        <div>
+          <label>Tên truy cập</label>
+          <Field
+            type="username"
+            placeholder="manhhung00"
+            name="username"
+            v-model="user.username"
+          />
+          <p class="text-red-500 mt-2">{{ errors.username }}</p>
         </div>
-        <div class="flex gap-8 pb-8">
-          <div class="ml-16 submit_form">
-            <button type="submit">Lưu trữ</button>
-          </div>
-          <div class="cancel_form" @click="onClose"><button>Đóng</button></div>
+        <div>
+          <label for="">Họ và tên</label>
+          <Field
+            name="fullname"
+            type="text"
+            v-model="user.fullname"
+            placeholder="fullname"
+          />
+          <p class="text-red-500 mt-2">{{ errors.fullname }}</p>
         </div>
-      </form>
-    </div>
+        <div class="mt-2">
+          <label>Email</label>
+          <Field
+            name="email"
+            placeholder="example@gmail.com"
+            v-model="user.email"
+          />
+          <p class="text-red-500 mt-2">{{ errors.email }}</p>
+        </div>
+        <div class="mt-2">
+          <label for="">Mật khẩu</label>
+          <Field
+            name="password"
+            type="password"
+            placeholder="*********"
+            v-model="user.password"
+          />
+          <p class="text-red-500 mt-2">{{ errors.password }}</p>
+        </div>
+        <div class="mt-2">
+          <label for="">Số điện thoại</label>
+          <Field
+            name="phone"
+            type="tel"
+            playhoder="09xx657xxx"
+            v-model="user.phone"
+          />
+          <p class="text-red-500 mt-2">{{ errors.phone }}</p>
+        </div>
+        <div class="mt-2">
+          <label for="">Địa chỉ</label>
+          <Field
+            name="address"
+            type="text"
+            playhoder="address"
+            v-model="user.address"
+          />
+          <p class="text-red-500 mt-2">{{ errors.address }}</p>
+        </div>
+        <div class="mt-2">
+          <label>Số CMND</label>
+          <Field
+            name="cmnd"
+            type=""
+            placeholder="03620000xxx"
+            v-model="user.cmnd"
+          />
+          <p class="text-red-500 mt-2">{{ errors.cmnd }}</p>
+        </div>
+        <div class="flex mt-4">
+          <label for="cars" class="">Choose tags:</label>
+          <select
+            v-model="user.tags"
+            multiple
+            size="3"
+            class="ml-4 mt-2 h-20 w-32"
+            required
+          >
+            <option
+              class="cursor-pointer"
+              v-for="option in options"
+              :value="option.value"
+              :key="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="flex gap-8 pb-8">
+        <div class="ml-16 submit_form">
+          <button type="submit">Lưu trữ</button>
+        </div>
+        <div class="cancel_form" @click="onClose">
+          <button>Đóng</button>
+        </div>
+      </div>
+    </Form>
   </div>
 </template>
+
 <style scoped>
 .create_user_all {
 }
@@ -166,9 +182,26 @@ input {
 </style>
 <script>
 import axios from "axios";
+import { MD5 } from "crypto-js";
+import * as yup from "yup";
+import { Field, Form } from "vee-validate";
 export default {
+  components: {
+    Field,
+    Form,
+  },
   data() {
+    const schema = yup.object({
+      fullname: yup.string().required(),
+      username: yup.string().required(),
+      email: yup.string().email().required(),
+      password: yup.string().min(8).required(),
+      phone: yup.string().max(10).required(),
+      address: yup.string().required(),
+      cmnd: yup.string().required(),
+    });
     return {
+      schema,
       options: [
         { label: "Option 1", value: "option1" },
         { label: "Option 2", value: "option2" },
@@ -177,15 +210,6 @@ export default {
         { label: "Option 5", value: "option5" },
         { label: "Option 6", value: "option6" },
       ],
-      error: {
-        text: "",
-        status: false,
-      },
-      success: {
-        text: "",
-        status: false,
-      },
-
       user: {
         fullname: "",
         email: "",
@@ -197,6 +221,7 @@ export default {
         address: "",
         cmnd: null,
       },
+      newUser: {},
     };
   },
   methods: {
@@ -211,8 +236,21 @@ export default {
       this.user.picture = file.name;
     },
     onSubmit() {
+      const hashedPassword = MD5(this.user.password).toString();
+      this.newUser = {
+        fullname: this.user.fullname,
+        email: this.user.email,
+        tags: this.user.tags,
+        picture: this.user.picture,
+        username: this.user.username,
+        password: hashedPassword,
+        phone: this.user.phone,
+        address: this.user.address,
+        cmnd: this.user.cmnd,
+      };
+
       axios
-        .post("http://localhost:3000/users", this.user)
+        .post("http://localhost:3000/users", this.newUser)
         .then((response) => {
           console.log("User created:", response.data);
           alert("Success!");
@@ -231,6 +269,7 @@ export default {
         .catch((error) => {
           console.error("Error creating user:", error);
         });
+      // Xử lý form khi dữ liệu hợp lệ
     },
   },
 };
