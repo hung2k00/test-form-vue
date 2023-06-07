@@ -261,7 +261,7 @@ export default {
     login() {
       const hashedPassword = MD5(this.password).toString();
       axios
-        .get("http://localhost:3000/users", {
+        .get(`${process.env.VUE_APP_API_URL}`, {
           params: {
             email: this.email,
             password: hashedPassword,
@@ -270,11 +270,7 @@ export default {
         .then((response) => {
           const user = response.data[0];
           if (user) {
-            // Đăng nhập thành công
-            console.log("Đăng nhập thành công");
-
             this.$router.push("/user");
-
             // Thực hiện các hành động tiếp theo sau khi đăng nhập
           } else {
             const error = " Tên hoặc mật khẩu không chính xác";
@@ -288,12 +284,10 @@ export default {
           localStorage.setItem("user", JSON.stringify(user));
         })
 
-        .catch((error) => {
+        .catch(() => {
           let alert_1 = document.querySelector("#alert_1");
           alert_1.classList.remove("hidden");
           alert_1.innerHTML = "Lỗi kết nối server";
-          // Xử lý lỗi
-          console.log(error);
         });
       if (this.remember) {
         localStorage.setItem("email", this.email);

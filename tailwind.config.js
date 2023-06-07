@@ -25,15 +25,21 @@ module.exports = {
         17: "4.25rem",
         31: "136px",
         102: "982px",
+        100: "600px",
         ...defaultTheme.margin,
       },
       height: {
         102: "860px",
+        100: "710px",
         ...defaultTheme.height,
       },
       width: {
-        100: "510px",
+        100: "505.3px",
         ...defaultTheme.width,
+      },
+      maxWidth: {
+        smd: "400px",
+        ...defaultTheme.maxWidth,
       },
     },
   },

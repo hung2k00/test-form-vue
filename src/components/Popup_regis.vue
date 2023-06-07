@@ -1,11 +1,6 @@
 <template>
-  <div class="bg-gray-200 create_uer_all p-32">
-    <Form
-      @submit="onSubmit"
-      :validation-schema="schema"
-      v-slot="{ errors }"
-      class="create_user max-w-4xl mx-auto -mt-14"
-    >
+  <div class="create_uer_all px-32">
+    <Form @submit="onSubmit" class="create_user max-w-4xl mx-auto -mt-14">
       <div class="flex create_header p-6">
         <div class="w-11/12 text-blue-500">
           <p class="text-2xl ml-10 font-semibold">Thông tin cá nhân</p>
@@ -36,8 +31,9 @@
             placeholder="manhhung00"
             name="username"
             v-model="user.username"
+            rules="required"
           />
-          <p class="text-red-500 mt-2">{{ errors.username }}</p>
+          <ErrorMessage name="username" class="text-red-500 mt-2" />
         </div>
         <div>
           <label for="">Họ và tên</label>
@@ -46,8 +42,9 @@
             type="text"
             v-model="user.fullname"
             placeholder="fullname"
+            rules="required"
           />
-          <p class="text-red-500 mt-2">{{ errors.fullname }}</p>
+          <ErrorMessage name="fullname" class="text-red-500 mt-2" />
         </div>
         <div class="mt-2">
           <label>Email</label>
@@ -55,8 +52,9 @@
             name="email"
             placeholder="example@gmail.com"
             v-model="user.email"
+            rules="required|email"
           />
-          <p class="text-red-500 mt-2">{{ errors.email }}</p>
+          <ErrorMessage name="email" class="text-red-500 mt-2" />
         </div>
         <div class="mt-2">
           <label for="">Mật khẩu</label>
@@ -65,8 +63,9 @@
             type="password"
             placeholder="*********"
             v-model="user.password"
+            rules="required|min:8"
           />
-          <p class="text-red-500 mt-2">{{ errors.password }}</p>
+          <ErrorMessage name="password" class="text-red-500 mt-2" />
         </div>
         <div class="mt-2">
           <label for="">Số điện thoại</label>
@@ -75,8 +74,9 @@
             type="tel"
             playhoder="09xx657xxx"
             v-model="user.phone"
+            rules="required|numeric|max:10"
           />
-          <p class="text-red-500 mt-2">{{ errors.phone }}</p>
+          <ErrorMessage name="phone" class="text-red-500 mt-2" />
         </div>
         <div class="mt-2">
           <label for="">Địa chỉ</label>
@@ -85,8 +85,9 @@
             type="text"
             playhoder="address"
             v-model="user.address"
+            rules="required"
           />
-          <p class="text-red-500 mt-2">{{ errors.address }}</p>
+          <ErrorMessage name="address" class="text-red-500 mt-2" />
         </div>
         <div class="mt-2">
           <label>Số CMND</label>
@@ -95,11 +96,12 @@
             type=""
             placeholder="03620000xxx"
             v-model="user.cmnd"
+            rules="required"
           />
-          <p class="text-red-500 mt-2">{{ errors.cmnd }}</p>
+          <ErrorMessage name="cmnd" class="text-red-500 mt-2" />
         </div>
         <div class="flex mt-4">
-          <label for="cars" class="">Choose tags:</label>
+          <label for="cards" class="">Choose tags:</label>
           <select
             v-model="user.tags"
             multiple
@@ -118,7 +120,11 @@
           </select>
         </div>
       </div>
-      <div class="flex gap-8 pb-8">
+      <div
+        class="hidden text-red-400 mt-2 ml-16 text-xl"
+        id="error_register"
+      ></div>
+      <div class="flex gap-8 pb-8 mt-2">
         <div class="ml-16 submit_form">
           <button type="submit">Lưu trữ</button>
         </div>
@@ -131,8 +137,6 @@
 </template>
 
 <style scoped>
-.create_user_all {
-}
 #image-input {
   border: none;
   width: 338px;
@@ -175,7 +179,7 @@ input {
 }
 .create_user {
   background: #ffffff;
-  box-shadow: 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   border-top: 10px solid rgba(17, 107, 143, 0.904);
 }
@@ -183,25 +187,21 @@ input {
 <script>
 import axios from "axios";
 import { MD5 } from "crypto-js";
-import * as yup from "yup";
-import { Field, Form } from "vee-validate";
+import { ErrorMessage, Field, Form, defineRule } from "vee-validate";
+import { required, email, numeric, min, max } from "@vee-validate/rules";
+defineRule("required", required);
+defineRule("email", email);
+defineRule("numeric", numeric);
+defineRule("min", min);
+defineRule("max", max);
 export default {
   components: {
     Field,
     Form,
+    ErrorMessage,
   },
   data() {
-    const schema = yup.object({
-      fullname: yup.string().required(),
-      username: yup.string().required(),
-      email: yup.string().email().required(),
-      password: yup.string().min(8).required(),
-      phone: yup.string().max(10).required(),
-      address: yup.string().required(),
-      cmnd: yup.string().required(),
-    });
     return {
-      schema,
       options: [
         { label: "Option 1", value: "option1" },
         { label: "Option 2", value: "option2" },
@@ -226,7 +226,7 @@ export default {
   },
   methods: {
     onClose() {
-      this.$router.push("/user");
+      this.$emit("close");
     },
     handleImageUpload(event) {
       console.log(event);
@@ -250,11 +250,11 @@ export default {
       };
 
       axios
-        .post("http://localhost:3000/users", this.newUser)
+        .post(`${process.env.VUE_APP_API_URL}`, this.newUser)
         .then((response) => {
           console.log("User created:", response.data);
+          this.$emit("close");
           alert("Success!");
-          this.$router.push("/user");
           // Reset the form after successful creation
           this.user.fullname = "";
           this.user.email = "";
@@ -266,10 +266,11 @@ export default {
           this.user.address = "";
           this.user.cmnd = null;
         })
-        .catch((error) => {
-          console.error("Error creating user:", error);
+        .catch(() => {
+          let error_register = document.querySelector("#error_register");
+          error_register.classList.remove("hidden");
+          error_register.innerHTML = "Lỗi đăng ký";
         });
-      // Xử lý form khi dữ liệu hợp lệ
     },
   },
 };

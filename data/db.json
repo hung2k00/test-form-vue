@@ -118,6 +118,188 @@
       "address": "12/13/22/ Trần Hậu",
       "cmnd": "032659456212",
       "id": 9
+    },
+    {
+      "fullname": "Lê Thu Hường",
+      "email": "thuhuong@gmail.com",
+      "tags": [
+        "option1",
+        "option2",
+        "option3"
+      ],
+      "picture": "2022_01_30_22_57_IMG_0239.JPG",
+      "username": "thuhuong",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0949558556",
+      "address": "Bắc Giang",
+      "cmnd": "098786546678",
+      "id": 10
+    },
+    {
+      "fullname": "admin_Khánh Ly",
+      "email": "admin10@gmail.com",
+      "tags": [
+        "option1",
+        "option2"
+      ],
+      "picture": "2022_01_30_15_33_IMG_0230.JPG",
+      "username": "admin10",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0941558556",
+      "address": "Trần Cung",
+      "cmnd": "036200002255",
+      "id": 11
+    },
+    {
+      "fullname": "Lee Sang",
+      "email": "faker@gmail.com",
+      "tags": [
+        "option1",
+        "option2"
+      ],
+      "picture": "",
+      "username": "faker",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0362556429",
+      "address": "Phú Thọ",
+      "cmnd": "036200006644",
+      "id": 12
+    },
+    {
+      "fullname": "Mạnh Hùng Trần",
+      "email": "lam5@gmail.com",
+      "tags": [
+        "option1",
+        "option2"
+      ],
+      "picture": "",
+      "username": "TranManhHung",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0949552556",
+      "address": "20A/89 Lương Định Của",
+      "cmnd": "096200001223",
+      "id": 13
+    },
+    {
+      "fullname": "Trần Ngọc Linh",
+      "email": "ngoclinh@gmail.com",
+      "tags": [
+        "option1",
+        "option2",
+        "option3"
+      ],
+      "picture": "",
+      "username": "huhuhu",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0941584628",
+      "address": "Hà Nội",
+      "cmnd": "0362000022255",
+      "id": 14
+    },
+    {
+      "fullname": "Trần Mạnh Hùng",
+      "email": "adminhung.bhsoft@gmail.com",
+      "tags": [
+        "option1",
+        "option2"
+      ],
+      "picture": "2022_01_13_08_00_IMG_0104.JPG",
+      "username": "manhhung2k00",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0941584628",
+      "address": "Số nhà 11 hẻm 22 ngách 25 ngõ 354 Trần Cung, Cổ Nhuế 1, Bắc Từ Liêm, Hà Nội",
+      "cmnd": "036200006644",
+      "id": 15
+    },
+    {
+      "fullname": "admin_lam",
+      "email": "adminlam@gmail.com",
+      "tags": [
+        "option1",
+        "option2"
+      ],
+      "picture": "2022_01_13_08_00_IMG_0104.JPG",
+      "username": "admin20",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0941584628",
+      "address": "Hà Nội",
+      "cmnd": "03620001122",
+      "id": 16
+    },
+    {
+      "fullname": "Vũ Duy Long",
+      "email": "duylongnd@gmail.com",
+      "tags": [
+        "option1",
+        "option2"
+      ],
+      "picture": "2022_01_30_13_30_IMG_0227.JPG",
+      "username": "duylong",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0962555145",
+      "address": "Ninh Bình",
+      "cmnd": "0362000011155",
+      "id": 17
+    },
+    {
+      "fullname": "Nguyễn Văn Đạt",
+      "email": "datnguyen@gmail.com",
+      "tags": [
+        "option2",
+        "option3"
+      ],
+      "picture": "2022_01_13_08_00_IMG_0104.JPG",
+      "username": "datnguyen",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "094556625",
+      "address": "Hà Nội",
+      "cmnd": "036255448899",
+      "id": 18
+    },
+    {
+      "fullname": "admin11",
+      "email": "admin11@gmail.com",
+      "tags": [
+        "option2",
+        "option3"
+      ],
+      "picture": "2022_01_13_08_00_IMG_0104.JPG",
+      "username": "manhhung",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0941584628",
+      "address": "Hà Nam",
+      "cmnd": "0362555500122",
+      "id": 19
+    },
+    {
+      "fullname": "admin20",
+      "email": "admin20@gmail.com",
+      "tags": [
+        "option1",
+        "option2"
+      ],
+      "picture": "2022_01_13_08_00_IMG_0104.JPG",
+      "username": "admin20",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0941584638",
+      "address": "Thái Bình",
+      "cmnd": "036200007625",
+      "id": 20
+    },
+    {
+      "fullname": "admin21",
+      "email": "admin21@gmail.com",
+      "tags": [
+        "option2",
+        "option3"
+      ],
+      "picture": "2022_01_13_08_00_IMG_0104.JPG",
+      "username": "admin21",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0941584628",
+      "address": "Nghệ An",
+      "cmnd": "036200006655",
+      "id": 21
     }
   ]
 }

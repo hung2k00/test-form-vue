@@ -1,9 +1,9 @@
 <template>
-  <div class="flex mt-20 ml-4" v-if="user">
+  <div class="flex mt-20 ml-4 text_details" v-if="user">
     <div>
       <img src="../assets/img/avartar.png" alt="" class="h-28 w-28" />
     </div>
-    <div>
+    <div class="">
       <div class="">
         <p class="font-bold text-2xl name_p mt-6 ml-2">{{ user.fullname }}</p>
       </div>
@@ -34,7 +34,7 @@
       <p class="font-normal text-xl ml-5">{{ user.phone }}</p>
     </div>
     <div class="flex gap-3 ml-10 mt-11">
-      <img src="../assets/img/address.png" alt="" />
+      <img src="../assets/img/address.png" alt="" class="h-10 w-10" />
       <p class="font-normal text-xl ml-6">{{ user.address }}</p>
     </div>
   </div>
@@ -62,6 +62,9 @@ export default {
 };
 </script>
 <style lang="css" scoped>
+.text_details {
+  font-family: "Roboto";
+}
 .user_item_1 {
   background: #dd7a01;
   border-radius: 16px;
@@ -89,6 +92,9 @@ export default {
 .popup_detail {
   border: 1px solid #cfcfcf;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.detail_icons {
+  font-family: "Roboto";
 }
 @media only screen and (max-width: 960px) and (max-height: 540px) {
   .all_form {

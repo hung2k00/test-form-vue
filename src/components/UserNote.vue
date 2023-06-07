@@ -35,18 +35,18 @@
       </div>
     </div>
     <div class="ds_regis">
-      <div class="register_icon flex mt-14 cursor-pointer" @click="createUser">
+      <div class="register_icon flex mt-28 cursor-pointer" @click="createUser">
         <p>Tạo Người Dùng</p>
         <img src="../assets/img/Icon.png" />
       </div>
       <div class="">
-        <div class="all_list mt-10 mx-auto">
+        <div class="all_list mt-8 mx-auto">
           <div class="flex">
             <router-link :to="{ name: 'user' }" class="user_list">
-              <p class="font-normal text-2xl pt-2">Danh sách người dùng</p>
+              <p class="font-normal text-xl pt-2">Danh sách người dùng</p>
             </router-link>
             <div class="user_note">
-              <p class="font-normal text-2xl pt-2">Ghi chú</p>
+              <p class="font-normal text-xl pt-2">Ghi chú</p>
             </div>
           </div>
         </div>
@@ -97,15 +97,18 @@ export default {
   height: 50px;
   text-align: center;
   border-right: 1px solid rgba(151, 145, 145, 0.76);
+  color: #dd7a01;
 }
 .all_list {
   width: 1206px;
   border-bottom: 4px solid #dd7a01;
 }
 .all_user {
-  font-family: "Roboto";
+  font-family: "Poppins";
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .ds_regis {
+  font-family: "Roboto";
   width: 1255px;
   height: 867px;
   border: 1px solid #cfcfcf;

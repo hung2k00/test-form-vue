@@ -2,9 +2,9 @@
 <template>
   <hearder-components class="header_items" />
   <menu-components class="menu_items mt-4" />
-  <div class="flex all_search_form">
+  <div class="flex all_search_form mt-4">
     <div class="all_search">
-      <div class="flex h-20 user_st mt-4">
+      <div class="flex h-20 user_st">
         <div class="user_tt w-1/2 border-r-slate-400">
           <router-link :to="{ name: 'user' }">
             <p class="text-center mt-6 font-semibold user_st_p">
@@ -27,9 +27,9 @@
         <div class="mt-10 ml-12 w-full">
           <p class="font-semibold">Kết quả tìm kiếm danh bạ</p>
         </div>
-        <ul class="mt-10 ml-12 kq_search">
+        <ul class="mt-10 ml-12 h-100 max-w-smd kq_search overflow-y-auto">
           <li
-            v-for="contact in filteredContacts"
+            v-for="contact in filteredContacts()"
             :key="contact.id"
             @click="showContactInfo(contact)"
             class="-ml-12 mt-2"
@@ -123,18 +123,7 @@ export default {
   mounted() {
     this.fetchContacts();
   },
-  computed: {
-    filteredContacts() {
-      if (this.searchTerm === "") {
-        return this.contacts;
-      } else {
-        const searchTerm = this.searchTerm.toLowerCase();
-        return this.contacts.filter((contact) =>
-          contact.phone.includes(searchTerm)
-        );
-      }
-    },
-  },
+  computed: {},
   methods: {
     async fetchContacts() {
       try {
@@ -146,6 +135,16 @@ export default {
     },
     showContactInfo(contact) {
       this.selectedContact = contact;
+    },
+    filteredContacts() {
+      if (this.searchTerm === "") {
+        return this.contacts;
+      } else {
+        const searchTerm = this.searchTerm.toLowerCase();
+        return this.contacts.filter((contact) =>
+          contact.phone.includes(searchTerm)
+        );
+      }
     },
   },
 };
