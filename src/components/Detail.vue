@@ -42,7 +42,7 @@
           <p class="font-normal text-xl ml-5">{{ selectedUser.phone }}</p>
         </div>
         <div class="flex gap-3 ml-10 mt-11">
-          <img src="../assets/img/address.png" alt="" />
+          <img src="../assets/img/address.png" alt="" class="h-10 w-10" />
           <p class="font-normal text-xl ml-6">{{ selectedUser.address }}</p>
         </div>
       </div>

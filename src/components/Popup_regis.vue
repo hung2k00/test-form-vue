@@ -229,10 +229,9 @@ export default {
       this.$emit("close");
     },
     handleImageUpload(event) {
-      console.log(event);
       const file = event.target.files[0];
       // Thực hiện các hành động với file đã chọn
-      console.log(file);
+
       this.user.picture = file.name;
     },
     onSubmit() {
@@ -251,8 +250,7 @@ export default {
 
       axios
         .post(`${process.env.VUE_APP_API_URL}`, this.newUser)
-        .then((response) => {
-          console.log("User created:", response.data);
+        .then(() => {
           this.$emit("close");
           alert("Success!");
           // Reset the form after successful creation

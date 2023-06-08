@@ -272,7 +272,14 @@ td {
 .name_p {
   font-family: "Roboto";
 }
-
+@media only screen and (max-width: 1920px) and (max-height: 1080px) {
+  .user_all {
+    height: 970px;
+  }
+  .ds_regis {
+    height: 970px;
+  }
+}
 @media only screen and (max-width: 1280px) and (max-height: 720px) {
   .header_items {
     display: none;

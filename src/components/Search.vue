@@ -27,6 +27,7 @@
         <div class="mt-10 ml-12 w-full">
           <p class="font-semibold">Kết quả tìm kiếm danh bạ</p>
         </div>
+        <div class="mt-10 ml-20 w-full hidden" id="error_search"></div>
         <ul class="mt-10 ml-12 h-100 max-w-smd kq_search overflow-y-auto">
           <li
             v-for="contact in filteredContacts()"
@@ -40,7 +41,7 @@
         </ul>
       </div>
     </div>
-    <div class="form_details" v-if="selectedContact">
+    <div class="form_details p-24" v-if="selectedContact">
       <div class="detail_items_form">
         <div class="flex mt-14 ml-4">
           <div class="">
@@ -85,7 +86,7 @@
             </p>
           </div>
           <div class="flex gap-3 ml-10 mt-11">
-            <img src="../assets/img/address.png" alt="" />
+            <img src="../assets/img/address.png" alt="" class="h-10 w-10" />
             <p class="font-normal text-xl ml-6">
               {{ selectedContact.address }}
             </p>
@@ -127,10 +128,12 @@ export default {
   methods: {
     async fetchContacts() {
       try {
-        const response = await axios.get("http://localhost:3000/users");
+        const response = await axios.get(`${process.env.VUE_APP_API_URL}`);
         this.contacts = response.data;
-      } catch (error) {
-        console.error(error);
+      } catch {
+        let error_search = document.querySelector("#error_search");
+        error_search.classList.remove("hidden");
+        error_search.innerHTML = "Lỗi kết nối";
       }
     },
     showContactInfo(contact) {
@@ -161,8 +164,8 @@ input[type="radio"] {
 }
 .all_search {
   border-right: 2px solid #cfcfcf;
-  width: 450px;
-  height: 830px;
+  width: 505.3px;
+  height: 900px;
 }
 .user_tt {
   color: #cfcfcf;
@@ -174,7 +177,11 @@ input[type="radio"] {
   color: #df6106;
 }
 .user_st {
+  font-family: "Poppins";
   border-bottom: 4px solid #df6106;
+}
+.form_details {
+  font-family: "Roboto";
 }
 input {
   margin-left: 55px;
@@ -190,13 +197,17 @@ input {
   width: 20px;
 }
 .detail_items_form {
-  border: 2px solid white;
+  border: 2px solid rgba(71, 58, 58, 0.322);
   border-radius: 20px;
   padding: 10px 10px;
   background: white;
   height: 590px;
+  width: 500px;
+  padding: 10px;
+
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
 }
-.all_user {
+.search_form_1 {
   font-family: "Roboto";
 }
 .user_st {

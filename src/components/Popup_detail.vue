@@ -7,7 +7,7 @@
       <div class="">
         <p class="font-bold text-2xl name_p mt-6 ml-2">{{ user.fullname }}</p>
       </div>
-      <div class="flex gap-10 ml-2 mt-2">
+      <div class="flex gap-6 ml-2 mt-2">
         <div class="user_item_1">
           <p>VIP</p>
         </div>

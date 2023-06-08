@@ -300,6 +300,51 @@
       "address": "Nghệ An",
       "cmnd": "036200006655",
       "id": 21
+    },
+    {
+      "fullname": "admin30",
+      "email": "admin30@gmai.com",
+      "tags": [
+        "option2",
+        "option3"
+      ],
+      "picture": "2022_01_13_08_00_IMG_0104.JPG",
+      "username": "admin30",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0941554433",
+      "address": "Hà Nội",
+      "cmnd": "036200003344",
+      "id": 22
+    },
+    {
+      "fullname": "admin40",
+      "email": "admin40@gmail.com",
+      "tags": [
+        "option2",
+        "option3"
+      ],
+      "picture": "2022_01_13_08_00_IMG_0104.JPG",
+      "username": "admin40",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0941584638",
+      "address": "Hà Nội",
+      "cmnd": "0362000076256",
+      "id": 23
+    },
+    {
+      "fullname": "Admin Nguyen",
+      "email": "admin50@gmail.com",
+      "tags": [
+        "option1",
+        "option2"
+      ],
+      "picture": "2022_01_13_08_00_IMG_0104.JPG",
+      "username": "admin50",
+      "password": "e19d5cd5af0378da05f63f891c7467af",
+      "phone": "0966773323",
+      "address": "Nam định",
+      "cmnd": "036200007766",
+      "id": 24
     }
   ]
 }
