@@ -6,9 +6,7 @@ import Chat from "../components/Chat.vue";
 import Stafication from "../components/Stafication.vue";
 import Detail from "../components/Detail.vue";
 import Search from "../components/Search.vue";
-import PopupRegis from "../components/Popup_regis.vue";
 import UserNote from "../components/UserNote.vue";
-import PopupDetail from "../components/Popup_detail.vue";
 import ListUser from "../views/User.vue";
 
 const routes = [
@@ -21,51 +19,65 @@ const routes = [
     path: "/list-users",
     name: "list-users",
     component: ListUser,
-  },
-  {
-    path: "/pop-up-details",
-    name: "popupdetails",
-    component: PopupDetail,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/notes_user",
     name: "note_user",
     component: UserNote,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/profile",
     name: "profile",
     component: Profile,
-  },
-  {
-    path: "/create_user",
-    name: "createUser",
-    component: PopupRegis,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/search",
     name: "search",
     component: Search,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/note",
     name: "note",
     component: Note,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/chat",
     name: "chat",
     component: Chat,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/detail",
     name: "detail",
     component: Detail,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/stafication",
     name: "stafication",
     component: Stafication,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/user",
@@ -74,7 +86,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/User.vue"),
     meta: {
-      authRequired: true,
+      requiresAuth: true,
     },
   },
 ];
@@ -82,6 +94,16 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = JSON.parse(localStorage.getItem("user"));
+  const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+
+  if (requiresAuth && !isLoggedIn) {
+    next("/"); // Chuyển hướng về trang đăng nhập nếu không đăng nhập
+  } else {
+    next(); // Cho phép chuyển đến trang tiếp theo
+  }
 });
 
 export default router;

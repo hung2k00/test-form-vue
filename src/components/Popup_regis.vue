@@ -11,6 +11,12 @@
       </div>
       <div class="">
         <div class="px-48 ml-10 py-6">
+          <img
+            v-if="user.picture"
+            :src="user.picture"
+            alt="Selected Image"
+            class="h-24 w-24 rounded-full mr-8 ml-40"
+          />
           <label for="image-input" class="upload-button text-base font-medium"
             >Choose Image:</label
           >
@@ -100,13 +106,17 @@
           />
           <ErrorMessage name="cmnd" class="text-red-500 mt-2" />
         </div>
-        <div class="flex mt-4">
-          <label for="cards" class="">Choose tags:</label>
+        <div class="mt-2">
+          <div class="flex">
+            <label for="cards" class="">Choose tags:</label>
+            <p class="ml-4">{{ showSelected() }}</p>
+          </div>
+          <br />
           <select
             v-model="user.tags"
             multiple
             size="3"
-            class="ml-4 mt-2 h-20 w-32"
+            class="h-12 -mt-6"
             required
           >
             <option
@@ -137,6 +147,12 @@
 </template>
 
 <style scoped>
+select {
+  border: 2px solid #25242428;
+  border-radius: 10px;
+  padding: 10px;
+  width: 350px;
+}
 #image-input {
   border: none;
   width: 338px;
@@ -189,6 +205,8 @@ import axios from "axios";
 import { MD5 } from "crypto-js";
 import { ErrorMessage, Field, Form, defineRule } from "vee-validate";
 import { required, email, numeric, min, max } from "@vee-validate/rules";
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 defineRule("required", required);
 defineRule("email", email);
 defineRule("numeric", numeric);
@@ -225,14 +243,24 @@ export default {
     };
   },
   methods: {
+    showSelected() {
+      if (Array.isArray(this.user.tags)) {
+        return this.user.tags.join(" , ");
+      } else {
+        return this.user.tags;
+      }
+    },
     onClose() {
       this.$emit("close");
     },
     handleImageUpload(event) {
       const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.user.picture = reader.result;
+      };
+      reader.readAsDataURL(file);
       // Thực hiện các hành động với file đã chọn
-
-      this.user.picture = file.name;
     },
     onSubmit() {
       const hashedPassword = MD5(this.user.password).toString();
@@ -252,7 +280,10 @@ export default {
         .post(`${process.env.VUE_APP_API_URL}`, this.newUser)
         .then(() => {
           this.$emit("close");
-          alert("Success!");
+          this.$emit("userCreated");
+          toast.success("Tạo người dùng thành công!", {
+            autoClose: 2000,
+          });
           // Reset the form after successful creation
           this.user.fullname = "";
           this.user.email = "";

@@ -102,6 +102,7 @@
             class="absolute"
             v-if="showComponentRegister"
             @close="resetComponent"
+            @userCreated="getUsers"
           />
         </div>
       </div>

@@ -30,7 +30,7 @@ module.exports = {
       },
       height: {
         102: "860px",
-        100: "650px",
+        100: "700px",
         ...defaultTheme.height,
       },
       width: {

@@ -1,66 +1,115 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="max-w-screen-aa mx-auto flex relative mt-31 all_form">
-    <div class="max-w-screen-bb login_form absolute top-0 bottom-0">
-      <div class="w-1/2 mx-auto login_items">
-        <p class="font-normal text-5xl login_p mt-28 ml-4">Customer Care</p>
-        <form action="" method="post" class="mt-10" @submit.prevent="login">
-          <div class="container_form">
-            <label for="email" class="font-normal text-2xl text_label"
-              >Tên đăng nhập</label
-            >
-            <input
-              type="text"
-              placeholder="example@gmail.com"
-              name="email"
-              required
-              v-model="email"
-            />
-
-            <label for="psw" class="font-normal text-2xl text_label"
-              >Mật khẩu</label
-            >
-            <input
-              class="mt-5"
-              type="password"
-              placeholder=" ********************"
-              name="password"
-              required
-              v-model="password"
-            />
-
-            <label>
-              <input
-                type="checkbox"
-                name="remember"
-                class="mt-4 check__box"
-                v-model="remember"
-              />
-              <span class="text_check">Ghi nhớ ?</span>
-              <!-- <span class="psw"><a href="#">Quên mật khẩu</a></span> -->
-            </label>
-            <div
-              class="mt-5 hidden text-red-400"
-              role="alert"
-              id="alert_1"
-            ></div>
-            <button class="mt-9 font-normal text-2xl">
-              <p class="text_button">Đăng nhập</p>
-            </button>
-          </div>
-        </form>
+  <div class="relative">
+    <div class="max-w-screen-aa mx-auto flex relative mt-31 all_form">
+      <!-- <transition name="slide-in">
+        <div class="notification absolute -top-28 flex" v-if="showNotification">
+          <i
+            class="fa-regular fa-circle-check mt-1 mr-2"
+            style="color: #fffcfc"
+          ></i>
+          <p>Đăng nhập thành công</p>
+        </div>
+      </transition> -->
+      <div class="max-w-screen-bb login_form absolute top-0 bottom-0">
+        <div class="w-1/2 ml-36 login_items">
+          <p class="font-normal text-5xl login_p mt-28 ml-4">Customer Care</p>
+          <Form action="" method="post" class="mt-10" @submit="login">
+            <div class="container_form">
+              <div class="email_form">
+                <label for="email" class="font-normal text-2xl text_label"
+                  >Tên đăng nhập</label
+                >
+                <br />
+                <Field
+                  class="input_login"
+                  type="text"
+                  placeholder="example@gmail.com"
+                  name="email"
+                  rules="required|email"
+                  v-model="email"
+                />
+                <br />
+                <ErrorMessage name="email" class="text-red-500 mt-2" />
+              </div>
+              <div>
+                <label for="psw" class="font-normal text-2xl text_label"
+                  >Mật khẩu</label
+                >
+                <br />
+                <Field
+                  class="input_login mt-5"
+                  type="password"
+                  placeholder=" ********************"
+                  name="password"
+                  rules="required|min:8"
+                  v-model="password"
+                />
+                <br />
+                <ErrorMessage name="password" class="text-red-500 mt-2" />
+              </div>
+              <label>
+                <input
+                  type="checkbox"
+                  name="remember"
+                  class="mt-4 check__box"
+                  v-model="remember"
+                />
+                <span class="text_check">Ghi nhớ ?</span>
+                <!-- <span class="psw"><a href="#">Quên mật khẩu</a></span> -->
+              </label>
+              <br />
+              <div
+                class="mt-5 hidden text-red-400"
+                role="alert"
+                id="alert_1"
+              ></div>
+              <br />
+              <button class="mt-9 font-normal text-2xl">
+                <p class="text_button">Đăng nhập</p>
+              </button>
+            </div>
+          </Form>
+        </div>
       </div>
-    </div>
-    <div class="ml-96 img_login">
-      <img src="../assets/img/Image.png" alt="" />
+      <div class="ml-96 img_login">
+        <img src="../assets/img/Image.png" alt="" />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-input[type="text"],
-input[type="password"] {
-  width: 100%;
+.container_form {
+  width: 720px;
+}
+.notification {
+  font-family: "Roboto";
+  right: -230px;
+  height: 50px;
+  width: 250px;
+  padding: 10px 30px;
+  background-color: #32cd32;
+  border-radius: 20px;
+  color: white;
+}
+.slide-in-enter-active {
+  transition: transform 0.5s;
+}
+
+.slide-in-enter {
+  transform: translateX(100%);
+}
+
+.slide-in-leave-active {
+  transition: transform 0.5s;
+}
+
+.slide-in-leave-to {
+  transform: translateX(-100%);
+}
+.input_login {
+  width: 431px;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -69,6 +118,7 @@ input[type="password"] {
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
   border-radius: 15px;
   box-sizing: border-box;
+  height: 72px;
 }
 input[type="checkbox"] {
   background: #fffcfc;
@@ -86,9 +136,10 @@ button {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 431px;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
+  height: 72px;
 }
 
 button:hover {
@@ -126,7 +177,23 @@ span.psw {
 }
 @media only screen and (max-width: 1280px) and (max-height: 720px) {
   .all_form {
-    margin: 55px 30px;
+    margin: 30px 30px;
+  }
+  .input_login {
+    height: 50px;
+    width: 380px;
+  }
+  button {
+    height: 50px;
+    width: 380px;
+    font-size: 16px;
+  }
+  .text_button {
+    margin-top: -6px;
+  }
+  .login_p {
+    font-size: 40px;
+    margin-top: 80px;
   }
 }
 @media only screen and (max-width: 1280px) and (max-height: 1080px) {
@@ -135,6 +202,22 @@ span.psw {
   }
   .login_form {
     width: 680px;
+  }
+  .input_login {
+    height: 50px;
+    width: 380px;
+  }
+  button {
+    height: 50px;
+    width: 380px;
+    font-size: 16px;
+  }
+  .text_button {
+    margin-top: -6px;
+  }
+  .login_p {
+    font-size: 40px;
+    margin-top: 80px;
   }
 }
 @media only screen and (max-width: 1600px) and (max-height: 900px) {
@@ -153,52 +236,34 @@ span.psw {
   }
 }
 @media only screen and (max-width: 640px) and (max-height: 360px) {
-  .all_form {
-    margin-top: 0px;
-    margin-left: 0px;
-    height: 300px;
-    width: 500px;
-  }
-  .login_p {
-    margin-left: 40px;
-    margin-top: 16px;
-    font-size: 26px;
-  }
-  .login_form {
-    margin-top: -170px;
-    margin-left: 28px;
-    height: 300px;
-    width: 500px;
-  }
-  .container_form {
-    float: left;
-    margin-top: 12px;
-    height: 100px;
+  .input_login {
+    height: 30px;
     width: 300px;
-    font-size: 10px;
-    margin-left: -25px;
   }
   button {
-    margin-top: 10px;
-    font-size: 13px;
-    height: 40px;
+    height: 30px;
+    width: 300px;
+    font-size: 12px;
   }
   .text_button {
-    margin-top: -10px;
-    margin-bottom: 20px;
+    margin-top: -15px;
+  }
+  .login_p {
+    font-size: 30px;
+    margin-top: 80px;
+  }
+  .login_items {
+    margin-top: -200px;
+    margin-left: 220px;
+    font-size: 14px;
+    height: 360px;
+    width: 640px;
+  }
+  .email_form {
+    margin-top: -40px;
   }
   .text_label {
-    font-size: 13px;
-  }
-  input[type="text"],
-  input[type="password"] {
-    height: 20px;
-  }
-  .check__box {
-    margin-top: 0px;
-  }
-  form {
-    margin-top: -15px;
+    font-size: 14px;
   }
 }
 @media only screen and (max-width: 375px) and (max-height: 667px) {
@@ -207,11 +272,19 @@ span.psw {
     margin-left: auto;
     margin-right: 0px;
   }
+  .login_items {
+    margin-top: 200px;
+    margin-left: 255px;
+  }
 }
 @media only screen and (max-width: 768px) and (max-height: 1024px) {
   .all_form {
     margin-top: 150px;
     margin-left: 40px;
+  }
+  .login_items {
+    margin-top: 250px;
+    margin-left: 230px;
   }
 }
 @media only screen and (max-width: 820px) and (max-height: 1180px) {
@@ -219,11 +292,19 @@ span.psw {
     margin-top: 200px;
     margin-left: 45px;
   }
+  .login_items {
+    margin-top: 250px;
+    margin-left: 230px;
+  }
 }
 @media only screen and (max-width: 412px) and (max-height: 915px) {
   .all_form {
     margin-top: 250px;
     margin-left: -35px;
+  }
+  .login_items {
+    margin-top: 280px;
+    margin-left: 270px;
   }
 }
 @media only screen and (max-width: 414px) and (max-height: 896px) {
@@ -248,13 +329,26 @@ span.psw {
 <script>
 import axios from "axios";
 import { MD5 } from "crypto-js";
+import { ErrorMessage, Field, Form, defineRule } from "vee-validate";
+import { required, email, min } from "@vee-validate/rules";
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+defineRule("required", required);
+defineRule("email", email);
+defineRule("min", min);
 export default {
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
   data() {
     return {
       email: "",
       password: "",
       error: "",
       remember: false,
+      showNotification: false,
     };
   },
   methods: {
@@ -270,16 +364,18 @@ export default {
         .then((response) => {
           const user = response.data[0];
           if (user) {
-            this.$router.push("/user");
+            toast.success("Đăng nhập thành công!", {
+              autoClose: 2000,
+            });
+            setTimeout(() => {
+              this.$router.push("/user"); // Chuyển trang sau một khoảng thời gian
+            }, 1500);
             // Thực hiện các hành động tiếp theo sau khi đăng nhập
           } else {
             const error = " Tên hoặc mật khẩu không chính xác";
             let alert_1 = document.querySelector("#alert_1");
             alert_1.classList.remove("hidden");
             alert_1.innerHTML = error;
-            this.email = "";
-            this.password = "";
-            this.remember = false;
           }
           localStorage.setItem("user", JSON.stringify(user));
         })

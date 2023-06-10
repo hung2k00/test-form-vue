@@ -26,6 +26,8 @@
   </div>
 </template>
 <script>
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 export default {
   data() {
     return {};
@@ -33,9 +35,14 @@ export default {
   methods: {
     signOut() {
       // Xóa thông tin đăng nhập từ local storage
-      localStorage.removeItem("loggedInUser");
+      localStorage.removeItem("user");
+      toast.warning("Bạn đã đăng xuất!", {
+        autoClose: 2000,
+      });
+      setTimeout(() => {
+        this.$router.push("/"); // Chuyển trang sau một khoảng thời gian
+      }, 1500);
       // Cập nhật các giá trị trong form về giá trị mặc định
-      this.$router.push("/");
     },
   },
 };
