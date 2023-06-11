@@ -1,17 +1,20 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="float-left w-20 h-102 bg-blue-700 all_menu">
-    <ul class="h-2/6 menu_items">
-      <router-link :to="{ name: 'user' }" class="">
-        <img src="../assets/img/Vector.png" alt="" class="ml-4 mt-4 item_1" />
+    <ul class="h-80 menu_items">
+      <div class="h-1/4">
+        <hr class="line" />
+        <router-link :to="{ name: 'user' }" class="">
+          <img src="../assets/img/Vector.png" alt="" class="ml-4 mt-4 item_1" />
+        </router-link>
+      </div>
+      <router-link :to="{ name: 'note' }" class="h-1/4">
+        <img src="../assets/img/Untitled.png" alt="" class="ml-3 mt-1 item_2" />
       </router-link>
-      <router-link :to="{ name: 'note' }">
-        <img src="../assets/img/Untitled.png" alt="" class="ml-3 mt-6 item_2" />
-      </router-link>
-      <router-link :to="{ name: 'chat' }"
-        ><img src="../assets/img/Chat.png" alt="" class="ml-4 mt-6 item_3"
+      <router-link :to="{ name: 'chat' }" class="h-1/4"
+        ><img src="../assets/img/Chat.png" alt="" class="ml-4 mt-8 item_3"
       /></router-link>
-      <router-link :to="{ name: 'stafication' }"
+      <router-link :to="{ name: 'stafication' }" class="h-1/4"
         ><img src="../assets/img/sta.png" alt="" class="ml-3 mt-6 item_4"
       /></router-link>
     </ul>
@@ -48,14 +51,29 @@ export default {
 };
 </script>
 <style scoped>
+.line {
+  position: absolute;
+  border: none;
+  border-left: 12px solid #dd7a01;
+  height: 80px;
+  margin: 0;
+  margin-top: -16px;
+}
 @media only screen and (max-width: 1920px) and (max-height: 1080px) {
   .all_menu {
-    height: 976px;
+    height: 983px;
   }
 }
 @media only screen and (max-width: 1280px) and (max-height: 720px) {
   .all_form {
     margin: 55px 30px;
+  }
+  .line {
+    border: none;
+    border-left: 340px solid #dd7a01;
+    height: 20px;
+    margin-top: -20px;
+    margin-left: -120px;
   }
 }
 @media only screen and (max-width: 1280px) and (max-height: 1080px) {
@@ -64,6 +82,13 @@ export default {
   }
   .login_form {
     width: 680px;
+  }
+  .line {
+    border: none;
+    border-left: 340px solid #dd7a01;
+    height: 20px;
+    margin-top: -20px;
+    margin-left: -120px;
   }
 }
 
@@ -74,6 +99,13 @@ export default {
   }
   .login_p {
     margin-top: 50px;
+  }
+  .line {
+    border: none;
+    border-left: 340px solid #dd7a01;
+    height: 20px;
+    margin-top: -20px;
+    margin-left: -120px;
   }
 }
 @media only screen and (max-width: 640px) and (max-height: 360px) {
@@ -126,6 +158,13 @@ export default {
     display: flex;
     gap: 200px;
     padding: 10px 60px;
+  }
+  .line {
+    border: none;
+    border-left: 330px solid #dd7a01;
+    height: 20px;
+    margin-top: -20px;
+    margin-left: -120px;
   }
   .item_1 {
     height: 80px;
@@ -336,6 +375,13 @@ export default {
     height: 60px;
     width: 60px;
   }
+  .line {
+    border: none;
+    border-left: 330px solid #dd7a01;
+    height: 20px;
+    margin-top: -20px;
+    margin-left: -120px;
+  }
 }
 @media only screen and (max-width: 1280px) and (max-height: 1080px) {
   .all_menu {
@@ -375,6 +421,13 @@ export default {
   }
 }
 @media only screen and (max-width: 375px) and (max-height: 667px) {
+  .line {
+    border: none;
+    border-left: 300px solid #dd7a01;
+    height: 20px;
+    margin-top: -20px;
+    margin-left: -120px;
+  }
   .all_menu {
     height: 150px;
     width: 1500px;
@@ -412,6 +465,13 @@ export default {
   }
 }
 @media only screen and (max-width: 360px) and (max-height: 740px) {
+  .line {
+    border: none;
+    border-left: 300px solid #dd7a01;
+    height: 20px;
+    margin-top: -20px;
+    margin-left: -120px;
+  }
   .all_menu {
     height: 150px;
     width: 1455px;

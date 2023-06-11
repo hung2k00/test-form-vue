@@ -29,7 +29,7 @@ module.exports = {
         ...defaultTheme.margin,
       },
       height: {
-        102: "860px",
+        102: "967px",
         100: "700px",
         ...defaultTheme.height,
       },
