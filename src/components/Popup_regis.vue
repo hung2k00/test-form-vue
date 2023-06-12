@@ -116,7 +116,7 @@
             v-model="user.tags"
             multiple
             size="3"
-            class="h-12 -mt-6"
+            class="h-16 -mt-6"
             required
           >
             <option
