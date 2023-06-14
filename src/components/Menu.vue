@@ -6,7 +6,10 @@
         <hr
           class="line"
           :class="{
-            hidden: currentPage !== 'user' && currentPage !== 'search',
+            hidden:
+              currentPage !== 'user' &&
+              currentPage !== 'search' &&
+              currentPage !== 'note_user',
           }"
         />
         <router-link :to="{ name: 'user' }" class="">

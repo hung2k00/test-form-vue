@@ -2,13 +2,15 @@
 <template>
   <header-components class="header_items" />
   <menu-components class="menu_items mt-4" />
-  <div class="flex mt-4 user_all">
+  <div class="flex mt-4 user_all relative">
     <div class="w-100 all_user">
       <div class="flex h-20 user_st">
         <div class="user_tt w-1/2 border-r-slate-400">
-          <p class="text-center mt-7 font-semibold user_st_p">
-            Thông tin khách hàng
-          </p>
+          <router-link :to="{ name: 'user' }">
+            <p class="text-center mt-7 font-semibold user_st_p">
+              Thông tin khách hàng
+            </p>
+          </router-link>
         </div>
         <div
           id="search_text"
@@ -34,11 +36,11 @@
           </router-link>
         </div>
         <div>
-          <popup-detail />
+          <popup-detail :user="user" />
         </div>
       </div>
     </div>
-    <div class="ds_regis pl-6">
+    <div class="ds_regis">
       <div class="register_icon flex mt-28 cursor-pointer" @click="createUser">
         <p>Tạo Người Dùng</p>
         <img src="../assets/img/Icon.png" />
@@ -53,18 +55,20 @@
               <p class="font-normal text-xl pt-2">Ghi chú</p>
             </router-link>
           </div>
-          <div class="relative -mt-44">
-            <register-components
-              :createUser="createUser"
-              class="absolute"
-              v-if="showComponentRegister"
-              @close="resetComponent"
-            />
-          </div>
         </div>
       </div>
+
+      <!-- <div class="relative -mt-100"></div> -->
     </div>
   </div>
+
+  <register-components
+    :createUser="createUser"
+    class="register_components absolute -mt-100 ml-96"
+    v-if="showComponentRegister"
+    @close="resetComponent"
+    @userCreated="getUsers"
+  />
 </template>
 <script>
 import HeaderComponents from "../components/Header.vue";
@@ -80,54 +84,105 @@ export default {
   },
   data() {
     return {
-      user: null,
+      users: [],
       selectedRegister: null,
       showComponentRegister: false,
     };
   },
+  created() {
+    this.fetchUserData();
+  },
   methods: {
+    resetComponent() {
+      this.showComponentRegister = false;
+    },
     onSearch() {
       this.$router.push("/search");
     },
     createUser() {
       this.showComponentRegister = true;
     },
-    resetComponent() {
-      this.showComponentRegister = false;
+
+    fetchUserData() {
+      // Nếu không có dữ liệu người dùng từ query parameter, bạn có thể lấy từ localStorage
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        this.user = JSON.parse(storedUser);
+      }
     },
   },
 };
 </script>
 <style scoped>
+.perPage {
+  border: 3px solid rgb(163, 230, 241);
+  height: 32px;
+}
+.change_page {
+  border: 3px solid rgb(163, 230, 241);
+  margin-right: 4px;
+  margin-left: 4px;
+  height: 32px;
+  width: 32px;
+}
+.pagination_items {
+  border: 3px solid rgb(163, 230, 241);
+}
+.active {
+  background-color: blue;
+  color: white;
+}
+.all_table_user {
+  height: 650px;
+}
+.fixed-row {
+  position: sticky;
+  top: -1px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+table {
+  width: 960px;
+}
+.table_user {
+  font-family: "IBM Plex Mono";
+  max-height: 500px;
+  overflow: auto;
+}
+th,
+td {
+  text-align: center;
+  border: 1px solid rgba(151, 145, 145, 0.76);
+}
 .user_list {
   font-family: "Roboto";
-  border: 1px solid rgba(151, 145, 145, 0.76);
   border-top: 4px solid rgba(151, 145, 145, 0.76);
+  border-left: 1px solid rgba(151, 145, 145, 0.76);
+  width: 300px;
+  height: 50px;
+  text-align: center;
+  color: #dd7a01;
+}
+.user_note {
+  font-family: "Roboto";
+  border: 1px solid rgba(151, 145, 145, 0.76);
+  border-top: 4px solid #dd7a01;
   border-bottom: none;
   width: 300px;
   height: 50px;
   text-align: center;
 }
-.user_note {
-  font-family: "Roboto";
-  border-top: 4px solid #dd7a01;
-  border-left: 1px solid rgba(151, 145, 145, 0.76);
-  width: 300px;
-  height: 50px;
-  text-align: center;
-  border-right: 1px solid rgba(151, 145, 145, 0.76);
-  color: #dd7a01;
+.full_list {
+  width: 1206px;
 }
 .all_list {
-  width: 1206px;
   border-bottom: 4px solid #dd7a01;
 }
 .all_user {
-  font-family: "Poppins";
+  font-family: "Roboto";
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 .ds_regis {
-  font-family: "Roboto";
   width: 1255px;
   height: 867px;
   border: 1px solid #cfcfcf;
@@ -144,7 +199,7 @@ export default {
   color: white;
   width: 199px;
   height: 46px;
-  margin-left: 1000px;
+  margin-left: 1020px;
 }
 .user_tt {
   background: linear-gradient(
@@ -160,6 +215,7 @@ export default {
   border-left: 1px solid #cfcfcf;
 }
 .user_st {
+  font-family: "Poppins";
   border-bottom: 2px solid #df6106;
 }
 #search_text {
@@ -177,6 +233,13 @@ export default {
   }
 }
 @media only screen and (max-width: 1280px) and (max-height: 720px) {
+  .register_components {
+    margin-top: -20px;
+    margin-left: 280px;
+  }
+  .perPage_option {
+    height: 32px;
+  }
   .header_items {
     display: none;
   }
@@ -217,6 +280,10 @@ export default {
   }
 }
 @media only screen and (max-width: 1280px) and (max-height: 1080px) {
+  .register_components {
+    margin-top: -20px;
+    margin-left: 280px;
+  }
   .header_items {
     display: none;
   }
@@ -257,6 +324,10 @@ export default {
   }
 }
 @media only screen and (max-width: 1600px) and (max-height: 900px) {
+  .register_components {
+    margin-top: -20px;
+    margin-left: 200px;
+  }
   .header_items {
     display: none;
   }
@@ -300,6 +371,10 @@ export default {
   }
 }
 @media only screen and (max-width: 960px) and (max-height: 540px) {
+  .register_components {
+    margin-top: -20px;
+    margin-left: 280px;
+  }
   .header_items {
     display: none;
   }
@@ -343,6 +418,10 @@ export default {
   }
 }
 @media only screen and (max-width: 640px) and (max-height: 360px) {
+  .register_components {
+    margin-top: -320px;
+    margin-left: 280px;
+  }
   .header_items {
     display: none;
   }
@@ -386,6 +465,10 @@ export default {
   }
 }
 @media only screen and (max-width: 375px) and (max-height: 667px) {
+  .register_components {
+    margin-top: -330px;
+    margin-left: 280px;
+  }
   .header_items {
     display: none;
   }
@@ -406,6 +489,10 @@ export default {
   }
 }
 @media only screen and (max-width: 768px) and (max-height: 1024px) {
+  .register_components {
+    margin-top: -320px;
+    margin-left: 250px;
+  }
   .header_items {
     display: none;
   }
@@ -429,6 +516,10 @@ export default {
   }
 }
 @media only screen and (max-width: 820px) and (max-height: 1180px) {
+  .register_components {
+    margin-top: -800px;
+    margin-left: 280px;
+  }
   .header_items {
     display: none;
   }
@@ -475,6 +566,10 @@ export default {
   }
 }
 @media only screen and (max-width: 412px) and (max-height: 915px) {
+  .register_components {
+    margin-top: -320px;
+    margin-left: 280px;
+  }
   .header_items {
     display: none;
   }
@@ -495,6 +590,10 @@ export default {
   }
 }
 @media only screen and (max-width: 414px) and (max-height: 896px) {
+  .register_components {
+    margin-top: -320px;
+    margin-left: 280px;
+  }
   .header_items {
     display: none;
   }
@@ -538,6 +637,9 @@ export default {
   }
 }
 @media only screen and (max-width: 360px) and (max-height: 740px) {
+  .register_components {
+    margin-left: 200px;
+  }
   .header_items {
     display: none;
   }

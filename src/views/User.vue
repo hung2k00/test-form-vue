@@ -193,7 +193,7 @@ export default {
           this.users = response.data;
         })
         .catch(() => {
-          toast.error("Tạo người dùng không thành công!", {
+          toast.error("Không thể lấy dữ liệu!", {
             autoClose: 2000,
           });
         });
