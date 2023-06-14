@@ -3,8 +3,7 @@ import LoginForm from "../views/Login.vue";
 import Profile from "../components/Profile.vue";
 import Note from "../components/Note.vue";
 import Chat from "../components/Chat.vue";
-import Stafication from "../components/Stafication.vue";
-import Detail from "../components/Detail.vue";
+import Statistics from "../components/Statistics.vue";
 import Search from "../components/Search.vue";
 import UserNote from "../components/UserNote.vue";
 import ListUser from "../views/User.vue";
@@ -14,6 +13,16 @@ const routes = [
     path: "/",
     name: "login",
     component: LoginForm,
+  },
+  {
+    path: "/user",
+    name: "user",
+    props: true,
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/User.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/list-users",
@@ -64,27 +73,9 @@ const routes = [
     },
   },
   {
-    path: "/detail",
-    name: "detail",
-    component: Detail,
-    meta: {
-      requiresAuth: true,
-    },
-  },
-  {
-    path: "/stafication",
-    name: "stafication",
-    component: Stafication,
-    meta: {
-      requiresAuth: true,
-    },
-  },
-  {
-    path: "/user",
-    name: "user",
-    props: true,
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/User.vue"),
+    path: "/statistics",
+    name: "statistics",
+    component: Statistics,
     meta: {
       requiresAuth: true,
     },
@@ -98,8 +89,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isLoggedIn = JSON.parse(localStorage.getItem("user"));
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-
-  if (requiresAuth && !isLoggedIn) {
+  if (to.path === "/" && isLoggedIn) {
+    next({ name: "user" });
+  } else if (requiresAuth && !isLoggedIn) {
     next("/"); // Chuyển hướng về trang đăng nhập nếu không đăng nhập
   } else {
     next(); // Cho phép chuyển đến trang tiếp theo

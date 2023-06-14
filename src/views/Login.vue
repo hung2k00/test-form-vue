@@ -78,6 +78,101 @@
     </div>
   </div>
 </template>
+<script>
+import axios from "axios";
+import { MD5 } from "crypto-js";
+import { ErrorMessage, Field, Form, defineRule, configure } from "vee-validate";
+import { required, email, min } from "@vee-validate/rules";
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
+defineRule("required", required);
+defineRule("email", email);
+defineRule("min", min);
+configure({
+  generateMessage: (ctx) => {
+    const messages = {
+      required: `The ${ctx.field} field is required.`,
+      email: `The ${ctx.field} must be a valid email address.`,
+      min: `The ${ctx.field} is not a valid.`,
+    };
+
+    const message = messages[ctx.rule.name];
+    return message ? message : `Lỗi không xác định: ${ctx.field}.`;
+  },
+});
+export default {
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+      error: "",
+      remember: false,
+      showNotification: false,
+    };
+  },
+  methods: {
+    login() {
+      const hashedPassword = MD5(this.password).toString();
+      axios
+        .get(`${process.env.VUE_APP_API_URL}`, {
+          params: {
+            email: this.email,
+            password: hashedPassword,
+          },
+        })
+        .then((response) => {
+          const user = response.data[0];
+          if (user) {
+            toast.success("Đăng nhập thành công!", {
+              autoClose: 2000,
+            });
+            setTimeout(() => {
+              this.$router.push("/user"); // Chuyển trang sau một khoảng thời gian
+            }, 1500);
+            // Thực hiện các hành động tiếp theo sau khi đăng nhập
+          } else {
+            const error = " Tên hoặc mật khẩu không chính xác";
+            let alert_1 = document.querySelector("#alert_1");
+            alert_1.classList.remove("hidden");
+            alert_1.innerHTML = error;
+          }
+          localStorage.setItem("user", JSON.stringify(user));
+        })
+
+        .catch(() => {
+          let alert_1 = document.querySelector("#alert_1");
+          alert_1.classList.remove("hidden");
+          alert_1.innerHTML = "Lỗi kết nối server";
+          toast.error("Không thể kết nối đến server để lấy dữ liệu!", {
+            autoClose: 2000,
+          });
+        });
+      if (this.remember) {
+        localStorage.setItem("email", this.email);
+        localStorage.setItem("password", this.password);
+      } else {
+        // If remember is disabled, remove any previously stored credentials
+        localStorage.removeItem("email");
+        localStorage.removeItem("password");
+      }
+    },
+  },
+  created() {
+    const savedEmail = localStorage.getItem("email");
+    const savedPassword = localStorage.getItem("password");
+    if (savedEmail && savedPassword) {
+      this.email = savedEmail;
+      this.password = savedPassword;
+      this.rememberMe = true;
+    }
+  },
+};
+</script>
 
 <style scoped>
 .container_form {
@@ -325,84 +420,3 @@ span.psw {
   }
 }
 </style>
-
-<script>
-import axios from "axios";
-import { MD5 } from "crypto-js";
-import { ErrorMessage, Field, Form, defineRule } from "vee-validate";
-import { required, email, min } from "@vee-validate/rules";
-import { toast } from "vue3-toastify";
-import "vue3-toastify/dist/index.css";
-defineRule("required", required);
-defineRule("email", email);
-defineRule("min", min);
-export default {
-  components: {
-    Field,
-    Form,
-    ErrorMessage,
-  },
-  data() {
-    return {
-      email: "",
-      password: "",
-      error: "",
-      remember: false,
-      showNotification: false,
-    };
-  },
-  methods: {
-    login() {
-      const hashedPassword = MD5(this.password).toString();
-      axios
-        .get(`${process.env.VUE_APP_API_URL}`, {
-          params: {
-            email: this.email,
-            password: hashedPassword,
-          },
-        })
-        .then((response) => {
-          const user = response.data[0];
-          if (user) {
-            toast.success("Đăng nhập thành công!", {
-              autoClose: 2000,
-            });
-            setTimeout(() => {
-              this.$router.push("/user"); // Chuyển trang sau một khoảng thời gian
-            }, 1500);
-            // Thực hiện các hành động tiếp theo sau khi đăng nhập
-          } else {
-            const error = " Tên hoặc mật khẩu không chính xác";
-            let alert_1 = document.querySelector("#alert_1");
-            alert_1.classList.remove("hidden");
-            alert_1.innerHTML = error;
-          }
-          localStorage.setItem("user", JSON.stringify(user));
-        })
-
-        .catch(() => {
-          let alert_1 = document.querySelector("#alert_1");
-          alert_1.classList.remove("hidden");
-          alert_1.innerHTML = "Lỗi kết nối server";
-        });
-      if (this.remember) {
-        localStorage.setItem("email", this.email);
-        localStorage.setItem("password", this.password);
-      } else {
-        // If remember is disabled, remove any previously stored credentials
-        localStorage.removeItem("email");
-        localStorage.removeItem("password");
-      }
-    },
-  },
-  created() {
-    const savedEmail = localStorage.getItem("email");
-    const savedPassword = localStorage.getItem("password");
-    if (savedEmail && savedPassword) {
-      this.email = savedEmail;
-      this.password = savedPassword;
-      this.rememberMe = true;
-    }
-  },
-};
-</script>

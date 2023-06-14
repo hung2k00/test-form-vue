@@ -1,0 +1,266 @@
+<template>
+  <div>
+    <div
+      class="float-right mr-6 mt-4 cursor-pointer"
+      @click="onClose"
+      v-if="selectedUser"
+    >
+      <i class="fa-solid fa-xmark fa-2xl" style="color: #888b91"></i>
+    </div>
+    <div v-for="item in [user, selectedUser, selectedContact]" :key="item">
+      <div :class="showContactSearch(item)" v-if="item">
+        <div :class="[formDetailsSearch(item), getUserClass(item)]">
+          <div
+            class="close_search float-right mr-6 mt-4 cursor-pointer sm:hidden"
+            @click="onClose"
+            v-if="selectedContact"
+          >
+            <i class="fa-solid fa-xmark fa-2xl" style="color: #888b91"></i>
+          </div>
+          <div class="flex mt-20 ml-4 text_details">
+            <div>
+              <img :src="item.picture" alt="" class="h-28 w-28 rounded-full" />
+            </div>
+            <div>
+              <div>
+                <p class="font-bold text-2xl name_p mt-6 ml-2">
+                  {{ item.fullname }}
+                </p>
+              </div>
+              <div class="flex gap-6 ml-2 mt-2">
+                <div class="user_item_1">
+                  <p>VIP</p>
+                </div>
+                <div class="user_item_2">
+                  <p>ACTIVE</p>
+                </div>
+                <div class="user_item_3">
+                  <p>TPIN</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="detail_icons">
+            <div class="flex gap-3 ml-11 mt-14">
+              <img src="../assets/img/mail2.png" />
+              <p class="font-normal text-xl ml-4">{{ item.email }}</p>
+            </div>
+            <div class="flex gap-3 ml-10 mt-9">
+              <img src="../assets/img/id_number.png" />
+              <p class="font-normal text-xl ml-4 mt-2">{{ item.idNumber }}</p>
+            </div>
+            <div class="flex gap-3 ml-10 mt-10">
+              <img src="../assets/img/phone.png" alt="" />
+              <p class="font-normal text-xl ml-5">{{ item.phone }}</p>
+            </div>
+            <div class="flex gap-3 ml-10 mt-11">
+              <img src="../assets/img/address.png" alt="" class="h-10 w-10" />
+              <p class="font-normal text-xl ml-6">{{ item.address }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+  created() {
+    if (this.user) {
+      this.fetchUserData(this.user);
+    }
+    if (this.selectedUser) {
+      this.fetchUserData(this.selectedUser);
+    }
+    if (this.selectedContact) {
+      this.fetchUserData(this.selectedContact);
+    }
+  },
+  methods: {
+    getUserClass(item) {
+      return {
+        form_details_selectUser: item === this.selectedUser,
+      };
+    },
+    showContactSearch(item) {
+      return {
+        show_contact_search: item === this.selectedContact,
+      };
+    },
+    formDetailsSearch(item) {
+      return {
+        form_details_search: item === this.selectedContact,
+      };
+    },
+    onClose() {
+      this.$emit("close");
+    },
+    fetchUserData(user) {
+      // Thực hiện các thao tác cần thiết để lấy dữ liệu người dùng từ user
+      // Ví dụ: Gọi API để lấy dữ liệu người dùng
+
+      axios
+        .get(`/api/user/${user.id}`)
+        .then((response) => {
+          // Xử lý dữ liệu nhận được từ API
+          const userData = response.data;
+          // Lưu dữ liệu vào thuộc tính user
+          user.picture = userData.picture;
+          user.fullname = userData.fullname;
+          user.email = userData.email;
+          user.idNumber = userData.idNumber;
+          user.phone = userData.phone;
+          user.address = userData.address;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
+  props: {
+    selectedUser: {
+      type: Object,
+      default: null,
+    },
+    user: {
+      type: Object,
+      default: null,
+    },
+    selectedContact: {
+      type: Object,
+      default: null,
+    },
+  },
+};
+</script>
+<style lang="css" scoped>
+.form_details_search {
+  font-family: "Roboto";
+  border: 2px solid rgba(71, 58, 58, 0.322);
+  padding: 10px 10px;
+  background: white;
+  height: 870px;
+  box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  margin-left: 40px;
+}
+.show_contact_search {
+  border-top: 1px solid #cfcfcf;
+  width: 1250px;
+  padding-top: 96px;
+}
+.form_details_selectUser {
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 10px 10px;
+  background: white;
+  height: 590px;
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
+}
+.form_details {
+  font-family: "Roboto";
+  height: 800px;
+  width: 1200px;
+  margin-top: -310px;
+  margin-left: 20px;
+  padding: 90px 200px;
+}
+.text_details {
+  font-family: "Roboto";
+}
+.user_item_1 {
+  background: #dd7a01;
+  border-radius: 16px;
+  color: white;
+  width: 77px;
+  height: 29px;
+  text-align: center;
+}
+.user_item_1 p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+}
+.user_item_2 p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+}
+.user_item_3 p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+}
+.user_item_2 {
+  background: #0b8e11;
+  border-radius: 16px;
+  color: white;
+  width: 94px;
+  height: 29px;
+  text-align: center;
+}
+.user_item_3 {
+  background: #ffdada;
+  border-radius: 16px;
+  color: #db524e;
+  width: 110px;
+  height: 29px;
+  text-align: center;
+}
+.popup_detail {
+  border: 1px solid #cfcfcf;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.detail_icons {
+  font-family: "Roboto";
+}
+@media only screen and (max-width: 960px) and (max-height: 540px) {
+  .all_form {
+    margin-top: 0;
+    margin-left: 140px;
+  }
+  .login_p {
+    margin-top: 50px;
+  }
+}
+@media only screen and (max-width: 375px) and (max-height: 667px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 768px) and (max-height: 1024px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 820px) and (max-height: 1180px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 412px) and (max-height: 915px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 414px) and (max-height: 896px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 360px) and (max-height: 740px) {
+  .detail_icons {
+    display: none;
+  }
+}
+@media only screen and (max-width: 390px) and (max-height: 844px) {
+  .detail_icons {
+    display: none;
+  }
+}
+</style>

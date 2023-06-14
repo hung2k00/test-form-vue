@@ -1,110 +1,152 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <hearder-components class="header_items" />
+  <header-components class="header_items" />
   <menu-components class="menu_items mt-4" />
-  <div class="flex all_search_form mt-4">
-    <div class="all_search">
-      <div class="flex h-20 user_st">
-        <div class="user_tt w-1/2 border-r-slate-400">
-          <router-link :to="{ name: 'user' }">
-            <p class="text-center mt-6 font-semibold user_st_p">
-              Thông tin khách hàng
-            </p>
-          </router-link>
-        </div>
-        <div class="user_s w-1/2">
-          <p class="mt-6 font-semibold ml-4 user_sp">Tìm kiếm</p>
-        </div>
-      </div>
-      <div class="w-96 search_form_1">
-        <div class="relative">
-          <img
-            src="../assets/img/search.png"
-            class="img_search absolute mt-8 ml-16"
-          />
-          <input type="text" v-model="searchTerm" placeholder="0941584628" />
-        </div>
-        <div class="mt-10 ml-12 w-full">
-          <p class="font-semibold">Kết quả tìm kiếm danh bạ</p>
-        </div>
-        <div class="mt-10 ml-20 w-full hidden" id="error_search"></div>
-        <ul class="mt-10 ml-12 h-100 max-w-smd kq_search overflow-y-auto">
-          <li
-            v-for="contact in filteredContacts()"
-            :key="contact.id"
-            @click="showContactInfo(contact)"
-            class="-ml-12 mt-2"
-          >
-            <input type="radio" name="searchCriteria" v-model="searchBy" />
-            {{ contact.fullname }}: &nbsp;{{ contact.phone }}
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="form_details p-24" v-if="selectedContact">
-      <div class="detail_items_form">
-        <div class="flex mt-14 ml-4">
-          <div class="">
-            <img src="../assets/img/avartar.png" alt="" class="h-28 w-28" />
-          </div>
-          <div>
-            <div class="">
-              <p class="font-bold text-2xl name_p mt-6 ml-2">
-                {{ selectedContact.fullname }}
+  <div class="full_screen_search">
+    <div class="flex all_search_form mt-4">
+      <div class="all_search">
+        <div class="flex h-20 user_st">
+          <div class="user_tt w-1/2 border-r-slate-400">
+            <router-link :to="{ name: 'user' }">
+              <p class="text-center mt-6 font-semibold user_st_p">
+                Thông tin khách hàng
               </p>
+            </router-link>
+          </div>
+          <div class="user_s w-1/2">
+            <p class="mt-6 font-semibold ml-4 user_sp">Tìm kiếm</p>
+          </div>
+        </div>
+        <div class="w-96 search_form_1">
+          <div class="relative -ml-8">
+            <img
+              src="../assets/img/search.png"
+              class="img_search absolute mt-8 ml-16"
+            />
+            <input type="text" v-model="searchTerm" placeholder="0941584628" />
+          </div>
+          <div class="mt-10 ml-12 w-full">
+            <p class="text_kq_search -ml-8">Kết quả tìm kiếm danh bạ</p>
+          </div>
+          <div class="mt-10 ml-20 w-full hidden" id="error_search"></div>
+          <ul class="mt-10 ml-14 h-100 max-w-smd kq_search overflow-y-auto">
+            <li
+              v-for="contact in filteredContacts()"
+              :key="contact.id"
+              class="mt-2 w-96 right-2"
+            >
+              <div class="flex relative">
+                <p class="search_name">{{ contact.fullname }}</p>
+                <input
+                  type="radio"
+                  name="searchCriteria"
+                  v-model="searchBy"
+                  @click="showContactInfo(contact)"
+                  class="absolute -top-2 right-1"
+                />
+              </div>
+              <div class="flex relative mt-4">
+                <span class="search_phone">{{ contact.phone }}</span>
+                <img
+                  src="../assets/img/search.png"
+                  alt=""
+                  class="h-6 w-6 absolute right-2"
+                />
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- <div class="show_contact_search pt-24">
+        <div class="form_details ml-10" v-if="selectedContact">
+          <div
+            class="close_search float-right mr-6 mt-4 cursor-pointer sm:hidden"
+            @click="resetComponentSearch"
+          >
+            <i class="fa-solid fa-xmark fa-2xl" style="color: #888b91"></i>
+          </div>
+
+          <div class="detail_items_form">
+            <div class="flex mt-14 ml-4">
+              <div class="">
+                <img
+                  :src="selectedContact.picture"
+                  alt=""
+                  class="h-28 w-28 rounded-full"
+                />
+              </div>
+              <div>
+                <div class="">
+                  <p class="font-bold text-2xl name_p mt-6 ml-2">
+                    {{ selectedContact.fullname }}
+                  </p>
+                </div>
+                <div class="flex gap-6 ml-2 mt-2">
+                  <div class="user_item_1">
+                    <p>VIP</p>
+                  </div>
+                  <div class="user_item_2">
+                    <p>ACTIVE</p>
+                  </div>
+                  <div class="user_item_3">
+                    <p>TPIN</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="flex gap-10 ml-2 mt-2">
-              <div class="user_item_1">
-                <p>VIP</p>
+            <div>
+              <div class="flex gap-3 ml-11 mt-14">
+                <img src="../assets/img/mail2.png" />
+                <p class="font-normal text-xl ml-4">
+                  {{ selectedContact.email }}
+                </p>
               </div>
-              <div class="user_item_2">
-                <p>ACTIVE</p>
+              <div class="flex gap-3 ml-10 mt-9">
+                <img src="../assets/img/id_number.png" />
+                <p class="font-normal text-xl ml-4 mt-2">
+                  {{ selectedContact.idNumber }}
+                </p>
               </div>
-              <div class="user_item_3">
-                <p>TPIN</p>
+              <div class="flex gap-3 ml-10 mt-10">
+                <img src="../assets/img/phone.png" alt="" />
+                <p class="font-normal text-xl ml-5">
+                  {{ selectedContact.phone }}
+                </p>
+              </div>
+              <div class="flex gap-3 ml-10 mt-11">
+                <img src="../assets/img/address.png" alt="" class="h-10 w-10" />
+                <p class="font-normal text-xl ml-6">
+                  {{ selectedContact.address }}
+                </p>
               </div>
             </div>
           </div>
         </div>
-        <div>
-          <div class="flex gap-3 ml-11 mt-14">
-            <img src="../assets/img/mail2.png" />
-            <p class="font-normal text-xl ml-4">
-              {{ selectedContact.email }}
-            </p>
-          </div>
-          <div class="flex gap-3 ml-10 mt-9">
-            <img src="../assets/img/cccd.png" />
-            <p class="font-normal text-xl ml-4 mt-2">
-              {{ selectedContact.cmnd }}
-            </p>
-          </div>
-          <div class="flex gap-3 ml-10 mt-10">
-            <img src="../assets/img/phone.png" alt="" />
-            <p class="font-normal text-xl ml-5">
-              {{ selectedContact.phone }}
-            </p>
-          </div>
-          <div class="flex gap-3 ml-10 mt-11">
-            <img src="../assets/img/address.png" alt="" class="h-10 w-10" />
-            <p class="font-normal text-xl ml-6">
-              {{ selectedContact.address }}
-            </p>
-          </div>
-        </div>
+      </div> -->
+      <div class="relative">
+        <popup-detail
+          :selectedContact="selectedContact"
+          v-if="showComponentSearch"
+          class="absolute"
+          @close="resetComponentSearch"
+        />
       </div>
     </div>
   </div>
 </template>
 <script>
-import HearderComponents from "../components/Header.vue";
+import HeaderComponents from "../components/Header.vue";
 import MenuComponents from "../components/Menu.vue";
+import PopupDetail from "../components/PopupDetails.vue";
 import axios from "axios";
+import { toast } from "vue3-toastify";
+import "vue3-toastify/dist/index.css";
 
 export default {
   components: {
-    HearderComponents,
+    HeaderComponents,
     MenuComponents,
+    PopupDetail,
   },
   data() {
     return {
@@ -112,6 +154,7 @@ export default {
       searchTerm: "",
       selectedContact: null,
       searchBy: "",
+      showComponentSearch: true,
     };
   },
   watch: {
@@ -126,14 +169,18 @@ export default {
   },
   computed: {},
   methods: {
+    resetComponentSearch() {
+      this.showComponentSearch = false;
+      this.searchBy = "";
+    },
     async fetchContacts() {
       try {
         const response = await axios.get(`${process.env.VUE_APP_API_URL}`);
         this.contacts = response.data;
       } catch {
-        let error_search = document.querySelector("#error_search");
-        error_search.classList.remove("hidden");
-        error_search.innerHTML = "Lỗi kết nối";
+        toast.error("Không thể kết nối đến server để lấy dữ liệu!", {
+          autoClose: 2000,
+        });
       }
     },
     showContactInfo(contact) {
@@ -153,14 +200,60 @@ export default {
 };
 </script>
 <style scoped>
+.show_contact_search {
+  border-top: 1px solid #cfcfcf;
+  width: 1367.7px;
+}
+.full_screen_search {
+  height: 967px;
+  width: 1837px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+.form_details {
+  font-family: "Roboto";
+  border: 2px solid rgba(71, 58, 58, 0.322);
+  padding: 10px 10px;
+  background: white;
+  height: 870px;
+  box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+}
+.text_kq_search {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px;
+}
+li {
+  border-bottom: 1px solid #a4a4a4;
+  padding: 10px;
+}
+.search_name {
+  color: #df6106;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+}
+.search_phone {
+  color: rgb(88, 88, 247);
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+}
 input[type="radio"] {
   margin-right: 10px;
   margin-top: 15px;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 }
 .kq_search {
-  width: 530px;
+  width: 415px;
 }
 .all_search {
   border-right: 2px solid #cfcfcf;
@@ -180,9 +273,7 @@ input[type="radio"] {
   font-family: "Poppins";
   border-bottom: 4px solid #df6106;
 }
-.form_details {
-  font-family: "Roboto";
-}
+
 input {
   margin-left: 55px;
   margin-top: 22px;
@@ -196,17 +287,6 @@ input {
   height: 20px;
   width: 20px;
 }
-.detail_items_form {
-  border: 2px solid rgba(71, 58, 58, 0.322);
-  border-radius: 20px;
-  padding: 10px 10px;
-  background: white;
-  height: 590px;
-  width: 500px;
-  padding: 10px;
-
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
-}
 .search_form_1 {
   font-family: "Roboto";
 }
@@ -218,6 +298,24 @@ input {
 }
 .name_p {
   font-family: "Roboto";
+}
+.user_item_1 p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+}
+.user_item_2 p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+}
+.user_item_3 p {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
 }
 .user_item_1 {
   background: #dd7a01;
@@ -244,15 +342,26 @@ input {
   text-align: center;
 }
 @media only screen and (max-width: 1280px) and (max-height: 720px) {
+  .show_contact_search {
+    border-top: none;
+  }
+  .full_screen_search {
+    height: 1200px;
+    width: 1608px;
+    border-bottom: 2px solid rgba(71, 58, 58, 0.322);
+  }
   .header_items {
     display: none;
   }
   .all_search_form {
     margin-top: 130px;
-    width: 1608px;
+  }
+  .search_form_1 {
+    margin-left: 150px;
   }
   .form_details {
     margin-top: 150px;
+    width: 760px;
   }
   .all_search {
     width: 804px;
@@ -270,15 +379,25 @@ input {
   }
 }
 @media only screen and (max-width: 1280px) and (max-height: 1080px) {
+  .search_form_1 {
+    margin-left: 150px;
+  }
+  .full_screen_search {
+    height: 1200px;
+    width: 1608px;
+    border-bottom: 2px solid rgba(71, 58, 58, 0.322);
+  }
   .header_items {
     display: none;
   }
   .all_search_form {
     margin-top: 130px;
     width: 1608px;
+    border: none;
   }
   .form_details {
     margin-top: 150px;
+    width: 760px;
   }
   .all_search {
     width: 804px;
@@ -297,6 +416,14 @@ input {
   }
 }
 @media only screen and (max-width: 1600px) and (max-height: 900px) {
+  .search_form_1 {
+    margin-left: 150px;
+  }
+  .full_screen_search {
+    height: 1200px;
+    width: 1608px;
+    border-bottom: 2px solid rgba(71, 58, 58, 0.322);
+  }
   .header_items {
     display: none;
   }
@@ -306,6 +433,7 @@ input {
   }
   .form_details {
     margin-top: 150px;
+    width: 760px;
   }
   .all_search {
     width: 804px;

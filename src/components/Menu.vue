@@ -3,20 +3,38 @@
   <div class="float-left w-20 h-102 bg-blue-700 all_menu">
     <ul class="h-80 menu_items">
       <div class="h-1/4">
-        <hr class="line" />
+        <hr
+          class="line"
+          :class="{
+            hidden: currentPage !== 'user' && currentPage !== 'search',
+          }"
+        />
         <router-link :to="{ name: 'user' }" class="">
           <img src="../assets/img/Vector.png" alt="" class="ml-4 mt-4 item_1" />
         </router-link>
       </div>
-      <router-link :to="{ name: 'note' }" class="h-1/4">
-        <img src="../assets/img/Untitled.png" alt="" class="ml-3 mt-1 item_2" />
-      </router-link>
-      <router-link :to="{ name: 'chat' }" class="h-1/4"
-        ><img src="../assets/img/Chat.png" alt="" class="ml-4 mt-8 item_3"
-      /></router-link>
-      <router-link :to="{ name: 'stafication' }" class="h-1/4"
-        ><img src="../assets/img/sta.png" alt="" class="ml-3 mt-6 item_4"
-      /></router-link>
+      <div class="h-1/4">
+        <hr class="line" :class="{ hidden: currentPage !== 'note' }" />
+        <router-link :to="{ name: 'note' }">
+          <img
+            src="../assets/img/Untitled.png"
+            alt=""
+            class="ml-3 mt-1 item_2"
+          />
+        </router-link>
+      </div>
+      <div class="h-1/4">
+        <hr class="line" :class="{ hidden: currentPage !== 'chat' }" />
+        <router-link :to="{ name: 'chat' }"
+          ><img src="../assets/img/Chat.png" alt="" class="ml-4 mt-1 item_3"
+        /></router-link>
+      </div>
+      <div class="h-1/4">
+        <hr class="line" :class="{ hidden: currentPage !== 'statistics' }" />
+        <router-link :to="{ name: 'statistics' }"
+          ><img src="../assets/img/sta.png" alt="" class="ml-3 mt-1 item_4"
+        /></router-link>
+      </div>
     </ul>
     <div class="bg-blue-500 h-4/6">
       <img
@@ -33,7 +51,17 @@ import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 export default {
   data() {
-    return {};
+    return {
+      currentPage: "",
+    };
+  },
+  watch: {
+    $route(to) {
+      this.currentPage = to.name; // Cập nhật trang hiện tại khi chuyển trang
+    },
+  },
+  mounted() {
+    this.currentPage = this.$route.name; // Gán trang hiện tại khi tải thành phần
   },
   methods: {
     signOut() {

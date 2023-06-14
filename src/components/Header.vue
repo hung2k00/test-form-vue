@@ -6,7 +6,7 @@
         <img src="../assets/img/home.png" alt="" class="h-4 w-4 mt-1" />
         <span class="ml-2">Home</span>
       </li>
-      <li class="text-gray-400">&nbsp;> Apllication Center</li>
+      <li class="text-gray-400">&nbsp;> Application Center</li>
       <li class="text-gray-400">&nbsp;> ... >&nbsp;</li>
       <li class="text-gray-400">Application List &nbsp; ></li>
       <li>An Application</li>

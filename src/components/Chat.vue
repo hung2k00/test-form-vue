@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <header-components />
+  <menu-components class="mt-4" />
   <div class="flex mt-4">
-    <menu-components />
     <p class="text-center mx-auto text-2xl my-auto">This is Chat Page...</p>
   </div>
 </template>
