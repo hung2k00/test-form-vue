@@ -394,6 +394,9 @@ td {
   }
 }
 @media only screen and (max-width: 1280px) and (max-height: 720px) {
+  .popup_details {
+    margin-left: 100px;
+  }
   .register_components {
     margin-top: -20px;
     margin-left: 280px;
@@ -669,9 +672,6 @@ td {
   .user_st_p {
     margin-top: 50px;
   }
-  .ds_regis {
-    margin-top: -250px;
-  }
   .pagination {
     bottom: 0;
   }
@@ -714,7 +714,7 @@ td {
   }
   .ds_regis {
     margin-left: 150px;
-    margin-top: -250px;
+    margin-top: 50px;
   }
   detail-components {
     margin-left: 50px;
@@ -727,6 +727,9 @@ td {
   }
 }
 @media only screen and (max-width: 412px) and (max-height: 915px) {
+  .ds_regis {
+    margin-top: -280px;
+  }
   .register_components {
     margin-top: -320px;
     margin-left: 280px;

@@ -57,78 +57,13 @@
           </ul>
         </div>
       </div>
-      <!-- <div class="show_contact_search pt-24">
-        <div class="form_details ml-10" v-if="selectedContact">
-          <div
-            class="close_search float-right mr-6 mt-4 cursor-pointer sm:hidden"
-            @click="resetComponentSearch"
-          >
-            <i class="fa-solid fa-xmark fa-2xl" style="color: #888b91"></i>
-          </div>
-
-          <div class="detail_items_form">
-            <div class="flex mt-14 ml-4">
-              <div class="">
-                <img
-                  :src="selectedContact.picture"
-                  alt=""
-                  class="h-28 w-28 rounded-full"
-                />
-              </div>
-              <div>
-                <div class="">
-                  <p class="font-bold text-2xl name_p mt-6 ml-2">
-                    {{ selectedContact.fullname }}
-                  </p>
-                </div>
-                <div class="flex gap-6 ml-2 mt-2">
-                  <div class="user_item_1">
-                    <p>VIP</p>
-                  </div>
-                  <div class="user_item_2">
-                    <p>ACTIVE</p>
-                  </div>
-                  <div class="user_item_3">
-                    <p>TPIN</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="flex gap-3 ml-11 mt-14">
-                <img src="../assets/img/mail2.png" />
-                <p class="font-normal text-xl ml-4">
-                  {{ selectedContact.email }}
-                </p>
-              </div>
-              <div class="flex gap-3 ml-10 mt-9">
-                <img src="../assets/img/id_number.png" />
-                <p class="font-normal text-xl ml-4 mt-2">
-                  {{ selectedContact.idNumber }}
-                </p>
-              </div>
-              <div class="flex gap-3 ml-10 mt-10">
-                <img src="../assets/img/phone.png" alt="" />
-                <p class="font-normal text-xl ml-5">
-                  {{ selectedContact.phone }}
-                </p>
-              </div>
-              <div class="flex gap-3 ml-10 mt-11">
-                <img src="../assets/img/address.png" alt="" class="h-10 w-10" />
-                <p class="font-normal text-xl ml-6">
-                  {{ selectedContact.address }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
       <div class="relative">
         <popup-detail
           :selectedContact="selectedContact"
           v-if="showComponentSearch"
           class="absolute"
-          @close="resetComponentSearch"
+          :close="isComponentClosed"
+          @close="closeComponentSearch"
         />
       </div>
     </div>
@@ -153,8 +88,9 @@ export default {
       contacts: [],
       searchTerm: "",
       selectedContact: null,
-      searchBy: "",
+      searchBy: null,
       showComponentSearch: true,
+      isComponentClosed: false,
     };
   },
   watch: {
@@ -169,9 +105,11 @@ export default {
   },
   computed: {},
   methods: {
-    resetComponentSearch() {
-      this.showComponentSearch = false;
-      this.searchBy = "";
+    closeComponentSearch() {
+      this.showComponentSearch = !this.showComponentSearch;
+      this.searchBy = null;
+
+      // this.searchBy = null;
     },
     async fetchContacts() {
       try {
@@ -185,6 +123,7 @@ export default {
     },
     showContactInfo(contact) {
       this.selectedContact = contact;
+      this.showComponentSearch = true;
     },
     filteredContacts() {
       if (this.searchTerm === "") {
@@ -486,6 +425,11 @@ input {
   }
 }
 @media only screen and (max-width: 820px) and (max-height: 1180px) {
+  .full_screen_search {
+    height: 1200px;
+    width: 1608px;
+    border-bottom: 2px solid rgba(71, 58, 58, 0.322);
+  }
   .header_items {
     display: none;
   }
@@ -546,10 +490,58 @@ input {
   .user_st_p {
     margin-top: 50px;
   }
+  .all_search_form {
+    display: inline-block;
+  }
+  .all_search {
+    border-right: 0px;
+  }
+  .search_form_1 {
+    width: 500px;
+    margin-left: 550px;
+  }
+  .kq_search {
+    width: 500px;
+  }
+  input[type="text"] {
+    width: 450px;
+  }
 }
 @media only screen and (max-width: 414px) and (max-height: 896px) {
+  .all_search_form {
+    display: inline-block;
+  }
+  .all_search {
+    border-right: 0px;
+  }
+  .search_form_1 {
+    width: 500px;
+    margin-left: 550px;
+  }
+  .kq_search {
+    width: 500px;
+  }
+  input[type="text"] {
+    width: 450px;
+  }
 }
 @media only screen and (max-width: 390px) and (max-height: 844px) {
+  .all_search_form {
+    display: inline-block;
+  }
+  .all_search {
+    border-right: 0px;
+  }
+  .search_form_1 {
+    width: 500px;
+    margin-left: 550px;
+  }
+  .kq_search {
+    width: 500px;
+  }
+  input[type="text"] {
+    width: 450px;
+  }
   .header_items {
     display: none;
   }
@@ -563,10 +555,6 @@ input {
   }
   .all_search {
     width: 804px;
-  }
-  .search_form_1 {
-    margin-left: 150px;
-    margin-top: 50px;
   }
   .user_sp {
     margin-top: 50px;
@@ -581,6 +569,22 @@ input {
   }
 }
 @media only screen and (max-width: 360px) and (max-height: 740px) {
+  .all_search_form {
+    display: inline-block;
+  }
+  .all_search {
+    border-right: 0px;
+  }
+  .search_form_1 {
+    width: 500px;
+    margin-left: 480px;
+  }
+  .kq_search {
+    width: 500px;
+  }
+  input[type="text"] {
+    width: 450px;
+  }
   .header_items {
     display: none;
   }
@@ -595,10 +599,6 @@ input {
   .all_search {
     width: 804px;
   }
-  .search_form_1 {
-    margin-left: 100px;
-    margin-top: 50px;
-  }
   .user_sp {
     margin-top: 50px;
   }
@@ -610,14 +610,29 @@ input {
   .user_st_p {
     margin-top: 50px;
   }
+  .user_tt {
+    width: 715px;
+  }
 }
 @media only screen and (max-width: 375px) and (max-height: 667px) {
+  .all_search_form {
+    display: inline-block;
+  }
+  .all_search {
+    border-right: 0px;
+  }
+  .search_form_1 {
+    width: 500px;
+    margin-left: 500px;
+  }
+  .kq_search {
+    width: 500px;
+  }
+  input[type="text"] {
+    width: 450px;
+  }
   .header_items {
     display: none;
-  }
-  .all_search_form {
-    margin-top: 130px;
-    width: 108px;
   }
   .form_details {
     margin-top: 150px;
@@ -625,10 +640,6 @@ input {
   }
   .all_search {
     width: 756px;
-  }
-  .search_form_1 {
-    margin-left: 150px;
-    margin-top: 50px;
   }
   .user_sp {
     margin-top: 50px;

@@ -40,7 +40,7 @@
               </div>
             </div>
           </div>
-          <div class="detail_icons">
+          <div class="detail_icons" :class="userClass(item)">
             <div class="flex gap-3 ml-11 mt-14">
               <img src="../assets/img/mail2.png" />
               <p class="font-normal text-xl ml-4">{{ item.email }}</p>
@@ -79,6 +79,11 @@ export default {
     }
   },
   methods: {
+    userClass(item) {
+      return {
+        detail_icons_user: item === this.user,
+      };
+    },
     getUserClass(item) {
       return {
         form_details_selectUser: item === this.selectedUser,
@@ -219,6 +224,26 @@ export default {
 .detail_icons {
   font-family: "Roboto";
 }
+@media only screen and (max-width: 1280px) and (max-height: 1080px) {
+  .form_details_selectUser {
+    margin-left: 200px;
+  }
+  .show_contact_search {
+    border-top: none;
+    margin-top: 100px;
+    width: 800px;
+  }
+}
+@media only screen and (max-width: 1600px) and (max-height: 900px) {
+  .form_details_selectUser {
+    margin-left: 200px;
+  }
+  .show_contact_search {
+    border-top: none;
+    margin-top: 100px;
+    width: 800px;
+  }
+}
 @media only screen and (max-width: 960px) and (max-height: 540px) {
   .all_form {
     margin-top: 0;
@@ -227,39 +252,64 @@ export default {
   .login_p {
     margin-top: 50px;
   }
+  .form_details_selectUser {
+    margin-left: 190px;
+  }
+  .show_contact_search {
+    border-top: none;
+    margin-top: 100px;
+    width: 800px;
+  }
 }
 @media only screen and (max-width: 375px) and (max-height: 667px) {
-  .detail_icons {
+  .detail_icons_user {
     display: none;
   }
 }
 @media only screen and (max-width: 768px) and (max-height: 1024px) {
-  .detail_icons {
-    display: none;
-  }
 }
 @media only screen and (max-width: 820px) and (max-height: 1180px) {
-  .detail_icons {
-    display: none;
+  .form_details_selectUser {
+    margin-left: 190px;
+  }
+  .show_contact_search {
+    border-top: none;
+    margin-top: 100px;
+    width: 800px;
   }
 }
 @media only screen and (max-width: 412px) and (max-height: 915px) {
-  .detail_icons {
+  .detail_icons_user {
     display: none;
+  }
+  .show_contact_search {
+    margin-top: 10px;
+    width: 900px;
+    margin-left: 320px;
   }
 }
 @media only screen and (max-width: 414px) and (max-height: 896px) {
-  .detail_icons {
+  .detail_icons_user {
     display: none;
+  }
+  .show_contact_search {
+    margin-top: 10px;
+    width: 900px;
+    margin-left: 320px;
   }
 }
 @media only screen and (max-width: 360px) and (max-height: 740px) {
-  .detail_icons {
+  .detail_icons_user {
     display: none;
+  }
+  .show_contact_search {
+    margin-top: 10px;
+    width: 900px;
+    margin-left: 270px;
   }
 }
 @media only screen and (max-width: 390px) and (max-height: 844px) {
-  .detail_icons {
+  .detail_icons_user {
     display: none;
   }
 }
