@@ -39,9 +39,10 @@
                 <p class="search_name">{{ contact.fullname }}</p>
                 <input
                   type="radio"
-                  name="searchCriteria"
+                  name="search"
+                  :checked="searchBy === contact.id"
                   v-model="searchBy"
-                  @click="showContactInfo(contact)"
+                  @change="showContactInfo(contact)"
                   class="absolute -top-2 right-1"
                 />
               </div>

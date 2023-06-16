@@ -65,19 +65,8 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 export default {
-  created() {
-    if (this.user) {
-      this.fetchUserData(this.user);
-    }
-    if (this.selectedUser) {
-      this.fetchUserData(this.selectedUser);
-    }
-    if (this.selectedContact) {
-      this.fetchUserData(this.selectedContact);
-    }
-  },
   methods: {
     userClass(item) {
       return {
@@ -101,27 +90,6 @@ export default {
     },
     onClose() {
       this.$emit("close");
-    },
-    fetchUserData(user) {
-      // Thực hiện các thao tác cần thiết để lấy dữ liệu người dùng từ user
-      // Ví dụ: Gọi API để lấy dữ liệu người dùng
-
-      axios
-        .get(`/api/user/${user.id}`)
-        .then((response) => {
-          // Xử lý dữ liệu nhận được từ API
-          const userData = response.data;
-          // Lưu dữ liệu vào thuộc tính user
-          user.picture = userData.picture;
-          user.fullname = userData.fullname;
-          user.email = userData.email;
-          user.idNumber = userData.idNumber;
-          user.phone = userData.phone;
-          user.address = userData.address;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
     },
   },
   props: {
