@@ -19,7 +19,11 @@
           </div>
           <div class="flex mt-20 ml-4 text_details">
             <div>
-              <img :src="item.picture" alt="" class="h-28 w-28 rounded-full" />
+              <img
+                :src="item.picture"
+                alt=""
+                class="h-28 w-28 rounded-full img_avatar"
+              />
             </div>
             <div>
               <div>
@@ -109,6 +113,9 @@ export default {
 };
 </script>
 <style lang="css" scoped>
+.img_avatar {
+  box-shadow: 0px 6px 8px 5px rgba(71, 58, 58, 0.322);
+}
 .form_details_search {
   font-family: "Roboto";
   border: 2px solid rgba(71, 58, 58, 0.322);

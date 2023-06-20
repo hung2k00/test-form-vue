@@ -190,7 +190,8 @@ export default {
       axios
         .get(`${process.env.VUE_APP_API_URL}`)
         .then((response) => {
-          this.users = response.data;
+          const reversedData = [...response.data].reverse();
+          this.users = reversedData;
         })
         .catch(() => {
           toast.error("Không thể lấy dữ liệu!", {
@@ -199,8 +200,9 @@ export default {
         });
     },
     reversedUsers() {
-      // Đảo ngược thứ tự của mảng users
-      return this.users.slice().reverse();
+      const startIndex = (this.currentPage - 1) * this.perPage;
+      const endIndex = startIndex + this.perPage;
+      return this.users.slice(startIndex, endIndex);
     },
     totalPages() {
       return Math.ceil(this.users.length / this.perPage);
@@ -208,11 +210,14 @@ export default {
     previousPage() {
       if (this.currentPage > 1) {
         this.currentPage--;
+        this.getUsers();
       }
     },
+
     nextPage() {
       if (this.currentPage < this.totalPages()) {
         this.currentPage++;
+        this.getUsers();
       }
     },
     selectUser(user) {
@@ -332,6 +337,7 @@ td {
   width: 300px;
   height: 50px;
   text-align: center;
+  color: rgba(151, 145, 145, 0.76);
 }
 .full_list {
   width: 1206px;

@@ -116,42 +116,54 @@ export default {
     };
   },
   methods: {
-    login() {
+    async login() {
       const hashedPassword = MD5(this.password).toString();
-      axios
-        .get(`${process.env.VUE_APP_API_URL}`, {
+      let token;
+      try {
+        const response = await axios.get(`${process.env.VUE_APP_API_URL}`, {
           params: {
             email: this.email,
             password: hashedPassword,
           },
-        })
-        .then((response) => {
-          const user = response.data[0];
-          if (user) {
-            toast.success("Đăng nhập thành công!", {
-              autoClose: 2000,
-            });
-            setTimeout(() => {
-              this.$router.push("/user"); // Chuyển trang sau một khoảng thời gian
-            }, 1500);
-            // Thực hiện các hành động tiếp theo sau khi đăng nhập
-          } else {
-            const error = " Tên hoặc mật khẩu không chính xác";
-            let alert_1 = document.querySelector("#alert_1");
-            alert_1.classList.remove("hidden");
-            alert_1.innerHTML = error;
-          }
-          localStorage.setItem("user", JSON.stringify(user));
-        })
+        });
 
-        .catch(() => {
-          let alert_1 = document.querySelector("#alert_1");
-          alert_1.classList.remove("hidden");
-          alert_1.innerHTML = "Lỗi kết nối server";
-          toast.error("Không thể kết nối đến server để lấy dữ liệu!", {
+        const user = response.data[0];
+        if (user) {
+          console.log(response.data);
+
+          token = response.data;
+
+          toast.success("Đăng nhập thành công!", {
             autoClose: 2000,
           });
+          setTimeout(() => {
+            this.$router.push("/user");
+          }, 1500);
+        } else {
+          // Tên hoặc mật khẩu không chính xác
+          const error = " Tên hoặc mật khẩu không chính xác";
+          let alert_1 = document.querySelector("#alert_1");
+          alert_1.classList.remove("hidden");
+          alert_1.innerHTML = error;
+        }
+        localStorage.setItem("user", JSON.stringify(user));
+      } catch (error) {
+        let alert_1 = document.querySelector("#alert_1");
+        alert_1.classList.remove("hidden");
+        alert_1.innerHTML = "Lỗi kết nối server";
+        toast.error("Không thể kết nối đến server để lấy dữ liệu!", {
+          autoClose: 2000,
         });
+      }
+
+      if (token) {
+        // Gán token vào header Authorization
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      } else {
+        // Xử lý khi không có token
+        console.error("Không tìm thấy token trong phản hồi.");
+        // Hoặc thực hiện các hành động khác tùy thuộc vào yêu cầu của bạn
+      }
       if (this.remember) {
         localStorage.setItem("email", this.email);
         localStorage.setItem("password", this.password);

@@ -161,9 +161,10 @@ td {
   width: 300px;
   height: 50px;
   text-align: center;
-  color: #dd7a01;
+  color: rgba(151, 145, 145, 0.76);
 }
 .user_note {
+  color: #dd7a01;
   font-family: "Roboto";
   border: 1px solid rgba(151, 145, 145, 0.76);
   border-top: 4px solid #dd7a01;
