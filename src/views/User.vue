@@ -188,7 +188,12 @@ export default {
 
     getUsers() {
       axios
-        .get(`${process.env.VUE_APP_API_URL}`)
+        .get(`${process.env.VUE_APP_API_URL}`, {
+          headers: {
+            Authorization: "UserToken",
+            // Add other headers as needed
+          },
+        })
         .then((response) => {
           const reversedData = [...response.data].reverse();
           this.users = reversedData;

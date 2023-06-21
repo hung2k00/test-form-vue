@@ -243,7 +243,12 @@ export default {
       };
 
       axios
-        .post(`${process.env.VUE_APP_API_URL}`, this.newUser)
+        .post(`${process.env.VUE_APP_API_URL}`, this.newUser, {
+          headers: {
+            Authorization: "RegisterToken",
+            // Add other headers as needed
+          },
+        })
         .then(() => {
           this.$emit("close");
           this.$emit("userCreated");
