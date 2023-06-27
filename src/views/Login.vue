@@ -60,10 +60,12 @@
               </label>
               <br />
               <div
-                class="mt-5 hidden text-red-400"
-                role="alert"
-                id="alert_1"
-              ></div>
+                v-if="error"
+                :class="{ hidden: !error }"
+                class="mt-5 text-red-400"
+              >
+                {{ errorText }}
+              </div>
               <br />
               <button class="mt-9 font-normal text-2xl">
                 <p class="text_button">Đăng nhập</p>
@@ -110,9 +112,10 @@ export default {
     return {
       email: "",
       password: "",
-      error: "",
+      error: false,
       remember: false,
       showNotification: false,
+      errorText: "",
     };
   },
   methods: {
@@ -140,17 +143,13 @@ export default {
             this.$router.push("/user");
           }, 1500);
         } else {
-          // Tên hoặc mật khẩu không chính xác
-          const error = " Tên hoặc mật khẩu không chính xác";
-          let alert_1 = document.querySelector("#alert_1");
-          alert_1.classList.remove("hidden");
-          alert_1.innerHTML = error;
+          this.error = true;
+          this.errorText = "Tên hoặc mật khẩu không chính xác";
         }
         localStorage.setItem("user", JSON.stringify(user));
       } catch (error) {
-        let alert_1 = document.querySelector("#alert_1");
-        alert_1.classList.remove("hidden");
-        alert_1.innerHTML = "Lỗi kết nối server";
+        this.error = true;
+        this.errorText = "Lỗi kết nối server";
         toast.error("Không thể kết nối đến server để lấy dữ liệu!", {
           autoClose: 2000,
         });

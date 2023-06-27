@@ -1,7 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <header-components class="header_items" />
-  <menu-components class="menu_items mt-4" />
   <div class="flex mt-4 user_all relative">
     <div class="w-100 all_user">
       <div class="flex h-20 user_st">
@@ -71,14 +69,10 @@
   />
 </template>
 <script>
-import HeaderComponents from "../components/Header.vue";
-import MenuComponents from "../components/Menu.vue";
 import PopupDetail from "../components/PopupDetails.vue";
 import RegisterComponents from "../components/RegisterUser.vue";
 export default {
   components: {
-    HeaderComponents,
-    MenuComponents,
     PopupDetail,
     RegisterComponents,
   },

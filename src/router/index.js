@@ -6,7 +6,9 @@ import Chat from "../components/Chat.vue";
 import Statistics from "../components/Statistics.vue";
 import Search from "../components/Search.vue";
 import UserNote from "../components/UserNote.vue";
-import ListUser from "../views/User.vue";
+import User from "../views/User.vue";
+import Header from "../components/Header.vue";
+import Menu from "../components/Menu.vue";
 
 const routes = [
   {
@@ -18,16 +20,11 @@ const routes = [
     path: "/user",
     name: "user",
     props: true,
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/User.vue"),
-    meta: {
-      requiresAuth: true,
+    components: {
+      default: User,
+      header: Header,
+      menu: Menu,
     },
-  },
-  {
-    path: "/list-users",
-    name: "list-users",
-    component: ListUser,
     meta: {
       requiresAuth: true,
     },
@@ -35,7 +32,11 @@ const routes = [
   {
     path: "/notes_user",
     name: "note_user",
-    component: UserNote,
+    components: {
+      default: UserNote,
+      header: Header,
+      menu: Menu,
+    },
     meta: {
       requiresAuth: true,
     },
@@ -43,7 +44,11 @@ const routes = [
   {
     path: "/profile",
     name: "profile",
-    component: Profile,
+    components: {
+      default: Profile,
+      header: Header,
+      menu: Menu,
+    },
     meta: {
       requiresAuth: true,
     },
@@ -51,7 +56,11 @@ const routes = [
   {
     path: "/search",
     name: "search",
-    component: Search,
+    components: {
+      default: Search,
+      header: Header,
+      menu: Menu,
+    },
     meta: {
       requiresAuth: true,
     },
@@ -59,7 +68,11 @@ const routes = [
   {
     path: "/note",
     name: "note",
-    component: Note,
+    components: {
+      default: Note,
+      header: Header,
+      menu: Menu,
+    },
     meta: {
       requiresAuth: true,
     },
@@ -67,7 +80,11 @@ const routes = [
   {
     path: "/chat",
     name: "chat",
-    component: Chat,
+    components: {
+      default: Chat,
+      header: Header,
+      menu: Menu,
+    },
     meta: {
       requiresAuth: true,
     },
@@ -75,7 +92,11 @@ const routes = [
   {
     path: "/statistics",
     name: "statistics",
-    component: Statistics,
+    components: {
+      default: Statistics,
+      header: Header,
+      menu: Menu,
+    },
     meta: {
       requiresAuth: true,
     },

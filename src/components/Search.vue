@@ -1,7 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <header-components class="header_items" />
-  <menu-components class="menu_items mt-4" />
   <div class="full_screen_search">
     <div class="flex all_search_form mt-4">
       <div class="all_search">
@@ -71,8 +69,6 @@
   </div>
 </template>
 <script>
-import HeaderComponents from "../components/Header.vue";
-import MenuComponents from "../components/Menu.vue";
 import PopupDetail from "../components/PopupDetails.vue";
 import axios from "axios";
 import { toast } from "vue3-toastify";
@@ -80,8 +76,6 @@ import "vue3-toastify/dist/index.css";
 
 export default {
   components: {
-    HeaderComponents,
-    MenuComponents,
     PopupDetail,
   },
   data() {

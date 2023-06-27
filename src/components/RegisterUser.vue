@@ -1,156 +1,154 @@
 <template>
-  <div class="create_uer_all px-32">
-    <Form @submit="onSubmit" class="create_user max-w-4xl mx-auto -mt-14">
-      <div class="flex create_header p-6">
-        <div class="w-11/12 text-blue-500">
-          <p class="text-2xl ml-10 font-semibold">Thông tin cá nhân</p>
-        </div>
-        <div class="w-1/12 cursor-pointer" @click="onClose">
-          <i class="fa-solid fa-xmark fa-2xl" style="color: #888b91"></i>
-        </div>
+  <Form @submit="onSubmit" class="create_user max-w-4xl mx-auto -mt-14">
+    <div class="flex create_header p-6">
+      <div class="w-11/12 text-blue-500">
+        <p class="text-2xl ml-10 font-semibold">Thông tin cá nhân</p>
       </div>
-      <div class="">
-        <div class="px-48 ml-10 py-6">
-          <img
-            v-if="user.picture"
-            :src="user.picture"
-            alt="Selected Image"
-            class="h-24 w-24 rounded-full mr-8 ml-40"
-          />
-          <label for="image-input" class="upload-button text-base font-medium"
-            >Choose Image:</label
+      <div class="w-1/12 cursor-pointer" @click="onClose">
+        <i class="fa-solid fa-xmark fa-2xl" style="color: #888b91"></i>
+      </div>
+    </div>
+    <div class="">
+      <div class="px-48 ml-10 py-6">
+        <img
+          v-if="user.picture"
+          :src="user.picture"
+          alt="Selected Image"
+          class="h-24 w-24 rounded-full mr-8 ml-40"
+        />
+        <label for="image-input" class="upload-button text-base font-medium"
+          >Choose Image:</label
+        >
+        <input
+          class="ml-2 cursor-pointer"
+          type="file"
+          id="image-input"
+          accept="image/*"
+          @change="handleImageUpload"
+        />
+      </div>
+    </div>
+    <div class="grid gap-4 grid-cols-2 py-10 px-16 create_form">
+      <div>
+        <label>Tên truy cập</label>
+        <Field
+          type="username"
+          placeholder="manhhung00"
+          name="username"
+          v-model="user.username"
+          rules="required"
+        />
+        <br />
+        <ErrorMessage name="username" class="text-red-500 mt-2" />
+      </div>
+      <div>
+        <label for="">Họ và tên</label>
+        <Field
+          name="fullname"
+          type="text"
+          v-model="user.fullname"
+          placeholder="fullname"
+          rules="required"
+        />
+        <br />
+        <ErrorMessage name="fullname" class="text-red-500 mt-2" />
+      </div>
+      <div class="mt-2">
+        <label>Email</label>
+        <Field
+          name="email"
+          placeholder="example@gmail.com"
+          v-model="user.email"
+          rules="required|email"
+        />
+        <br />
+        <ErrorMessage name="email" class="text-red-500 mt-2" />
+      </div>
+      <div class="mt-2">
+        <label for="">Mật khẩu</label>
+        <Field
+          name="password"
+          type="password"
+          placeholder="*********"
+          v-model="user.password"
+          rules="required|min:8"
+        />
+        <br />
+        <ErrorMessage name="password" class="text-red-500 mt-2" />
+      </div>
+      <div class="mt-2">
+        <label for="">Số điện thoại</label>
+        <Field
+          name="phone"
+          type="tel"
+          placeholder="09xx657xxx"
+          v-model="user.phone"
+          rules="required|numeric|max:10"
+        />
+        <br />
+        <ErrorMessage name="phone" class="text-red-500 mt-2" />
+      </div>
+      <div class="mt-2">
+        <label for="">Địa chỉ</label>
+        <Field
+          name="address"
+          type="text"
+          placeholder="address"
+          v-model="user.address"
+          rules="required"
+        />
+        <br />
+        <ErrorMessage name="address" class="text-red-500 mt-2" />
+      </div>
+      <div class="mt-2">
+        <label>Số CMND</label>
+        <Field
+          name="idNumber"
+          type=""
+          placeholder="03620000xxx"
+          v-model="user.idNumber"
+          rules="required"
+        />
+        <br />
+        <ErrorMessage name="idNumber" class="text-red-500 mt-2" />
+      </div>
+      <div class="mt-2">
+        <div class="flex">
+          <label for="cards" class="">Choose tags:</label>
+          <p class="ml-4">{{ showSelected() }}</p>
+        </div>
+        <br />
+        <select
+          v-model="user.tags"
+          multiple
+          size="3"
+          class="h-16 -mt-6"
+          required
+        >
+          <option
+            class="cursor-pointer"
+            v-for="option in options"
+            :value="option.value"
+            :key="option.value"
           >
-          <input
-            class="ml-2 cursor-pointer"
-            type="file"
-            id="image-input"
-            accept="image/*"
-            @change="handleImageUpload"
-          />
-        </div>
+            {{ option.label }}
+          </option>
+        </select>
       </div>
-      <div class="grid gap-4 grid-cols-2 py-10 px-16 create_form">
-        <div>
-          <label>Tên truy cập</label>
-          <Field
-            type="username"
-            placeholder="manhhung00"
-            name="username"
-            v-model="user.username"
-            rules="required"
-          />
-          <br />
-          <ErrorMessage name="username" class="text-red-500 mt-2" />
-        </div>
-        <div>
-          <label for="">Họ và tên</label>
-          <Field
-            name="fullname"
-            type="text"
-            v-model="user.fullname"
-            placeholder="fullname"
-            rules="required"
-          />
-          <br />
-          <ErrorMessage name="fullname" class="text-red-500 mt-2" />
-        </div>
-        <div class="mt-2">
-          <label>Email</label>
-          <Field
-            name="email"
-            placeholder="example@gmail.com"
-            v-model="user.email"
-            rules="required|email"
-          />
-          <br />
-          <ErrorMessage name="email" class="text-red-500 mt-2" />
-        </div>
-        <div class="mt-2">
-          <label for="">Mật khẩu</label>
-          <Field
-            name="password"
-            type="password"
-            placeholder="*********"
-            v-model="user.password"
-            rules="required|min:8"
-          />
-          <br />
-          <ErrorMessage name="password" class="text-red-500 mt-2" />
-        </div>
-        <div class="mt-2">
-          <label for="">Số điện thoại</label>
-          <Field
-            name="phone"
-            type="tel"
-            placeholder="09xx657xxx"
-            v-model="user.phone"
-            rules="required|numeric|max:10"
-          />
-          <br />
-          <ErrorMessage name="phone" class="text-red-500 mt-2" />
-        </div>
-        <div class="mt-2">
-          <label for="">Địa chỉ</label>
-          <Field
-            name="address"
-            type="text"
-            placeholder="address"
-            v-model="user.address"
-            rules="required"
-          />
-          <br />
-          <ErrorMessage name="address" class="text-red-500 mt-2" />
-        </div>
-        <div class="mt-2">
-          <label>Số CMND</label>
-          <Field
-            name="idNumber"
-            type=""
-            placeholder="03620000xxx"
-            v-model="user.idNumber"
-            rules="required"
-          />
-          <br />
-          <ErrorMessage name="idNumber" class="text-red-500 mt-2" />
-        </div>
-        <div class="mt-2">
-          <div class="flex">
-            <label for="cards" class="">Choose tags:</label>
-            <p class="ml-4">{{ showSelected() }}</p>
-          </div>
-          <br />
-          <select
-            v-model="user.tags"
-            multiple
-            size="3"
-            class="h-16 -mt-6"
-            required
-          >
-            <option
-              class="cursor-pointer"
-              v-for="option in options"
-              :value="option.value"
-              :key="option.value"
-            >
-              {{ option.label }}
-            </option>
-          </select>
-        </div>
+    </div>
+    <div
+      class="hidden text-red-400 mt-2 ml-16 text-xl"
+      id="error_register"
+    ></div>
+    <div class="flex gap-8 pb-8 mt-2">
+      <div class="ml-16 submit_form">
+        <button type="submit">Lưu trữ</button>
       </div>
-      <div
-        class="hidden text-red-400 mt-2 ml-16 text-xl"
-        id="error_register"
-      ></div>
-      <div class="flex gap-8 pb-8 mt-2">
-        <div class="ml-16 submit_form">
-          <button type="submit">Lưu trữ</button>
-        </div>
-        <div class="cancel_form" @click="onClose">
-          <button>Đóng</button>
-        </div>
+      <div class="cancel_form" @click="onClose">
+        <button>Đóng</button>
       </div>
-    </Form>
-  </div>
+    </div>
+  </Form>
 </template>
 <script>
 import axios from "axios";

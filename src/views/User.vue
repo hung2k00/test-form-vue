@@ -1,7 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <header-components class="header_items" />
-  <menu-components class="menu_items mt-4" />
   <div class="flex mt-4 user_all relative">
     <div class="w-100 all_user">
       <div class="flex h-20 user_st">
@@ -39,7 +37,10 @@
       </div>
     </div>
     <div class="ds_regis">
-      <div class="register_icon flex mt-28 cursor-pointer" @click="createUser">
+      <div
+        class="register_icon flex mt-28 cursor-pointer"
+        @click="showComponentRegister = true"
+      >
         <p>Tạo Người Dùng</p>
         <img src="../assets/img/Icon.png" />
       </div>
@@ -117,29 +118,40 @@
             </div>
           </div>
         </div>
-        <div class="relative -mt-101 ml-24">
+        <div>
           <popup-detail
             :selectedUser="selectedUser"
             v-if="showComponentDetail"
-            class="absolute"
+            class="user-modal"
             @close="resetComponentUser"
           />
+          <div
+            :selectedUser="selectedUser"
+            class="modal-overlay"
+            v-if="showComponentDetail"
+            @click="resetComponentUser"
+          ></div>
         </div>
         <!-- <div class="relative -mt-100"></div> -->
       </div>
     </div>
   </div>
-  <register-components
-    :createUser="createUser"
-    class="register_components absolute -mt-100 ml-96"
-    v-if="showComponentRegister"
-    @close="resetComponent"
-    @userCreated="getUsers"
-  />
+  <div>
+    <register-components
+      :createUser="createUser"
+      v-if="showComponentRegister"
+      @close="resetComponent"
+      @userCreated="getUsers"
+      class="modal register-modal"
+    />
+    <div
+      class="modal-overlay"
+      v-if="showComponentRegister"
+      @click="resetComponent"
+    ></div>
+  </div>
 </template>
 <script>
-import HeaderComponents from "../components/Header.vue";
-import MenuComponents from "../components/Menu.vue";
 import PopupDetail from "../components/PopupDetails.vue";
 import RegisterComponents from "../components/RegisterUser.vue";
 import { toast } from "vue3-toastify";
@@ -147,8 +159,6 @@ import "vue3-toastify/dist/index.css";
 import axios from "axios";
 export default {
   components: {
-    HeaderComponents,
-    MenuComponents,
     PopupDetail,
     RegisterComponents,
   },
@@ -160,7 +170,7 @@ export default {
       selectedUser: null,
       selectedRegister: null,
       showComponentRegister: false,
-      showComponentDetail: true,
+      showComponentDetail: false,
       itemsPerPageOptions: [5, 10, 20, 30, 50],
       maxVisiblePages: 5,
     };
@@ -285,6 +295,35 @@ export default {
 };
 </script>
 <style scoped>
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Màu nền đen */
+  z-index: 999; /* Đặt z-index để modal hiển thị trên phần còn lại */
+}
+
+.register-modal {
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Màu nền của modal */
+
+  z-index: 1000; /* Đặt z-index để modal hiển thị trên overlay */
+  /* Thêm các kiểu CSS khác cho modal */
+}
+.user-modal {
+  width: 45%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Màu nền của modal */
+
+  z-index: 1000;
+}
 .perPage {
   border: 3px solid rgb(163, 230, 241);
   height: 32px;
