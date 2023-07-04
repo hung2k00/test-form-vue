@@ -60,13 +60,20 @@
     </div>
   </div>
 
-  <register-components
-    :createUser="createUser"
-    class="register_components absolute -mt-100 ml-96"
-    v-if="showComponentRegister"
-    @close="resetComponent"
-    @userCreated="getUsers"
-  />
+  <div>
+    <register-components
+      :createUser="createUser"
+      v-if="showComponentRegister"
+      @close="resetComponent"
+      @userCreated="getUsers"
+      class="modal register-modal"
+    />
+    <div
+      class="modal-overlay"
+      v-if="showComponentRegister"
+      @click="resetComponent"
+    ></div>
+  </div>
 </template>
 <script>
 import PopupDetail from "../components/PopupDetails.vue";
@@ -108,6 +115,26 @@ export default {
 };
 </script>
 <style scoped>
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Màu nền đen */
+  z-index: 999; /* Đặt z-index để modal hiển thị trên phần còn lại */
+}
+
+.register-modal {
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Màu nền của modal */
+
+  z-index: 1000; /* Đặt z-index để modal hiển thị trên overlay */
+  /* Thêm các kiểu CSS khác cho modal */
+}
 .perPage {
   border: 3px solid rgb(163, 230, 241);
   height: 32px;

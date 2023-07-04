@@ -118,18 +118,18 @@ export default {
 }
 .form_details_search {
   font-family: "Roboto";
-  border: 2px solid rgba(71, 58, 58, 0.322);
   padding: 10px 10px;
   background: white;
-  height: 870px;
-  box-shadow: -1px 0px 3px rgba(0, 0, 0, 0.25);
-  border-radius: 6px;
-  margin-left: 40px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .show_contact_search {
-  border-top: 1px solid #cfcfcf;
-  width: 1250px;
-  padding-top: 96px;
+  width: 150%;
+  padding: 0 20vh;
+  margin-top: 7vh;
+  height: 100%;
 }
 .form_details_selectUser {
   border: 2px solid white;
@@ -237,6 +237,11 @@ export default {
   }
 }
 @media only screen and (max-width: 375px) and (max-height: 667px) {
+  .detail_icons_user {
+    display: none;
+  }
+}
+@media screen and (max-width: 640px) {
   .detail_icons_user {
     display: none;
   }

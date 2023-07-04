@@ -6,7 +6,9 @@
         <div class="flex h-20 user_st">
           <div class="user_tt w-1/2 border-r-slate-400">
             <router-link :to="{ name: 'user' }">
-              <p class="text-center mt-6 font-semibold user_st_p">
+              <p
+                class="text-center mt-6 font-semibold user_st_p cursor-pointer hover:text-black"
+              >
                 Thông tin khách hàng
               </p>
             </router-link>
@@ -15,48 +17,54 @@
             <p class="mt-6 font-semibold ml-4 user_sp">Tìm kiếm</p>
           </div>
         </div>
-        <div class="w-96 search_form_1">
-          <div class="relative -ml-8">
-            <img
-              src="../assets/img/search.png"
-              class="img_search absolute mt-8 ml-16"
-            />
-            <input type="text" v-model="searchTerm" placeholder="0941584628" />
+        <div class="search_form_1">
+          <div class="w-96 search_list">
+            <div class="relative -ml-8">
+              <img
+                src="../assets/img/search.png"
+                class="img_search absolute mt-8 ml-16"
+              />
+              <input
+                type="text"
+                v-model="searchTerm"
+                placeholder="0941584628"
+              />
+            </div>
+            <div class="mt-10 ml-12 w-full">
+              <p class="text_kq_search -ml-8">Kết quả tìm kiếm danh bạ</p>
+            </div>
+            <div class="mt-10 ml-20 w-full hidden" id="error_search"></div>
+            <ul class="mt-10 ml-14 h-100 max-w-smd kq_search overflow-y-auto">
+              <li
+                v-for="contact in filteredContacts()"
+                :key="contact.id"
+                class="mt-2 w-96 right-2"
+              >
+                <div class="flex relative">
+                  <p class="search_name">{{ contact.fullname }}</p>
+                  <input
+                    type="radio"
+                    name="search"
+                    :checked="searchBy === contact.id"
+                    v-model="searchBy"
+                    @change="showContactInfo(contact)"
+                    class="absolute -top-2 right-1 cursor-pointer"
+                  />
+                </div>
+                <div class="flex relative mt-4">
+                  <span class="search_phone">{{ contact.phone }}</span>
+                  <img
+                    src="../assets/img/search.png"
+                    alt=""
+                    class="h-6 w-6 absolute right-2"
+                  />
+                </div>
+              </li>
+            </ul>
           </div>
-          <div class="mt-10 ml-12 w-full">
-            <p class="text_kq_search -ml-8">Kết quả tìm kiếm danh bạ</p>
-          </div>
-          <div class="mt-10 ml-20 w-full hidden" id="error_search"></div>
-          <ul class="mt-10 ml-14 h-100 max-w-smd kq_search overflow-y-auto">
-            <li
-              v-for="contact in filteredContacts()"
-              :key="contact.id"
-              class="mt-2 w-96 right-2"
-            >
-              <div class="flex relative">
-                <p class="search_name">{{ contact.fullname }}</p>
-                <input
-                  type="radio"
-                  name="search"
-                  :checked="searchBy === contact.id"
-                  v-model="searchBy"
-                  @change="showContactInfo(contact)"
-                  class="absolute -top-2 right-1"
-                />
-              </div>
-              <div class="flex relative mt-4">
-                <span class="search_phone">{{ contact.phone }}</span>
-                <img
-                  src="../assets/img/search.png"
-                  alt=""
-                  class="h-6 w-6 absolute right-2"
-                />
-              </div>
-            </li>
-          </ul>
         </div>
       </div>
-      <div class="relative">
+      <div class="relative show_popup">
         <popup-detail
           :selectedContact="selectedContact"
           v-if="showComponentSearch"
@@ -275,377 +283,146 @@ input {
   height: 29px;
   text-align: center;
 }
-@media only screen and (max-width: 1280px) and (max-height: 720px) {
-  .show_contact_search {
-    border-top: none;
-  }
+@media screen and (max-width: 1100px) {
   .full_screen_search {
-    height: 1200px;
-    width: 1608px;
-    border-bottom: 2px solid rgba(71, 58, 58, 0.322);
-  }
-  .header_items {
-    display: none;
+    margin-top: 14%;
+    box-shadow: none;
   }
   .all_search_form {
-    margin-top: 130px;
-  }
-  .search_form_1 {
-    margin-left: 150px;
-  }
-  .form_details {
-    margin-top: 150px;
-    width: 760px;
+    display: inline;
   }
   .all_search {
-    width: 804px;
-  }
-  .user_sp {
-    margin-top: 50px;
-  }
-  .user_st {
-    margin-top: -10px;
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-}
-@media only screen and (max-width: 1280px) and (max-height: 1080px) {
-  .search_form_1 {
-    margin-left: 150px;
-  }
-  .full_screen_search {
-    height: 1200px;
-    width: 1608px;
-    border-bottom: 2px solid rgba(71, 58, 58, 0.322);
-  }
-  .header_items {
-    display: none;
-  }
-  .all_search_form {
-    margin-top: 130px;
-    width: 1608px;
-    border: none;
-  }
-  .form_details {
-    margin-top: 150px;
-    width: 760px;
-  }
-  .all_search {
-    width: 804px;
-    height: 1080px;
-  }
-  .user_sp {
-    margin-top: 50px;
-  }
-  .user_st {
-    margin-top: -10px;
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-}
-@media only screen and (max-width: 1600px) and (max-height: 900px) {
-  .search_form_1 {
-    margin-left: 150px;
-  }
-  .full_screen_search {
-    height: 1200px;
-    width: 1608px;
-    border-bottom: 2px solid rgba(71, 58, 58, 0.322);
-  }
-  .header_items {
-    display: none;
-  }
-  .all_search_form {
-    margin-top: 130px;
-    width: 1608px;
-  }
-  .form_details {
-    margin-top: 150px;
-    width: 760px;
-  }
-  .all_search {
-    width: 804px;
-  }
-  .user_sp {
-    margin-top: 50px;
-  }
-  .user_st {
-    margin-top: -10px;
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-}
-@media only screen and (max-width: 960px) and (max-height: 540px) {
-}
-@media only screen and (max-width: 640px) and (max-height: 360px) {
-}
-@media only screen and (max-width: 768px) and (max-height: 1024px) {
-  .header_items {
-    display: none;
-  }
-  .all_search_form {
-    margin-top: 130px;
-    width: 1608px;
-  }
-  .form_details {
-    margin-top: 150px;
-    margin-left: 100px;
-  }
-  .all_search {
-    width: 804px;
+    width: 124.6%;
   }
   .search_form_1 {
-    margin-left: 150px;
-    margin-top: 50px;
-  }
-  .user_sp {
-    margin-top: 50px;
-  }
-  .user_st {
-    margin-top: -10px;
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-}
-@media only screen and (max-width: 820px) and (max-height: 1180px) {
-  .full_screen_search {
-    height: 1200px;
-    width: 1608px;
-    border-bottom: 2px solid rgba(71, 58, 58, 0.322);
-  }
-  .header_items {
-    display: none;
-  }
-  .all_search_form {
-    margin-top: 130px;
-    width: 1608px;
-  }
-  .form_details {
-    margin-top: 150px;
-    margin-left: 100px;
-  }
-  .all_search {
-    width: 804px;
-  }
-  .search_form_1 {
-    margin-left: 150px;
-    margin-top: 50px;
-  }
-  .user_sp {
-    margin-top: 50px;
-  }
-  .user_st {
-    margin-top: -10px;
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-}
-@media only screen and (max-width: 412px) and (max-height: 915px) {
-  .header_items {
-    display: none;
-  }
-  .all_search_form {
-    margin-top: 130px;
-    width: 1608px;
-  }
-  .form_details {
-    margin-top: 150px;
-    margin-left: 100px;
-  }
-  .all_search {
-    width: 804px;
-  }
-  .search_form_1 {
-    margin-left: 150px;
-    margin-top: 50px;
-  }
-  .user_sp {
-    margin-top: 50px;
-  }
-  .user_st {
-    margin-top: -10px;
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .all_search_form {
-    display: inline-block;
-  }
-  .all_search {
-    border-right: 0px;
-  }
-  .search_form_1 {
-    width: 500px;
-    margin-left: 550px;
-  }
-  .kq_search {
-    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 0.3vh solid rgba(0, 0, 0, 0.25);
+    padding-bottom: 4vh;
+    margin-left: -8%;
   }
   input[type="text"] {
-    width: 450px;
+    width: 120%;
+  }
+  .show_popup {
+    padding: 40vh 0vh;
+    margin-left: 20%;
+    display: flex;
+    justify-content: center;
+
+    align-items: center;
   }
 }
-@media only screen and (max-width: 414px) and (max-height: 896px) {
+@media only screen and (max-width: 960px) {
+  .show_popup {
+    padding: 0vh 0vh;
+    margin-top: -5%;
+    margin-left: 10%;
+  }
+  .full_screen_search {
+    margin-top: 8.8%;
+  }
   .all_search_form {
-    display: inline-block;
+    display: inline;
   }
   .all_search {
-    border-right: 0px;
+    width: 109.6%;
   }
-  .search_form_1 {
-    width: 500px;
-    margin-left: 550px;
+  .search_list {
+    height: 80%;
   }
   .kq_search {
-    width: 500px;
+    height: 50%;
   }
-  input[type="text"] {
-    width: 450px;
+  .search_form_1 {
+    height: 50%;
   }
 }
-@media only screen and (max-width: 390px) and (max-height: 844px) {
+@media screen and (max-width: 900px) {
+  .full_screen_search {
+    margin-top: 22%;
+    width: 191.5%;
+  }
   .all_search_form {
-    display: inline-block;
+    display: inline;
   }
-  .all_search {
-    border-right: 0px;
-  }
-  .search_form_1 {
-    width: 500px;
-    margin-left: 550px;
+  .search_list {
+    height: 70%;
   }
   .kq_search {
-    width: 500px;
+    height: 80%;
+  }
+  .search_form_1 {
+    height: 100%;
   }
   input[type="text"] {
-    width: 450px;
+    width: 120%;
   }
-  .header_items {
-    display: none;
+  .show_popup {
+    margin-top: 20%;
+    margin-left: -5vh;
   }
-  .all_search_form {
-    margin-top: 130px;
-    width: 1608px;
+}
+@media screen and (max-width: 768px) {
+  .show_popup {
+    margin-top: 25%;
   }
-  .form_details {
-    margin-top: 150px;
-    margin-left: 100px;
+  .full_screen_search {
+    margin-top: 20%;
   }
-  .all_search {
-    width: 804px;
+}
+@media screen and (max-width: 640px) and (min-width: 415px) {
+  .full_screen_search {
+    margin-top: 9%;
   }
-  .user_sp {
-    margin-top: 50px;
+  .search_form_1 {
+    height: 60%;
+  }
+  .show_popup {
+    margin-top: -18%;
+    margin-left: 20%;
+    height: 50%;
+  }
+  .kq_search {
+    height: 50%;
+  }
+}
+@media screen and (max-width: 414px) {
+  .full_screen_search {
+    margin-top: 34%;
+    width: 355%;
+  }
+}
+@media screen and (max-width: 395px) {
+  .full_screen_search {
+    width: 365%;
+    margin-top: 35%;
   }
   .user_st {
-    margin-top: -10px;
-    height: 120px;
-    width: 1608px;
+    height: 14%;
   }
-  .user_st_p {
-    margin-top: 50px;
+  .show_popup {
+    margin-top: 30%;
   }
 }
-@media only screen and (max-width: 360px) and (max-height: 740px) {
-  .all_search_form {
-    display: inline-block;
+@media screen and (max-width: 375px) {
+  .full_screen_search {
+    width: 365%;
+    margin-top: 38%;
   }
-  .all_search {
-    border-right: 0px;
-  }
-  .search_form_1 {
-    width: 500px;
-    margin-left: 480px;
-  }
-  .kq_search {
-    width: 500px;
-  }
-  input[type="text"] {
-    width: 450px;
-  }
-  .header_items {
-    display: none;
-  }
-  .all_search_form {
-    margin-top: 130px;
-    width: 1608px;
-  }
-  .form_details {
-    margin-top: 150px;
-    margin-left: 50px;
-  }
-  .all_search {
-    width: 804px;
-  }
-  .user_sp {
-    margin-top: 50px;
+  .all_user {
+    margin-top: 35%;
   }
   .user_st {
-    margin-top: -10px;
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
+    padding: 0;
+    height: 14%;
   }
   .user_tt {
-    width: 715px;
+    padding: 2vh 0;
   }
-}
-@media only screen and (max-width: 375px) and (max-height: 667px) {
-  .all_search_form {
-    display: inline-block;
-  }
-  .all_search {
-    border-right: 0px;
-  }
-  .search_form_1 {
-    width: 500px;
-    margin-left: 500px;
-  }
-  .kq_search {
-    width: 500px;
-  }
-  input[type="text"] {
-    width: 450px;
-  }
-  .header_items {
-    display: none;
-  }
-  .form_details {
-    margin-top: 150px;
-    margin-left: 100px;
-  }
-  .all_search {
-    width: 756px;
-  }
-  .user_sp {
-    margin-top: 50px;
-  }
-  .user_st {
-    margin-top: -10px;
-    height: 120px;
-    width: 1508px;
-  }
-  .user_st_p {
-    margin-top: 50px;
+  .user_s {
+    padding: 2vh 0;
   }
 }
 </style>

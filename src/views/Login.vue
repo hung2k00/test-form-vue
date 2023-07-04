@@ -1,23 +1,20 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="relative">
-    <div class="max-w-screen-aa mx-auto flex relative mt-31 all_form">
-      <!-- <transition name="slide-in">
-        <div class="notification absolute -top-28 flex" v-if="showNotification">
-          <i
-            class="fa-regular fa-circle-check mt-1 mr-2"
-            style="color: #fffcfc"
-          ></i>
-          <p>Đăng nhập thành công</p>
-        </div>
-      </transition> -->
-      <div class="max-w-screen-bb login_form absolute top-0 bottom-0">
-        <div class="w-1/2 ml-36 login_items">
-          <p class="font-normal text-5xl login_p mt-28 ml-4">Customer Care</p>
-          <Form action="" method="post" class="mt-10" @submit="login">
+  <div
+    class="relative h-screen flex justify-center items-center container mx-auto"
+  >
+    <div class="max-w-screen-aa ff:mx-auto mx-4 flex relative all_form">
+      <div class="max-w-screen-bb login_form absolute top-0 bottom-0 smd:p-28">
+        <div class="">
+          <p class="font-normal lg:text-5xl text-4xl login_p ml-4">
+            Customer Care
+          </p>
+          <Form action="" method="post" class="lg:mt-10 mt-3" @submit="login">
             <div class="container_form">
               <div class="email_form">
-                <label for="email" class="font-normal text-2xl text_label"
+                <label
+                  for="email"
+                  class="font-normal lg:text-2xl text-xl text_label"
                   >Tên đăng nhập</label
                 >
                 <br />
@@ -33,7 +30,9 @@
                 <ErrorMessage name="email" class="text-red-500 mt-2" />
               </div>
               <div>
-                <label for="psw" class="font-normal text-2xl text_label"
+                <label
+                  for="psw"
+                  class="font-normal lg:text-2xl text-xl text_label"
                   >Mật khẩu</label
                 >
                 <br />
@@ -60,21 +59,26 @@
               </label>
               <br />
               <div
-                v-if="error"
-                :class="{ hidden: !error }"
                 class="mt-5 text-red-400"
+                role="alert"
+                id="alert_1"
+                v-if="error"
               >
                 {{ errorText }}
               </div>
               <br />
-              <button class="mt-9 font-normal text-2xl">
-                <p class="text_button">Đăng nhập</p>
+              <button
+                class="mt-9 font-normal lg:text-2xl text-xl hover:bg-white"
+              >
+                <p class="text_button cursor-pointer hover:text-blue-700">
+                  Đăng nhập
+                </p>
               </button>
             </div>
           </Form>
         </div>
       </div>
-      <div class="ml-96 img_login">
+      <div class="ml-96 img_login hidden smd:inline">
         <img src="../assets/img/Image.png" alt="" />
       </div>
     </div>
@@ -145,6 +149,9 @@ export default {
         } else {
           this.error = true;
           this.errorText = "Tên hoặc mật khẩu không chính xác";
+          toast.error("Tên hoặc mật khẩu không chính xác", {
+            autoClose: 2000,
+          });
         }
         localStorage.setItem("user", JSON.stringify(user));
       } catch (error) {
@@ -179,7 +186,7 @@ export default {
     if (savedEmail && savedPassword) {
       this.email = savedEmail;
       this.password = savedPassword;
-      this.rememberMe = true;
+      this.remember = true;
     }
   },
 };
@@ -274,160 +281,27 @@ span.psw {
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
   border-radius: 30px;
 }
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 960px) {
-  .img_login {
-    display: none;
-  }
-}
-@media only screen and (max-width: 1280px) and (max-height: 720px) {
-  .all_form {
-    margin: 30px 30px;
-  }
-  .input_login {
-    height: 50px;
-    width: 380px;
-  }
-  button {
-    height: 50px;
-    width: 380px;
-    font-size: 16px;
-  }
-  .text_button {
-    margin-top: -6px;
-  }
-  .login_p {
-    font-size: 40px;
-    margin-top: 80px;
-  }
-}
-@media only screen and (max-width: 1280px) and (max-height: 1080px) {
-  .all_form {
-    margin: 215px 40px;
-  }
+@media screen and (max-width: 1299px) {
   .login_form {
-    width: 680px;
-  }
-  .input_login {
-    height: 50px;
-    width: 380px;
-  }
-  button {
-    height: 50px;
-    width: 380px;
-    font-size: 16px;
-  }
-  .text_button {
-    margin-top: -6px;
-  }
-  .login_p {
-    font-size: 40px;
-    margin-top: 80px;
+    box-shadow: none;
+    margin-top: -15rem;
+    margin-left: -15rem;
   }
 }
-@media only screen and (max-width: 1600px) and (max-height: 900px) {
-  .all_form {
-    margin-top: 75px;
-    margin-bottom: 80px;
+@media screen and (max-width: 900px) {
+  .login_form {
+    margin-left: -12rem;
   }
 }
-@media only screen and (max-width: 960px) and (max-height: 540px) {
-  .all_form {
+@media screen and (max-width: 415px) {
+  .login_form {
+    margin-left: 0;
     margin-top: 0;
-    margin-left: 140px;
   }
+}
+@media screen and (min-width: 1300px) and (max-width: 1407px) {
   .login_p {
-    margin-top: 50px;
-  }
-}
-@media only screen and (max-width: 640px) and (max-height: 360px) {
-  .input_login {
-    height: 30px;
-    width: 300px;
-  }
-  button {
-    height: 30px;
-    width: 300px;
-    font-size: 12px;
-  }
-  .text_button {
-    margin-top: -15px;
-  }
-  .login_p {
-    font-size: 30px;
-    margin-top: 80px;
-  }
-  .login_items {
-    margin-top: -200px;
-    margin-left: 220px;
-    font-size: 14px;
-    height: 360px;
-    width: 640px;
-  }
-  .email_form {
-    margin-top: -40px;
-  }
-  .text_label {
-    font-size: 14px;
-  }
-}
-@media only screen and (max-width: 375px) and (max-height: 667px) {
-  .all_form {
-    margin-top: 0px;
-    margin-left: auto;
-    margin-right: 0px;
-  }
-  .login_items {
-    margin-top: 200px;
-    margin-left: 255px;
-  }
-}
-@media only screen and (max-width: 768px) and (max-height: 1024px) {
-  .all_form {
-    margin-top: 150px;
-    margin-left: 40px;
-  }
-  .login_items {
-    margin-top: 250px;
-    margin-left: 230px;
-  }
-}
-@media only screen and (max-width: 820px) and (max-height: 1180px) {
-  .all_form {
-    margin-top: 200px;
-    margin-left: 45px;
-  }
-  .login_items {
-    margin-top: 250px;
-    margin-left: 230px;
-  }
-}
-@media only screen and (max-width: 412px) and (max-height: 915px) {
-  .all_form {
-    margin-top: 250px;
-    margin-left: -35px;
-  }
-  .login_items {
-    margin-top: 280px;
-    margin-left: 270px;
-  }
-}
-@media only screen and (max-width: 414px) and (max-height: 896px) {
-  .all_form {
-    margin-top: 300px;
-    margin-left: 0px;
-  }
-}
-@media only screen and (max-width: 360px) and (max-height: 740px) {
-  .all_form {
-    margin-top: 250px;
-    margin-left: 0px;
-  }
-}
-@media only screen and (max-width: 390px) and (max-height: 844px) {
-  .all_forms {
-    margin-left: 0px;
+    margin-top: -2rem;
   }
 }
 </style>

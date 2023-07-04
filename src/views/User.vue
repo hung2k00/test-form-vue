@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="flex mt-4 user_all relative">
-    <div class="w-100 all_user">
+    <div class="all_user">
       <div class="flex h-20 user_st">
         <div class="user_tt w-1/2 border-r-slate-400">
           <p class="text-center mt-7 font-semibold user_st_p">
@@ -13,50 +13,72 @@
           class="w-1/2 user_s font-semibold pl-3"
           @click="onSearch"
         >
-          <p class="py-6 mt-1 user_s_p">Tìm kiếm</p>
+          <p class="py-6 mt-1 user_s_p cursor-pointer hover:text-black">
+            Tìm kiếm
+          </p>
         </div>
       </div>
       <div class="detail_user">
         <div class="flex gap-20 mt-6 ml-12 icon_user">
           <router-link :to="{ name: 'note_user' }">
-            <img src="../assets/img/i.png" alt="" class="h-12 w-12" />
+            <img
+              src="../assets/img/i.png"
+              alt=""
+              class="h-12 w-12 icon_user_img"
+            />
           </router-link>
           <router-link :to="{ name: 'note_user' }">
-            <img src="../assets/img/chat_user.png" alt="" class="h-12 w-12" />
+            <img
+              src="../assets/img/chat_user.png"
+              alt=""
+              class="h-12 w-12 icon_user_img"
+            />
           </router-link>
           <router-link :to="{ name: 'note_user' }">
-            <img src="../assets/img/mail_user.png" alt="" class="h-12 w-12" />
+            <img
+              src="../assets/img/mail_user.png"
+              alt=""
+              class="h-12 w-12 icon_user_img"
+            />
           </router-link>
           <router-link :to="{ name: 'note_user' }">
-            <img src="../assets/img/ab.png" alt="" class="h-12 w-10" />
+            <img
+              src="../assets/img/ab.png"
+              alt=""
+              class="h-12 w-10 icon_user_img"
+            />
           </router-link>
         </div>
-        <div>
+        <div class="user_login">
           <popup-detail :user="user" />
         </div>
       </div>
     </div>
     <div class="ds_regis">
       <div
-        class="register_icon flex mt-28 cursor-pointer"
+        class="register_icon flex mt-28 cursor-pointer hover:bg-green-400 hover:text-blue-600"
         @click="showComponentRegister = true"
       >
         <p>Tạo Người Dùng</p>
         <img src="../assets/img/Icon.png" />
       </div>
-      <div class="relative">
+      <div class="relative full_getUser">
         <div class="full_list mt-8 mx-auto">
           <div class="all_list flex">
             <div class="user_list">
               <p class="font-normal text-xl pt-2">Danh sách người dùng</p>
             </div>
             <router-link :to="{ name: 'note_user' }" class="user_note">
-              <p class="font-normal text-xl pt-2">Ghi chú</p>
+              <p
+                class="font-normal text-xl pt-2 hover:text-black cursor-pointer"
+              >
+                Ghi chú
+              </p>
             </router-link>
           </div>
           <div class="all_table_user">
             <div class="table_user mt-10">
-              <table class="cursor-pointer">
+              <table class="">
                 <thead class="">
                   <tr class="fixed-row bg-gray-200">
                     <th>Họ và tên</th>
@@ -67,7 +89,10 @@
                 <tbody class="">
                   <tr v-for="user in reversedUsers()" :key="user.id">
                     <td>{{ user.fullname }}</td>
-                    <td @click="selectUser(user)">
+                    <td
+                      @click="selectUser(user)"
+                      class="cursor-pointer hover:text-blue-400"
+                    >
                       {{ user.email }}
                     </td>
                     <td>{{ user.phone }}</td>
@@ -295,6 +320,9 @@ export default {
 };
 </script>
 <style scoped>
+.all_user {
+  width: 26.3vw;
+}
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -392,10 +420,11 @@ td {
 .all_user {
   font-family: "Roboto";
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  height: 90.3vh;
 }
 .ds_regis {
   width: 1255px;
-  height: 867px;
+  height: 90.3vh;
   border: 1px solid #cfcfcf;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -435,449 +464,281 @@ td {
 .name_p {
   font-family: "Roboto";
 }
-@media only screen and (max-width: 1920px) and (max-height: 1080px) {
-  .user_all {
-    height: 970px;
-  }
-  .ds_regis {
-    height: 970px;
-  }
-}
-@media only screen and (max-width: 1280px) and (max-height: 720px) {
-  .popup_details {
-    margin-left: 100px;
-  }
-  .register_components {
-    margin-top: -20px;
-    margin-left: 280px;
-  }
-  .perPage_option {
-    height: 32px;
-  }
-  .header_items {
-    display: none;
-  }
+@media screen and (max-width: 1910px) {
   .all_user {
-    box-shadow: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1608px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .detail_user {
-    margin-left: 100px;
-    width: 1300px;
-    height: 700px;
-    padding: 50px;
-  }
-  .icon_user {
-    margin-left: 280px;
-    gap: 180px;
-  }
-  .user_s_p {
-    margin-top: 20px;
-  }
-  .ds_regis {
-    margin-left: 150px;
-    margin-top: 50px;
-  }
-  detail-components {
-    margin-left: 50px;
-  }
-}
-@media only screen and (max-width: 1280px) and (max-height: 1080px) {
-  .register_components {
-    margin-top: -20px;
-    margin-left: 280px;
-  }
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1608px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .detail_user {
-    margin-left: 100px;
-    width: 1300px;
-    height: 700px;
-    padding: 50px;
-  }
-  .icon_user {
-    margin-left: 280px;
-    gap: 180px;
-  }
-  .user_s_p {
-    margin-top: 20px;
-  }
-  .ds_regis {
-    margin-left: 150px;
-    margin-top: 50px;
-  }
-  detail-components {
-    margin-left: 50px;
-  }
-  .all_user {
-    box-shadow: none;
-  }
-}
-@media only screen and (max-width: 1600px) and (max-height: 900px) {
-  .register_components {
-    margin-top: -20px;
-    margin-left: 200px;
-  }
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1608px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .detail_user {
-    margin-left: 100px;
-    width: 1300px;
-    height: 700px;
-    padding: 50px;
-  }
-  .icon_user {
-    margin-left: 280px;
-    gap: 180px;
-  }
-  .user_s_p {
-    margin-top: 20px;
-  }
-  .ds_regis {
-    margin-left: 150px;
-    margin-top: 50px;
-  }
-  detail-components {
-    margin-left: 50px;
-  }
-  .all_user {
-    box-shadow: none;
-  }
-}
-@media only screen and (max-width: 960px) and (max-height: 540px) {
-  .register_components {
-    margin-top: -20px;
-    margin-left: 280px;
-  }
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1608px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .detail_user {
-    margin-left: 100px;
-    width: 1300px;
-    height: 700px;
-    padding: 50px;
-  }
-  .icon_user {
-    margin-left: 280px;
-    gap: 180px;
-  }
-  .user_s_p {
-    margin-top: 20px;
-  }
-  .ds_regis {
-    margin-left: 150px;
-    margin-top: 50px;
-  }
-  detail-components {
-    margin-left: 50px;
-  }
-  .all_user {
-    box-shadow: none;
-  }
-}
-@media only screen and (max-width: 640px) and (max-height: 360px) {
-  .register_components {
-    margin-top: -320px;
-    margin-left: 280px;
-  }
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1600px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1600px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .detail_user {
-    margin-left: 150px;
-    width: 1300px;
-    height: 700px;
-    padding: 50px;
-  }
-  .icon_user {
-    margin-left: 280px;
-    gap: 180px;
-  }
-  .user_s_p {
-    margin-top: 20px;
-  }
-  .ds_regis {
-    margin-left: 200px;
-    margin-top: -250px;
-  }
-  detail-components {
-    margin-left: 50px;
-  }
-  .all_user {
-    box-shadow: none;
-  }
-}
-@media only screen and (max-width: 375px) and (max-height: 667px) {
-  .register_components {
-    margin-top: -330px;
-    margin-left: 280px;
-  }
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1000px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1000px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .ds_regis {
-    margin-top: -250px;
-  }
-}
-@media only screen and (max-width: 768px) and (max-height: 1024px) {
-  .register_components {
-    margin-top: -320px;
-    margin-left: 250px;
-  }
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1600px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
+    height: 87vh;
   }
   .pagination {
-    bottom: 0;
-  }
-}
-@media only screen and (max-width: 820px) and (max-height: 1180px) {
-  .register_components {
-    margin-top: -800px;
-    margin-left: 280px;
-  }
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1608px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .detail_user {
-    margin-left: 100px;
-    width: 1300px;
-    height: 700px;
-    padding: 50px;
-  }
-  .icon_user {
-    margin-left: 280px;
-    gap: 180px;
-  }
-  .user_s_p {
-    margin-top: 20px;
+    bottom: 2vh;
+    right: 3vh;
   }
   .ds_regis {
-    margin-left: 150px;
-    margin-top: 50px;
+    height: 87vh;
   }
-  detail-components {
-    margin-left: 50px;
+  .full_getUser {
+    height: 78%;
+  }
+  .full_list {
+    height: 88%;
+  }
+  .all_table_user {
+    height: 90%;
+  }
+}
+@media screen and (max-width: 1820px) {
+  .icon_user {
+    margin-left: 2vw;
+    gap: 3vw;
+  }
+  .icon_user_img {
+    height: 90%;
+    width: 70%;
   }
   .all_user {
-    box-shadow: none;
-  }
-  .pagination {
-    bottom: 80px;
-  }
-}
-@media only screen and (max-width: 412px) and (max-height: 915px) {
-  .ds_regis {
-    margin-top: -280px;
-  }
-  .register_components {
-    margin-top: -320px;
-    margin-left: 280px;
-  }
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1608px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .pagination {
-    bottom: 20px;
-  }
-}
-@media only screen and (max-width: 414px) and (max-height: 896px) {
-  .register_components {
-    margin-top: -320px;
-    margin-left: 280px;
-  }
-  .header_items {
-    display: none;
-  }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1608px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1608px;
-  }
-  .user_st_p {
-    margin-top: 50px;
+    width: 28%;
   }
   .ds_regis {
-    margin-top: -250px;
+    width: 70%;
   }
-  .pagination {
-    bottom: 20px;
+  .register_icon {
+    float: right;
+    margin-right: 2%;
   }
-}
-@media only screen and (max-width: 390px) and (max-height: 844px) {
-  .header_items {
-    display: none;
+  .full_getUser {
+    margin-top: 15%;
   }
-  .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1255px;
-  }
-  .user_st {
-    height: 120px;
-    width: 1555px;
-  }
-  .user_st_p {
-    margin-top: 50px;
-  }
-  .pagination {
-    bottom: 0;
+  .full_list {
+    width: 82%;
   }
 }
-@media only screen and (max-width: 360px) and (max-height: 740px) {
-  .register_components {
-    margin-left: 200px;
-  }
-  .header_items {
-    display: none;
-  }
+@media screen and (max-width: 1408px) {
   .user_all {
-    display: block;
-    margin-top: 150px;
-    width: 1455px;
+    margin-top: 6.8%;
+    width: 210%;
   }
-  .user_st {
-    height: 120px;
-    width: 1455px;
+  .all_user {
+    width: 30%;
   }
-  .user_st_p {
-    margin-top: 50px;
+  .ds_regis {
+    width: 73%;
   }
-  .user_st_p {
-    margin-top: 50px;
+  .full_getUser {
+    margin-top: 10%;
+  }
+  .register_icon {
+    float: right;
+    margin-left: 0;
+    margin-right: 3%;
   }
   .detail_user {
-    margin-left: 50px;
+    padding: 5vh 2vw;
   }
-
+  .icon_user {
+    gap: 12vw;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .user_all {
+    margin-top: 12%;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .user_all {
+    margin-top: 13%;
+  }
+}
+@media screen and (max-height: 720px) {
+  .user_all {
+    margin-top: 8%;
+  }
+  .all_user {
+    height: 280%;
+  }
+  .full_list {
+    height: 80%;
+  }
   .ds_regis {
-    margin-left: 100px;
+    height: 103vh;
+  }
+  .full_getUser {
+    height: 70%;
+  }
+  .full_list {
+    height: 80%;
+  }
+  .all_table_user {
+    height: 80%;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .user_all {
+    display: inline;
+  }
+  .all_user {
+    margin-top: 13%;
+    width: 210%;
+    height: 82vh;
+  }
+  .user_st {
+    padding: 1vh 0;
+    height: 12%;
+  }
+  .detail_user {
+    padding: 5vh 10vh;
+  }
+  .icon_user {
+    gap: 40vw;
+    padding: 0 10vh;
+  }
+  .user_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .ds_regis {
+    width: 210%;
+    height: 113vh;
+  }
+  .register_icon {
+    float: right;
+    margin-left: 0;
+    margin-right: 7%;
+  }
+  .full_getUser {
+    margin-top: 15%;
+  }
+  .perPage {
+    margin-bottom: 2vh;
+  }
+}
+@media screen and (max-width: 960px) and (min-width: 901px) {
+  .all_user {
+    margin-top: 8%;
+    height: 210%;
+  }
+  .full_getUser {
+    margin-top: 10%;
+  }
+  .user_st {
+    height: 20%;
+  }
+  .detail_user {
+    padding: 10vh 40vh;
+  }
+  .ds_regis {
+    height: 210%;
+  }
+  .perPage {
+    margin-bottom: 10vh;
+    margin-right: 5vh;
+  }
+}
+@media screen and (max-width: 900px) {
+  .all_user {
+    margin-top: 21%;
+    width: 210%;
+    height: 80vh;
+  }
+  .user_st {
+    padding: 1vh 0;
+    height: 12%;
+  }
+  .detail_user {
+    padding: 5vh 10vh;
+  }
+  .icon_user {
+    gap: 40vw;
+    padding: 0 10vh;
+  }
+  .user_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .ds_regis {
+    width: 210%;
+    height: 90vh;
+  }
+  .register_icon {
+    float: right;
+    margin-left: 0;
+    margin-right: 7%;
+  }
+  .full_getUser {
+    margin-top: 15%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .all_user {
+    margin-top: 19%;
+  }
+  .perPage {
+    margin-bottom: 10vh;
+  }
+}
+@media screen and (max-width: 640px) and (min-width: 415px) {
+  .all_user {
+    margin-top: 8%;
+    height: 80%;
+  }
+  .user_st {
+    height: 30%;
+  }
+  .detail_user {
+    padding: 10vh 22vh;
+  }
+  .ds_regis {
+    height: 30%;
+  }
+}
+@media screen and (max-width: 414px) {
+  .all_user {
+    margin-top: 30%;
+    width: 390%;
+  }
+  .perPage {
+    margin-bottom: 10vh;
+  }
+  .icon_user {
+    gap: 60vw;
+    padding: 0 20vh;
+  }
+  .ds_regis {
+    width: 390%;
+    height: 110vh;
+  }
+}
+@media screen and (max-width: 395px) {
+  .all_user {
+    width: 400%;
+  }
+  .ds_regis {
+    width: 400%;
+  }
+  .pagination {
+    margin-right: 10vw;
+  }
+}
+@media screen and (max-width: 375px) {
+  .all_user {
+    margin-top: 35%;
+  }
+  .user_st {
+    padding: 0;
+    height: 20%;
+  }
+  .user_tt {
+    padding: 2vh 0;
+  }
+  .user_s {
+    padding: 2vh 0;
+  }
+  .ds_regis {
+    height: 150vh;
+  }
+  .pagination {
+    margin-bottom: -10vh;
+    margin-right: 10vw;
   }
 }
 </style>
