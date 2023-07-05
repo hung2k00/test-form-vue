@@ -39,7 +39,10 @@
       </div>
     </div>
     <div class="ds_regis">
-      <div class="register_icon flex mt-28 cursor-pointer" @click="createUser">
+      <div
+        class="register_icon flex mt-28 cursor-pointer hover:bg-green-400 hover:text-blue-600"
+        @click="createUser"
+      >
         <p>Tạo Người Dùng</p>
         <img src="../assets/img/Icon.png" />
       </div>
@@ -47,7 +50,9 @@
         <div class="full_list mt-8 mx-auto">
           <div class="all_list flex">
             <router-link :to="{ name: 'user' }" class="user_list">
-              <p class="font-normal text-xl pt-2">Danh sách người dùng</p>
+              <p class="font-normal text-xl pt-2 hover:text-black">
+                Danh sách người dùng
+              </p>
             </router-link>
             <router-link :to="{ name: 'note_user' }" class="user_note">
               <p class="font-normal text-xl pt-2">Ghi chú</p>

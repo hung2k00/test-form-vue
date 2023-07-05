@@ -31,7 +31,7 @@
                   {{ item.fullname }}
                 </p>
               </div>
-              <div class="flex gap-6 ml-2 mt-2">
+              <div class="flex gap-6 ml-2 mt-2 item-getUser">
                 <div class="user_item_1">
                   <p>VIP</p>
                 </div>
@@ -199,6 +199,42 @@ export default {
 .detail_icons {
   font-family: "Roboto";
 }
+@media screen and (max-width: 1905px) {
+  .form_details_search {
+    height: 80%;
+    margin-left: -2vw;
+  }
+}
+@media screen and (max-width: 1745px) and (min-width: 1408px) {
+  .item-getUser {
+    gap: 2vw;
+    margin-right: 1vw;
+  }
+  .user_item_1 {
+    font-size: 70%;
+    height: 80%;
+    width: 3vw;
+  }
+  .user_item_2 {
+    font-size: 70%;
+    height: 80%;
+    width: 5vw;
+  }
+  .user_item_3 {
+    font-size: 70%;
+    height: 80%;
+    width: 4vw;
+  }
+}
+@media screen and (max-width: 1700px) and (min-width: 1409px) {
+  .form_details_search {
+    width: 80%;
+  }
+  .show_contact_search {
+    width: 128%;
+    margin-left: -15%;
+  }
+}
 @media only screen and (max-width: 1280px) and (max-height: 1080px) {
   .form_details_selectUser {
     margin-left: 200px;
@@ -206,7 +242,7 @@ export default {
   .show_contact_search {
     border-top: none;
     margin-top: 100px;
-    width: 800px;
+    width: 120%;
   }
 }
 @media only screen and (max-width: 1600px) and (max-height: 900px) {
@@ -256,6 +292,9 @@ export default {
     border-top: none;
     margin-top: 100px;
     width: 800px;
+  }
+  .form_details_search {
+    width: 150%;
   }
 }
 @media only screen and (max-width: 412px) and (max-height: 915px) {

@@ -66,11 +66,13 @@
         <div class="full_list mt-8 mx-auto">
           <div class="all_list flex">
             <div class="user_list">
-              <p class="font-normal text-xl pt-2">Danh sách người dùng</p>
+              <p class="font-normal ff:text-xl text-base pt-2">
+                Danh sách người dùng
+              </p>
             </div>
             <router-link :to="{ name: 'note_user' }" class="user_note">
               <p
-                class="font-normal text-xl pt-2 hover:text-black cursor-pointer"
+                class="font-normal ff:text-xl text-base pt-2 hover:text-black cursor-pointer"
               >
                 Ghi chú
               </p>
@@ -78,12 +80,12 @@
           </div>
           <div class="all_table_user">
             <div class="table_user mt-10">
-              <table class="">
+              <table class="table_list">
                 <thead class="">
                   <tr class="fixed-row bg-gray-200">
-                    <th>Họ và tên</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
+                    <th class="th_name">Họ và tên</th>
+                    <th class="th_email">Email</th>
+                    <th class="th_phone">Phone Number</th>
                   </tr>
                 </thead>
                 <tbody class="">
@@ -464,6 +466,30 @@ td {
 .name_p {
   font-family: "Roboto";
 }
+@media screen and (max-width: 1920px) and (max-height: 967px) {
+  .all_user {
+    height: 87vh;
+  }
+  .pagination {
+    bottom: 2vh;
+    right: 3vh;
+  }
+  .ds_regis {
+    height: 87vh;
+  }
+  .full_getUser {
+    height: 78%;
+  }
+  .full_list {
+    height: 88%;
+  }
+  .all_table_user {
+    height: 90%;
+  }
+  .pagination {
+    margin-bottom: 2vh;
+  }
+}
 @media screen and (max-width: 1910px) {
   .all_user {
     height: 87vh;
@@ -511,6 +537,30 @@ td {
     width: 82%;
   }
 }
+@media screen and (max-width: 1714px) and (min-width: 1409px) {
+  .table_list {
+    width: 100%;
+  }
+  .th_name {
+    width: 30%;
+  }
+  .th_email {
+    width: 40%;
+  }
+  .th_phone {
+    width: 30%;
+  }
+  .full_list {
+    margin-top: 16%;
+    height: 80%;
+  }
+  .pagination {
+    margin-bottom: -1.5vh;
+  }
+  .all_table_user {
+    height: 50vh;
+  }
+}
 @media screen and (max-width: 1408px) {
   .user_all {
     margin-top: 6.8%;
@@ -537,6 +587,14 @@ td {
     gap: 12vw;
   }
 }
+@media screen and (max-width: 1464px) and (min-width: 1409px) {
+  .full_getUser {
+    margin-top: 20%;
+  }
+  .pagination {
+    margin-bottom: 2vh;
+  }
+}
 @media screen and (max-width: 1400px) {
   .user_all {
     margin-top: 12%;
@@ -545,29 +603,6 @@ td {
 @media screen and (max-width: 1280px) {
   .user_all {
     margin-top: 13%;
-  }
-}
-@media screen and (max-height: 720px) {
-  .user_all {
-    margin-top: 8%;
-  }
-  .all_user {
-    height: 280%;
-  }
-  .full_list {
-    height: 80%;
-  }
-  .ds_regis {
-    height: 103vh;
-  }
-  .full_getUser {
-    height: 70%;
-  }
-  .full_list {
-    height: 80%;
-  }
-  .all_table_user {
-    height: 80%;
   }
 }
 @media screen and (max-width: 1100px) {
@@ -626,7 +661,7 @@ td {
     padding: 10vh 40vh;
   }
   .ds_regis {
-    height: 210%;
+    height: 210vh;
   }
   .perPage {
     margin-bottom: 10vh;
@@ -676,6 +711,38 @@ td {
     margin-bottom: 10vh;
   }
 }
+@media screen and (max-width: 1100px) and (max-height: 720px) {
+  .all_user {
+    margin-top: 9%;
+  }
+}
+@media screen and (max-height: 720px) and (min-height: 551px) {
+  .user_all {
+    margin-top: 8%;
+  }
+  .all_user {
+    height: 110vh;
+  }
+  .pagination {
+    margin-bottom: -5vh;
+    margin-right: 3vw;
+  }
+  .full_list {
+    height: 80%;
+  }
+  .ds_regis {
+    height: 110vh;
+  }
+  .full_getUser {
+    height: 70%;
+  }
+  .full_list {
+    height: 80%;
+  }
+  .all_table_user {
+    height: 80%;
+  }
+}
 @media screen and (max-width: 640px) and (min-width: 415px) {
   .all_user {
     margin-top: 8%;
@@ -688,7 +755,11 @@ td {
     padding: 10vh 22vh;
   }
   .ds_regis {
-    height: 30%;
+    height: 230vh;
+  }
+  .pagination {
+    margin-bottom: -20vh;
+    margin-right: 10vw;
   }
 }
 @media screen and (max-width: 414px) {

@@ -141,10 +141,13 @@
       id="error_register"
     ></div>
     <div class="flex gap-8 pb-8 mt-2">
-      <div class="ml-16 submit_form">
+      <div class="ml-16 submit_form hover:bg-white hover:text-blue-700">
         <button type="submit">Lưu trữ</button>
       </div>
-      <div class="cancel_form" @click="onClose">
+      <div
+        class="cancel_form hover:bg-red-600 hover:text-black"
+        @click="onClose"
+      >
         <button>Đóng</button>
       </div>
     </div>
