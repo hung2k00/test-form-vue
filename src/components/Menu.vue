@@ -2,7 +2,7 @@
 <template>
   <div class="float-left w-20 bg-blue-700 all_menu h-screen relative">
     <ul class="h-80 menu_items">
-      <div class="h-1/4">
+      <div class="h-1/4 items">
         <hr
           class="line"
           :class="{
@@ -16,26 +16,26 @@
           <img src="../assets/img/Vector.png" alt="" class="ml-4 mt-4 item" />
         </router-link>
       </div>
-      <div class="h-1/4">
+      <div class="h-1/4 items">
         <hr class="line" :class="{ hidden: currentPage !== 'note' }" />
         <router-link :to="{ name: 'note' }">
           <img src="../assets/img/Untitled.png" alt="" class="ml-3 mt-1 item" />
         </router-link>
       </div>
-      <div class="h-1/4">
+      <div class="h-1/4 items">
         <hr class="line" :class="{ hidden: currentPage !== 'chat' }" />
         <router-link :to="{ name: 'chat' }"
           ><img src="../assets/img/Chat.png" alt="" class="ml-4 mt-1 item"
         /></router-link>
       </div>
-      <div class="h-1/4">
+      <div class="h-1/4 items">
         <hr class="line" :class="{ hidden: currentPage !== 'statistics' }" />
         <router-link :to="{ name: 'statistics' }"
           ><img src="../assets/img/sta.png" alt="" class="ml-3 mt-1 item"
         /></router-link>
       </div>
     </ul>
-    <div class="bg-blue-500 h-4/6 signOut_button">
+    <div class="bg-blue-500 h-4/6 signOut_button cursor-pointer">
       <img
         src="../assets/img/logout.png"
         alt=""
@@ -89,10 +89,35 @@ export default {
 .all_menu {
   height: 91vh;
 }
+@media screen and (max-width: 1920px) and (max-height: 967px) {
+  .all_menu {
+    width: 3.5%;
+    height: 83.8vh;
+  }
+  .item {
+    height: 50%;
+    width: 60%;
+  }
+  .menu_signout {
+    bottom: -2vh;
+    height: 6%;
+    width: 62%;
+  }
+}
+
 @media screen and (max-width: 1910px) {
   .all_menu {
     width: 3.5%;
-    height: 84vh;
+    height: 91vh;
+  }
+  .menu_signout {
+    bottom: 2vh;
+    height: 6%;
+    width: 55%;
+  }
+  .item {
+    height: 50%;
+    width: 60%;
   }
 }
 @media screen and (max-width: 1408px) {
@@ -104,14 +129,20 @@ export default {
     width: 210%;
     z-index: 1;
   }
+  .items {
+    padding-top: 2vh;
+    height: 90%;
+    width: 70%;
+  }
   .menu_items {
-    margin-top: -10vh;
     display: flex;
     justify-content: space-between;
     gap: 40vw;
     justify-content: center;
     align-items: center;
     padding: 0vh 10vh;
+    width: 80%;
+    height: 100%;
   }
   .menu_signout {
     top: 20%;
@@ -121,59 +152,43 @@ export default {
   }
   .line {
     border: none;
+    margin-top: -1%;
     border-left: 30vw solid #dd7a01;
     height: 2vh;
-    margin-top: -0.5%;
     margin-left: -4.5%;
-  }
-  .item {
-    margin-top: 20%;
-    height: 100%;
-    width: 100%;
   }
 }
 @media screen and (max-width: 1100px) {
   .menu_items {
     gap: 35vw;
   }
-  .item {
-    margin-top: 20%;
-    height: 100%;
-    width: 100%;
+  .items {
+    padding-top: 2vh;
+    height: 85%;
+    width: 70%;
   }
   .menu_signout {
     height: 50%;
     width: 4%;
   }
   .line {
-    margin-top: -0.5%;
+    margin-top: -1.5%;
     margin-left: -5%;
     border-left: 40vw solid #dd7a01;
   }
 }
-
-@media only screen and (max-width: 960px) and (min-width: 901px) {
+@media screen and (max-width: 960px) and (min-width: 901px) {
+  .items {
+    padding-top: 2vh;
+    height: 100%;
+    width: 150%;
+  }
   .line {
-    margin-top: -3.4%;
-    border-left: 35vw solid #dd7a01;
-  }
-  .menu_items {
-    gap: 41vw;
-  }
-  .item {
-    margin-top: -80%;
-    height: 60%;
-    width: 80%;
-  }
-  .menu_signout {
-    top: 31%;
-    width: 3%;
+    margin-top: -1.1%;
+    margin-left: -8%;
   }
 }
 @media screen and (max-width: 900px) {
-  .item {
-    margin-top: 35%;
-  }
   .menu_signout {
     height: 50%;
     width: 5%;
@@ -185,7 +200,12 @@ export default {
     gap: 33vw;
   }
 }
-@media screen and (max-height: 720px) {
+@media screen and (max-width: 1907px) and (max-height: 967px) and (min-height: 721px) {
+  .all_menu {
+    height: 84vh;
+  }
+}
+@media screen and (max-height: 720px) and (min-width: 551px) {
   .item {
     margin-top: -25%;
 
@@ -201,33 +221,36 @@ export default {
   }
 }
 @media screen and (max-width: 768px) {
-  .item {
-    margin-top: 30%;
-    height: 80%;
+  .items {
+    padding-top: 3%;
   }
   .menu_signout {
     top: 30%;
   }
   .line {
-    margin-top: -1%;
+    margin-top: -3%;
   }
 }
 @media screen and (max-width: 640px) and (min-width: 415px) {
   .line {
-    margin-top: -6%;
-    border-left: 35vw solid #dd7a01;
+    margin-top: -3%;
+    margin-left: -10%;
+    border-left: 45vw solid #dd7a01;
   }
   .menu_items {
-    gap: 41vw;
+    gap: 28vw;
+  }
+  .menu_items {
+    height: 90%;
+    width: 90%;
   }
   .item {
-    margin-top: -155%;
-    height: 40%;
-    width: 80%;
+    margin-left: -20%;
   }
   .menu_signout {
     top: 31%;
-    width: 3%;
+    width: 5%;
+    height: 30%;
   }
 }
 @media screen and (max-width: 414px) {
@@ -235,17 +258,20 @@ export default {
     width: 390%;
   }
   .menu_items {
-    margin-top: -7%;
-    gap: 62vw;
+    gap: 43vw;
+  }
+  .items {
+    height: 90%;
+    width: 90%;
   }
   .menu_signout {
-    top: 20%;
-    height: 60%;
+    top: 22%;
+    height: 50%;
     width: 5%;
   }
   .line {
     border-left: 80vw solid #dd7a01;
-    margin-top: -0.7%;
+    margin-top: -2.5%;
   }
 }
 @media screen and (max-width: 395px) {
@@ -261,7 +287,7 @@ export default {
     border: none;
     border-left: 45vh solid #dd7a01;
     height: 2vh;
-    margin-top: -1%;
+    margin-top: -2.5%;
     margin-left: -120px;
   }
   .menu_signout {
@@ -270,7 +296,16 @@ export default {
     width: 5%;
   }
   .menu_items {
-    gap: 69vw;
+    gap: 50vw;
+  }
+  .items {
+    height: 90%;
+    width: 90%;
+  }
+}
+@media screen and (max-width: 1408px) and (max-height: 967px) and (min-height: 721px) {
+  .all_menu {
+    height: 18%;
   }
 }
 </style>
