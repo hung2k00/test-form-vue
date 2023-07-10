@@ -826,17 +826,17 @@ td {
     margin-right: 10vw;
   }
 }
-@media screen and (max-width: 768px) and (max-height: 968px) {
+@media screen and (max-width: 768px) and (max-height: 968px) and (min-height: 845px) {
   .all_user {
     margin-top: 23%;
   }
 }
-@media screen and (max-width: 600px) and (max-height: 968px) {
+@media screen and (max-width: 600px) and (max-height: 968px) and (min-height: 845px) {
   .all_user {
     margin-top: 27%;
   }
 }
-@media screen and (max-width: 550px) and (max-height: 968px) {
+@media screen and (max-width: 550px) and (max-height: 968px) and (min-height: 845px) {
   .all_user {
     margin-top: 30%;
   }
@@ -938,6 +938,9 @@ td {
   .pagination {
     bottom: 6%;
   }
+  .full_getUser {
+    height: 70%;
+  }
 }
 @media screen and (max-width: 1100px) and (max-height: 844px) {
   .all_user {
@@ -977,6 +980,22 @@ td {
   }
   .full_list {
     margin-top: -5%;
+  }
+}
+@media screen and (max-width: 768px) and (max-height: 844px) {
+  .all_user {
+    margin-top: 16%;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 1100px) {
+  .full_getUser {
+    height: 75%;
+  }
+  .full_list {
+    height: 100%;
+  }
+  .all_table_user {
+    height: 78%;
   }
 }
 </style>
