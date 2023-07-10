@@ -1,5 +1,7 @@
 <template>
   <router-view name="header" />
-  <router-view name="menu" class="mt-4" />
-  <router-view />
+  <div class="pt-4">
+    <router-view name="menu" />
+    <router-view />
+  </div>
 </template>

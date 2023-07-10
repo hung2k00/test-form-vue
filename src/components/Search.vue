@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="full_screen_search">
-    <div class="flex all_search_form mt-4">
+    <div class="flex all_search_form">
       <div class="all_search">
         <div class="flex h-20 user_st">
           <div class="user_tt w-1/2 border-r-slate-400">

@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="flex mt-4 user_all relative">
+  <div class="flex user_all relative">
     <div class="all_user">
       <div class="flex h-20 user_st">
         <div class="user_tt w-1/2 border-r-slate-400">
@@ -102,7 +102,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="pagination absolute bottom-0 right-24">
+            <div class="pagination absolute">
               <button
                 @click="previousPage"
                 :disabled="currentPage === 1"
@@ -322,6 +322,10 @@ export default {
 };
 </script>
 <style scoped>
+.pagination {
+  bottom: 1vh;
+  right: 3vw;
+}
 .all_user {
   width: 26.3vw;
 }
@@ -484,10 +488,20 @@ td {
     height: 88%;
   }
   .all_table_user {
-    height: 90%;
+    height: 50%;
   }
   .pagination {
     margin-bottom: 2vh;
+  }
+}
+@media screen and (max-width: 1910px) and (min-width: 1409px) {
+  .icon_user {
+    padding: 0 2vw;
+    margin-left: -1vw;
+  }
+  .icon_user_img {
+    height: 80%;
+    width: 80%;
   }
 }
 @media screen and (max-width: 1910px) {
@@ -563,7 +577,7 @@ td {
 }
 @media screen and (max-width: 1408px) {
   .user_all {
-    margin-top: 6.8%;
+    margin-top: 5vh;
     width: 210%;
   }
   .all_user {
@@ -597,12 +611,12 @@ td {
 }
 @media screen and (max-width: 1400px) {
   .user_all {
-    margin-top: 12%;
+    margin-top: 9%;
   }
 }
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1280px) and (max-height: 1080px) {
   .user_all {
-    margin-top: 13%;
+    margin-top: 10%;
   }
 }
 @media screen and (max-width: 1100px) {
@@ -610,13 +624,13 @@ td {
     display: inline;
   }
   .all_user {
-    margin-top: 13%;
+    margin-top: 9%;
     width: 210%;
     height: 82vh;
   }
   .user_st {
-    padding: 1vh 0;
-    height: 12%;
+    padding: 3vh 0;
+    height: 15%;
   }
   .detail_user {
     padding: 5vh 10vh;
@@ -648,13 +662,13 @@ td {
 }
 @media screen and (max-width: 960px) and (min-width: 901px) {
   .all_user {
-    margin-top: 8%;
     height: 210%;
   }
   .full_getUser {
     margin-top: 10%;
   }
   .user_st {
+    padding: 3vh 0;
     height: 20%;
   }
   .detail_user {
@@ -670,7 +684,7 @@ td {
 }
 @media screen and (max-width: 900px) {
   .all_user {
-    margin-top: 21%;
+    margin-top: 14%;
     width: 210%;
     height: 80vh;
   }
@@ -705,7 +719,7 @@ td {
 }
 @media screen and (max-width: 768px) {
   .all_user {
-    margin-top: 19%;
+    margin-top: 16%;
   }
   .perPage {
     margin-bottom: 10vh;
@@ -745,7 +759,7 @@ td {
 }
 @media screen and (max-width: 640px) and (min-width: 415px) {
   .all_user {
-    margin-top: 8%;
+    margin-top: 22%;
     height: 80%;
   }
   .user_st {
@@ -810,6 +824,159 @@ td {
   .pagination {
     margin-bottom: -10vh;
     margin-right: 10vw;
+  }
+}
+@media screen and (max-width: 768px) and (max-height: 968px) {
+  .all_user {
+    margin-top: 23%;
+  }
+}
+@media screen and (max-width: 600px) and (max-height: 968px) {
+  .all_user {
+    margin-top: 27%;
+  }
+}
+@media screen and (max-width: 550px) and (max-height: 968px) {
+  .all_user {
+    margin-top: 30%;
+  }
+}
+@media screen and (max-height: 1050px) and (min-height: 968px) {
+  .pagination {
+    bottom: 4vh;
+  }
+}
+@media screen and (max-height: 995px) and (min-height: 968px) {
+  .pagination {
+    bottom: 6vh;
+  }
+}
+@media screen and (max-height: 1300px) and (min-height: 1081px) {
+  .all_table_user {
+    height: 120%;
+  }
+  .pagination {
+    bottom: -12vh;
+  }
+}
+@media screen and (max-width: 1408px) and (max-height: 976px) and (min-height: 845px) {
+  .user_all {
+    margin-top: 5%;
+  }
+}
+@media screen and (max-width: 1400px) and (max-height: 976px) and (min-height: 845px) {
+  .user_all {
+    margin-top: 10%;
+  }
+}
+@media screen and (max-width: 1280px) and (max-height: 976px) and (min-height: 845px) {
+  .user_all {
+    margin-top: 11%;
+  }
+}
+@media screen and (max-width: 1140px) and (max-height: 976px) and (min-height: 845px) {
+  .user_all {
+    margin-top: 12%;
+  }
+}
+@media screen and (max-width: 1100px) and (max-height: 976px) and (min-height: 845px) {
+  .all_user {
+    margin-top: 10%;
+  }
+  .pagination {
+    bottom: 10vh;
+    right: 15vw;
+  }
+}
+@media screen and (max-width: 965px) and (max-height: 967px) and (min-height: 845px) {
+  .all_user {
+    margin-top: 12vh;
+  }
+  .ds_regis {
+    height: 105vh;
+  }
+  .pagination {
+    bottom: 1vh;
+  }
+}
+@media screen and (max-width: 900px) and (max-height: 967px) and (min-height: 845px) {
+  .all_user {
+    margin-top: 14vh;
+  }
+  .ds_regis {
+    height: 112vh;
+  }
+  .pagination {
+    bottom: 4vh;
+  }
+}
+@media screen and (max-width: 639px) and (max-height: 967px) {
+  .pagination {
+    bottom: 10vh;
+    right: 5vw;
+  }
+}
+@media screen and (max-width: 965px) and (max-height: 940px) and (min-width: 961px) {
+  .pagination {
+    bottom: 10vh;
+  }
+}
+@media screen and (max-width: 1820px) and (min-width: 1409px) and (max-height: 900px) {
+  .table_user {
+    height: 70%;
+  }
+}
+@media screen and (max-width: 1714px) and (max-height: 900px) {
+  .pagination {
+    bottom: 6vh;
+  }
+}
+@media screen and (max-height: 844px) and (max-width: 1920px) {
+  .table_user {
+    height: 70%;
+  }
+  .pagination {
+    bottom: 6%;
+  }
+}
+@media screen and (max-width: 1100px) and (max-height: 844px) {
+  .all_user {
+    height: 80%;
+  }
+  .full_list {
+    margin-top: -7%;
+    height: 90%;
+  }
+  .ds_regis {
+    height: 100vh;
+  }
+  .table_list {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 960px) and (max-height: 844px) and (min-width: 901px) {
+  .all_user {
+    margin-top: 10%;
+  }
+  .full_list {
+    margin-top: 5%;
+  }
+  .ds_regis {
+    height: 96vh;
+  }
+  .pagination {
+    bottom: 1vh;
+  }
+}
+@media screen and (max-width: 900px) and (max-height: 844px) {
+  .all_user {
+    margin-top: 11.5%;
+  }
+  .ds_regis {
+    height: 100vh;
+  }
+  .full_list {
+    margin-top: -5%;
   }
 }
 </style>
