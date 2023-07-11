@@ -255,7 +255,7 @@ export default {
     width: 800px;
   }
 }
-@media only screen and (max-width: 960px) and (max-height: 540px) {
+@media only screen and (max-width: 960px) and (max-height: 540px) and (min-width: 376px) {
   .all_form {
     margin-top: 0;
     margin-left: 140px;
@@ -268,13 +268,18 @@ export default {
   }
   .show_contact_search {
     border-top: none;
-    margin-top: 100px;
     width: 800px;
+  }
+  .form_details_search {
+    margin-top: -95%;
   }
 }
 @media only screen and (max-width: 375px) and (max-height: 667px) {
   .detail_icons_user {
     display: none;
+  }
+  .form_details_search {
+    margin-top: 20%;
   }
 }
 @media screen and (max-width: 640px) {
@@ -326,10 +331,19 @@ export default {
     width: 900px;
     margin-left: 270px;
   }
+  .form_details_search {
+    margin-top: 30%;
+  }
 }
 @media only screen and (max-width: 390px) and (max-height: 844px) {
   .detail_icons_user {
     display: none;
+  }
+}
+@media screen and (max-width: 640px) and (max-height: 360px) {
+  .form_details_search {
+    margin-top: 8%;
+    margin-left: 50%;
   }
 }
 </style>

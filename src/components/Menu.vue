@@ -318,6 +318,11 @@ export default {
     width: 90%;
   }
 }
+@media screen and (max-width: 768px) and (min-height: 1024px) {
+  .line {
+    margin-top: -1.5%;
+  }
+}
 @media screen and (max-width: 1408px) and (max-height: 968px) and (min-height: 721px) {
   .all_menu {
     height: 18%;
@@ -446,6 +451,41 @@ export default {
 @media screen and (max-height: 844px) and (max-width: 1920px) and (min-width: 1409px) {
   .all_menu {
     height: 85.5vh;
+  }
+}
+@media screen and (max-width: 1280px) and (max-height: 720px) {
+  .item {
+    margin-top: 5%;
+    width: 50%;
+  }
+  .line {
+    margin-top: -0.5%;
+  }
+}
+@media screen and (max-width: 960px) and (max-height: 540px) {
+  .all_menu {
+    height: 20%;
+  }
+  .line {
+    margin-top: 0%;
+  }
+}
+@media screen and (max-width: 640px) and (max-height: 360px) {
+  .item {
+    width: 34%;
+  }
+  .items {
+    padding-left: 2%;
+  }
+  .menu_items {
+    gap: 20vw;
+  }
+  .line {
+    border-left: 35vw solid #dd7a01;
+    margin-top: -0.1%;
+  }
+  .menu_signout {
+    height: 50%;
   }
 }
 </style>

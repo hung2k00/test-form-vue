@@ -998,4 +998,14 @@ td {
     height: 78%;
   }
 }
+@media screen and (max-width: 1280px) and (max-height: 720px) {
+  .user_all {
+    margin-top: 6%;
+  }
+}
+@media screen and (max-width: 960px) and (max-height: 540px) {
+  .all_user {
+    margin-top: 6%;
+  }
+}
 </style>

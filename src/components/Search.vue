@@ -385,7 +385,7 @@ input {
 }
 @media screen and (max-width: 1408px) {
   .full_screen_search {
-    margin-top: 6.7%;
+    margin-top: 4.5%;
     width: 210%;
   }
   .all_search {
@@ -402,12 +402,12 @@ input {
 }
 @media screen and (max-width: 1400px) {
   .full_screen_search {
-    margin-top: 12%;
+    margin-top: 9.5%;
   }
 }
 @media screen and (max-width: 1280px) {
   .full_screen_search {
-    margin-top: 13%;
+    margin-top: 10.5%;
     width: 210%;
   }
   .all_search {
@@ -417,22 +417,11 @@ input {
     width: 100%;
   }
 }
-@media screen and (max-height: 720px) and (min-height: 670px) {
-  .full_screen_search {
-    margin-top: 9%;
-    height: 120%;
-  }
-  .all_search_form {
-    height: 120vh;
-  }
-  .all_search {
-    height: 90%;
-  }
-}
 @media screen and (max-width: 1100px) {
   .full_screen_search {
-    margin-top: 14%;
+    margin-top: 12%;
     box-shadow: none;
+    width: 168.5%;
   }
   .all_search_form {
     display: inline;
@@ -452,22 +441,19 @@ input {
     width: 120%;
   }
   .show_popup {
-    padding: 40vh 0vh;
-    margin-left: 20%;
     display: flex;
     justify-content: center;
-
     align-items: center;
+    margin-top: -10%;
+    margin-left: 10%;
   }
 }
 @media only screen and (max-width: 960px) {
   .show_popup {
-    padding: 0vh 0vh;
-    margin-top: 15%;
-    margin-left: 10%;
+    margin-left: 0;
   }
   .full_screen_search {
-    margin-top: 8.8%;
+    margin-top: 14%;
     width: 191.5%;
   }
   .all_search_form {
@@ -480,15 +466,15 @@ input {
     height: 80%;
   }
   .kq_search {
-    height: 50%;
+    height: 70%;
   }
   .search_form_1 {
-    height: 130%;
+    height: 80%;
   }
 }
 @media screen and (max-width: 900px) {
   .full_screen_search {
-    margin-top: 22%;
+    margin-top: 15%;
     width: 191.5%;
   }
   .all_search_form {
@@ -508,20 +494,29 @@ input {
   }
   .show_popup {
     margin-top: -10%;
-    margin-left: -5vh;
+    margin-left: 5%;
   }
 }
 @media screen and (max-width: 768px) {
-  .show_popup {
-    margin-top: -5%;
-  }
   .full_screen_search {
-    margin-top: 20%;
+    margin-top: 17%;
+  }
+}
+@media screen and (max-height: 720px) and (min-height: 670px) {
+  .full_screen_search {
+    margin-top: 9%;
+    height: 120%;
+  }
+  .all_search_form {
+    height: 120vh;
+  }
+  .all_search {
+    height: 90%;
   }
 }
 @media screen and (max-width: 640px) and (min-width: 415px) {
   .full_screen_search {
-    margin-top: 9%;
+    margin-top: 21%;
   }
   .search_form_1 {
     height: 60%;
@@ -530,6 +525,7 @@ input {
     margin-top: -18%;
     margin-left: 20%;
     height: 50%;
+    width: 50%;
   }
   .kq_search {
     height: 50%;
@@ -541,13 +537,14 @@ input {
     width: 355%;
   }
   .show_popup {
+    margin-left: -10%;
     margin-top: 10%;
   }
 }
 @media screen and (max-width: 395px) {
   .full_screen_search {
     width: 365%;
-    margin-top: 35%;
+    margin-top: 33%;
   }
   .user_st {
     height: 14%;
@@ -562,7 +559,7 @@ input {
 @media screen and (max-width: 375px) {
   .full_screen_search {
     width: 365%;
-    margin-top: 38%;
+    margin-top: 29%;
   }
   .all_user {
     margin-top: 35%;
@@ -578,7 +575,49 @@ input {
     padding: 2vh 0;
   }
   .show_popup {
-    margin-top: 10%;
+    margin-top: 20%;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 1070px) and (min-width: 1409px) {
+  .full_screen_search {
+    height: 88vh;
+  }
+  .search_list {
+    height: 55%;
+  }
+  .kq_search {
+    height: 60vh;
+  }
+}
+@media screen and (max-width: 900px) and (max-height: 967px) {
+  .show_popup {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 600px) and (max-height: 967px) {
+  .full_screen_search {
+    margin-top: 24%;
+  }
+}
+@media screen and (max-width: 500px) and (max-height: 967px) {
+  .full_screen_search {
+    margin-top: 29%;
+  }
+}
+@media screen and (max-width: 960px) and (max-height: 540px) and (min-width: 376px) {
+  .full_screen_search {
+    margin-top: 8%;
+  }
+  .all_search_form {
+    height: 4vh;
+  }
+  .search_form_1 {
+    height: 100%;
+  }
+  .show_popup {
+    margin-top: 25%;
+    height: 50%;
+    margin-left: 10%;
   }
 }
 </style>
