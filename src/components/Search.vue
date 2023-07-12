@@ -551,6 +551,18 @@ input {
     margin-left: 0;
   }
 }
+@media screen and (max-width: 1100px) and (max-height: 720px) {
+  .full_screen_search {
+    display: inline-block;
+  }
+  .all_search {
+    width: 100%;
+  }
+  .show_popup {
+    width: 90%;
+    margin-top: -4%;
+  }
+}
 @media screen and (max-width: 395px) {
   .full_screen_search {
     width: 365%;

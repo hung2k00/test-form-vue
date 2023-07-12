@@ -815,6 +815,14 @@ td {
     margin-top: 15%;
   }
 }
+@media screen and (max-width: 1100px) and (max-height: 720px) {
+  .all_user {
+    margin-top: -1%;
+  }
+  .register_icon {
+    margin-top: 2%;
+  }
+}
 @media screen and (max-width: 395px) {
   .all_user {
     width: 400%;
