@@ -289,6 +289,49 @@ export default {
     margin-top: -2.5%;
   }
 }
+@media screen and (max-width: 1920px) and (max-height: 720px) {
+  .all_menu {
+    height: 15%;
+    position: absolute;
+    top: -15px;
+    display: flex;
+    width: 100%;
+    z-index: 1;
+  }
+  .items {
+    padding-top: 2vh;
+    height: 80%;
+    width: 40%;
+  }
+  .menu_items {
+    display: flex;
+    justify-content: space-between;
+    gap: 15vw;
+    justify-content: center;
+    align-items: center;
+    padding: 0vh 10vh;
+    width: 80%;
+    height: 100%;
+  }
+  .item {
+    margin-top: 5%;
+    height: 86%;
+    width: 50%;
+  }
+  .menu_signout {
+    top: 30%;
+    right: 5%;
+    height: 50%;
+    width: 3%;
+  }
+  .line {
+    border: none;
+    margin-top: -0.5%;
+    border-left: 15vw solid #dd7a01;
+    height: 2vh;
+    margin-left: -5%;
+  }
+}
 @media screen and (max-width: 395px) {
   .all_menu {
     width: 400%;

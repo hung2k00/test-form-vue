@@ -541,6 +541,16 @@ input {
     margin-top: 10%;
   }
 }
+@media screen and (max-width: 1408px) and (max-height: 720px) {
+  .full_screen_search {
+    width: 100%;
+    margin-top: 5.5%;
+  }
+  .kq_search {
+    width: 100%;
+    margin-left: 0;
+  }
+}
 @media screen and (max-width: 395px) {
   .full_screen_search {
     width: 365%;
@@ -618,6 +628,12 @@ input {
     margin-top: 25%;
     height: 50%;
     margin-left: 10%;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 720px) and (min-width: 1409px) {
+  .full_screen_search {
+    margin-top: 4%;
+    height: 100%;
   }
 }
 </style>

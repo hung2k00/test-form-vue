@@ -50,7 +50,7 @@
           </router-link>
         </div>
         <div class="user_login">
-          <popup-detail :user="user" />
+          <popup-detail :user="user" class="user_component" />
         </div>
       </div>
     </div>
@@ -716,6 +716,9 @@ td {
   .full_getUser {
     margin-top: 15%;
   }
+  .pagination {
+    bottom: 6vh;
+  }
 }
 @media screen and (max-width: 768px) {
   .all_user {
@@ -793,6 +796,25 @@ td {
     height: 110vh;
   }
 }
+@media screen and (max-width: 1408px) and (max-height: 720px) {
+  .user_all {
+    margin-top: 5%;
+    width: 100%;
+    display: inline-block;
+  }
+  .all_user {
+    width: 100%;
+  }
+  .detail_user {
+    padding: 0 20vw;
+  }
+  .ds_regis {
+    width: 100%;
+  }
+  .full_list {
+    margin-top: 15%;
+  }
+}
 @media screen and (max-width: 395px) {
   .all_user {
     width: 400%;
@@ -851,7 +873,7 @@ td {
     bottom: 6vh;
   }
 }
-@media screen and (max-height: 1300px) and (min-height: 1081px) {
+@media screen and (max-height: 1300px) and (min-height: 1181px) {
   .all_table_user {
     height: 120%;
   }
@@ -1006,6 +1028,16 @@ td {
 @media screen and (max-width: 960px) and (max-height: 540px) {
   .all_user {
     margin-top: 6%;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 720px) and (min-width: 1409px) {
+  .user_all {
+    margin-top: 4%;
+  }
+}
+@media screen and (max-width: 390px) and (max-height: 844px) {
+  .all_user {
+    margin-top: 30%;
   }
 }
 </style>

@@ -346,4 +346,9 @@ export default {
     margin-left: 50%;
   }
 }
+@media screen and (max-width: 900px) {
+  .form_details_selectUser {
+    margin-left: 0;
+  }
+}
 </style>
