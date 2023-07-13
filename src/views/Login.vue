@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div
-    class="relative h-screen flex justify-center items-center container mx-auto"
+    class="relative h-screen flex justify-center items-center container mx-auto all_login"
   >
     <div class="max-w-screen-aa ff:mx-auto mx-4 flex relative all_form">
       <div class="max-w-screen-bb login_form absolute top-0 bottom-0 smd:p-28">
@@ -302,6 +302,11 @@ span.psw {
 @media screen and (min-width: 1300px) and (max-width: 1407px) {
   .login_p {
     margin-top: -2rem;
+  }
+}
+@media screen and (max-width: 1920px) and (max-height: 967px) {
+  .all_login {
+    height: 96vh;
   }
 }
 </style>
