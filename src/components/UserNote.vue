@@ -370,6 +370,9 @@ td {
   .full_getUser {
     margin-top: 10%;
   }
+  .full_list {
+    margin-top: 10%;
+  }
   .register_icon {
     float: right;
     margin-left: 0;
@@ -827,6 +830,11 @@ td {
 @media screen and (max-width: 390px) and (max-height: 844px) {
   .all_user {
     margin-top: 30%;
+  }
+}
+@media screen and (max-width: 1820px) and (max-height: 967px) and (min-width: 1715px) {
+  .full_list {
+    margin-top: 15%;
   }
 }
 </style>
